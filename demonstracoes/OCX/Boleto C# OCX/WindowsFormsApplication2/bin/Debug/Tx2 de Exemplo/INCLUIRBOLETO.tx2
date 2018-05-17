@@ -1,0 +1,34 @@
+INCLUIRBOLETO
+CedenteContaNumero=12345
+CedenteContaNumeroDV=6
+CedenteConvenioNumero=6543231
+CedenteContaCodigoBanco=341
+TituloDocEspecie=06
+
+SacadoEmail=sacado@teste.com.br
+SacadoNome=Sacado Teste
+SacadoCPFCNPJ=01001001000113
+SacadoEnderecoCEP=87020025
+SacadoCelular=440000000
+SacadoEnderecoNumero=716
+SacadoEnderecoBairro=Jd Washington 
+SacadoEnderecoCidade=Maringa
+SacadoEnderecoLogradouro=AV. BRASIL
+SacadoEnderecoPais=BRASIL
+SacadoEnderecoUF=PR
+SacadoTelefone=4433333333
+
+TituloNossoNumero=000262
+TituloNumeroDocumento=00015
+TituloDataVencimento=30/05/2017
+TituloDataEmissao=10/01/2017
+TituloValor=1,01
+
+TituloMensagem01=Mensagem linha 1
+TituloMensagem02=Mensagem linha 2
+TituloMensagem03=Mensagem linha 3
+
+TituloInformacoesAdicionais=Teste inf.Adicionais: Numero NF: 0
+TituloInstrucoes=Teste Instrucoes: Desconto de 5% ate 10/02/17
+
+SALVARBOLETO

@@ -1,0 +1,83 @@
+# .test_template: &test_definition
+#   stage: test
+#   except:
+#     - tags
+#   image: node:8-alpine
+#   cache:
+#     paths:
+#       - node_modules/
+
+.deploy_template: &deploy_definition
+  stage: deploy
+  only:
+    - tags
+  tags:
+    - shell
+  script:
+    # get the previous task-definition revision number
+    - export LAST_REVISION=$(aws ecs describe-task-definition --task-definition $TASK_FAMILY | jq -jM --unbuffered ' .taskDefinition.revision ')
+    # register a new task-defnition with the last task-definition changing only the docker image
+    - aws ecs register-task-definition --family $TASK_FAMILY --container-definitions $(aws ecs describe-task-definition --task-definition $TASK_FAMILY | jq -jM --unbuffered '.taskDefinition.containerDefinitions | .[0].image = "'"$ECR_IMAGE"':'"$CI_COMMIT_TAG"'" | tojson') > /dev/null
+    # deregister the previous task-definition
+    - aws ecs deregister-task-definition --task-definition $TASK_FAMILY:$LAST_REVISION
+    # update the service to use the new task-definition
+    - aws ecs update-service --cluster $CLUSTER_NAME --service $SERVICE_NAME --task-definition $TASK_FAMILY
+
+variables:
+  ECR_IMAGE: 126140883291.dkr.ecr.us-east-1.amazonaws.com/demo-boleto
+  CLUSTER_NAME: TecnoSpeed-Spot
+
+stages:
+  - build
+  - deploy
+
+# STAGE: build
+stable:
+  stage: build
+  only:
+    - tags
+  tags:
+    - shell
+  variables:
+    IMAGE_TAG: stable
+  script:
+    # Build versioned stable image
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG -t $CI_REGISTRY_IMAGE:$IMAGE_TAG -t $ECR_IMAGE:$CI_COMMIT_TAG -t $ECR_IMAGE:$IMAGE_TAG $PWD --file Dockerfile
+    # Upload to Gitlab Container Registry
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG
+    - docker push $CI_REGISTRY_IMAGE:$IMAGE_TAG
+    # Upload to AWS EC2 Container Registry
+    - $(aws ecr get-login --no-include-email --region us-east-1)
+    - docker push $ECR_IMAGE:$CI_COMMIT_TAG
+    - docker push $ECR_IMAGE:$IMAGE_TAG
+
+development:
+  stage: build
+  environment:
+    name: development
+  only:
+    - master
+  tags:
+    - shell
+  variables:
+    IMAGE_TAG: latest
+  script:
+    # Build latest image
+    - docker build -t $CI_REGISTRY_IMAGE:$IMAGE_TAG -t $ECR_IMAGE:$IMAGE_TAG $PWD --file Dockerfile
+    # Upload to Gitlab Container Registry
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - docker push $CI_REGISTRY_IMAGE:$IMAGE_TAG
+    # Upload to AWS EC2 Container Registry
+    - $(aws ecr get-login --no-include-email --region us-east-1)
+    - docker push $ECR_IMAGE:$IMAGE_TAG
+
+# STAGE: deploy
+production:
+  <<: *deploy_definition
+  environment:
+    name: production
+    url: https://api.tecnospeed.com.br/esocial
+  variables:
+    TASK_FAMILY: demo-boleto
+    SERVICE_NAME: demo-boleto

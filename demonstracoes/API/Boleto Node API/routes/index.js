@@ -1,0 +1,38 @@
+const express = require('express')
+const router = express.Router()
+const request = require('request')
+const fs = require('fs')
+const cedente = require('./cedente')
+const boleto = require('./boleto')
+const impressao = require('./impressao')
+const email = require('./email')
+const remessa = require('./remessa')
+const retorno = require('./retorno')
+
+router.get('/', (req, res, next) => {
+  res.render('index', {
+    title: "Demonstração boleto"
+  })
+})
+router.get('/status',(req,res,next)=>{
+  res.send(200)
+})
+router.post('/', cedente.credenciais)
+router.post('/cadastrarCedente', cedente.cadastrarCedente)
+router.post('/conta', cedente.conta)
+router.post('/convenio', cedente.convenio)
+router.post('/idIntegracao', boleto.idIntegracao)
+router.post('/descartar', boleto.descarta)
+router.post('/impressao', impressao.imprimir)
+router.post('/email', email.enviar)
+router.post('/boleto', boleto.incluir)
+router.post('/protEmail', email.consultar)
+router.post('/protImpressao', impressao.consultar)
+router.post('/remessa', remessa.remessa)
+router.post('/baixa', remessa.baixa)
+router.post('/retorno', retorno.emitir)
+router.post('/protRetorno', retorno.consultar)
+router.post('/protBaixa', remessa.consultaBaixa)
+router.post('/alteracao', remessa.remessaAlteracao)
+router.post('/protAlteracao', remessa.consultaAlteracao)
+module.exports = router

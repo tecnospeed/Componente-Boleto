@@ -1,0 +1,35 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+#botao-remessa{
+  margin-top:10px;
+}
+#botao-baixa{
+  margin-top:10px;
+}
+
+.botoes-consultar{
+  margin:10px;
+}
+#frase-json{
+  margin-top: 10px;
+}
+#frase-enviar
+#alteracao{
+  margin-top:5px;
+}
+.btn btn-sucess{
+  margin-top:10px;
+}
+a {
+  color: #00B7FF;
+}
+.botoes{
+  margin-bottom: 15px;
+}
+div.editable {
+  height: 1000px;
+  border: 1px solid #ccc;
+  padding: 5px;
+}

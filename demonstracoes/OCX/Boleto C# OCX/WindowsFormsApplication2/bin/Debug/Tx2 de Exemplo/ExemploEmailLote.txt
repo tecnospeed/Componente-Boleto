@@ -1,0 +1,12 @@
+INCLUIREMAIL
+
+IdIntegracao=>>>Informe aqui os IdIntegracao dos boletos
+EmailNomeRemetente=Nome do Remetente
+EmailRemetente=naoresponda@minhaempresa.com.br
+EmailAssunto=Boleto para pagamento - TESTE
+EmailMensagem=Prezado cliente, segue link para visualização e pagamento do boleto:|${linkBoleto}|Considere não imprimir este email.
+EmailDestinatario=email1@destinatario.com,email2@destinatario.com
+EmailAnexarBoleto=true
+TipoImpressao=99
+
+SALVAREMAIL

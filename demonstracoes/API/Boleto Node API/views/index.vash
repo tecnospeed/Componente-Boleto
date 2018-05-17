@@ -1,0 +1,146 @@
+@html.extend('layout', function(model) { @html.block('content', function(model) { @if(model.error!=null||model.frase!=null){
+<div class="alert alert-info alert-dismissible fade show" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>@model.frase</strong>@model.error
+</div>
+}
+<div class="container">
+    <div class="form-row">
+        <div class="config" style="padding:10px">
+            <form action="/" method="POST">
+                <div class="row">
+                    <div class="col-3">
+                        <label for="cnpjSoftware">CNPJ Software House</label>
+                        <input name="cnpjSoftware" type="text" class="form-control" placeholder="CNPJ Software" value="01001001000113" readonly>
+                    </div>
+                    <div class="col-3">
+                        <label for="tokenSoftware">Token Software House</label>
+                        <input name="tokenSoftware" type="text" class="form-control" placeholder="token Software" value="f22b97c0c9a3d41ac0a3875aba69e5aa"
+                            readonly>
+                    </div>
+                    <div class="col-3">
+                        <label for="cnpjCedente">CPF/CNPJ Cedente</label>
+                        <input name="cnpjCedente" type="text" class="form-control" placeholder="CNPJ cedente" placeholder="CPF/CNPJ">@model.id
+                    </div>
+                    <div class="col-3" style="margin-top:27px">
+                        <button id="config" type="submit" class="btn btn-sucess" formaction="/" style="margin:5px">Config</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                <form id="envio" action="/" method="POST">
+                    <label for="entrada">Entrada: </label>
+                    <textarea class="form-control" rows="15" cols="60" id="entrada" name="entradaTexto" required></textarea>
+                </form>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group">
+                <label for="saida">Saida:</label>
+                
+                <textarea class="form-control" rows="15" cols="60" id="saida">@model.dados</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="centro-botoes">
+        <div class="botoes">
+            <p id="frase-json" style="margin:-1px 0 -1px 0"> 1º Botões para gerar formulários em JSON</p>
+            <button id="gerarCedente" type="button" class="btn btn-sucess" onclick="gerarJson(cadastrarCendente)"> Cedente</button>
+            <button id="gerarConta" type="button" class="btn btn-sucess" onclick="gerarJson(cadastrarConta)"> Conta</button>
+            <button id="gerarConvenio" type="button" class="btn btn-sucess" onclick="gerarJson(cadastrarConvenio)"> Convênio</button>
+            <button id="boleto" type="button" class="btn btn-sucess"> Boleto</button>
+            <button id="email" type="button" class="btn btn-sucess" onclick="gerarJson(gerarEmail)"> Email</button>
+            <button id="impressao" type="button" class="btn btn-sucess" onclick="gerarJson(gerarImpressao)"> Impressão</button>
+            <button id="upload" type="button" class="btn btn-sucess">Upload Retorno</button>
+            <button id="alteracaoData" type="button" class="btn btn-sucess" onclick="gerarJson(alterData)"> Alteração de data</button>
+            <button id="alteracaoValor" type="button" class="btn btn-sucess" onclick="gerarJson(alterValor)"> Alteração do valor</button>
+        </div>
+        <div class="botoes-enviar">
+            <p id="frase-enviar" style="margin:-1px 0 -1px 0">2º Botões para enviar JSON</p>
+            <button id="cadastrarCedente" class="btn btn-primary" type="submit" onclick="botaoEnviar('/cadastrarCedente')"> Cedente</button>
+            <button id="cadastrarConta" class="btn btn-primary" type="submit" formaction="/conta" onclick="botaoEnviar('/conta')"> Conta</button>
+            <button id="cadastrarConvenio" class="btn btn-primary" type="submit" formaction="/convenio" onclick="botaoEnviar('/convenio')">
+            Convênio</button>
+            <button id="incluirBoleto" class="btn btn-primary" type="submit" formaction="/boleto" onclick="botaoEnviar('/boleto')">Boleto</button>
+            <button id="incluirEmail" class="btn btn-primary" type="submit" formaction="/email" onclick="botaoEnviar('/email')"> Email</button>
+            <button id="incluirImpressao" class="btn btn-primary" type="submit" formaction="/impressao" onclick="botaoEnviar('/impressao')">
+            Impressão</button>
+            <button id="incluirRet" class="btn btn-primary" type="submit" formaction="/retorno" onclick="botaoEnviar('/retorno')"> Retorno</button>
+            <button id="alteracao" class="btn btn-primary" type="submit" formaction="/alteracao" onclick="botaoEnviar('/alteracao')">
+            Alteração</button>
+        </div>
+    </div>
+    <div class="consultas" style="padding-top:10px">
+        <p  style="margin:-1px 0 -1px 0">3º Consultas </p>
+        <div class="row">
+            <div class="col-4">
+                <form action="/" method="POST">
+                    <div class="form-group"></div>
+                    <label for="idIntegracao">Id Integração</label>
+                    <input name="idIntegracao" type="text" class="form-control" placeholder="idIntegracao" required>
+                    <div class="botoes-consultar">
+                        <button type="submit" class="btn btn-sucess" formaction="/idIntegracao"> Consultar Boleto</button>
+                        <button type="submit" class="btn btn-sucess" formaction="/descartar">Descartar Boleto</button>
+                        <button id="botao-remessa" type="submit" class="btn btn-sucess" formaction="/remessa"> Gerar remessa</button>
+                        <button id="botao-baixa" type="submit" class="btn btn-sucess" formaction="/baixa">Gerar baixa</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-4">
+                <form action="/" method="POST">
+                    <div class="form-group"></div>
+                    <label for="protEmail">Protocolo Email</label>
+                    <input name="protEmail" type="text" class="form-control" placeholder="Protocolo Email" required>
+                    <button type="submit" class="btn btn-sucess" formaction="/protEmail" style="margin:5px">Consultar Email</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <form action="/" method="POST">
+                    <div class="form-group"></div>
+                    <label for="protImpre">Protocolo Impressão</label>
+                    <input name="protImpre" type="text" class="form-control" placeholder="Protocolo Impressão" required>
+                    <button type="submit" class="btn btn-sucess" formaction="/protImpressao" style="margin:5px">Consultar impressão</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                <form action="/" method="POST">
+                    <div class="form-group"></div>
+                    <label for="protRetorno">Protocolo Retorno</label>
+                    <input name="protRetorno" type="text" class="form-control" placeholder="Protocolo Retorno" required>
+                    <button type="submit" class="btn btn-sucess" formaction="/protRetorno" style="margin:5px">Consultar Retorno</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <form action="/" method="POST">
+                    <div class="form-group"></div>
+                    <label for="protBaixa">Protocolo Baixa</label>
+                    <input name="protBaixa" type="text" class="form-control" placeholder="Protocolo Baixa" required>
+                    <button type="submit" class="btn btn-sucess" formaction="/protBaixa" style="margin:5px">Consultar baixa</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <form action="/" method="POST">
+                    <div class="form-group"></div>
+                    <label for="protAlteracao">Consultar Alteração</label>
+                    <input name="protAlteracao" type="text" class="form-control" placeholder="Protocolo Alteração" required>
+                    <button type="submit" class="btn btn-sucess" formaction="/protAlteracao" style="margin:5px">Consultar alteracao remessa</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+    crossorigin="anonymous"></script>
+<script src="javascripts/function.js"></script> }) })
