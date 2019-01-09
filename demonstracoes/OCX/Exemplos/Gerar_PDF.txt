@@ -1,0 +1,33 @@
+procedure TfrmExemploBoletoX.btnSalvarPDFLoteClick(Sender: TObject);
+var
+  _SalvarPDFLote: IspdRetSalvarLoteImpressaoPDF;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+
+ if dlgSalvarPDF.Execute then
+  begin
+    try
+      _SalvarPDFLote := FBoletoX.SalvarLoteImpressaoPDF(edtProtocoloRetornoImpressaoLote.Text, dlgSalvarPDF.FileName);
+
+      mmoResposta.Lines.Clear;
+      mmoResposta.Lines.Add('.:: CONSULTAR PROTOCOLO LOTE IMPRESSAO ::.');
+      mmoResposta.Lines.Add('Situacao: ' + _SalvarPDFLote.Situacao);    //'PROCESSANDO': impressão em processamento  // 'PROCESSADA': impressão processada com sucesso  //  'FALHA': erro ao gerar a impressão. (O erro estará preenchido na propriedade Mensagem)  //  'CANCELADA': impressão abortada
+      mmoResposta.Lines.Add('Mensagem: ' + _SalvarPDFLote.Mensagem);
+      mmoResposta.Lines.Add('Status: ' + _SalvarPDFLote.Status);
+
+      if _SalvarPDFLote.ErroConexao <> '' then
+        mmoResposta.Lines.Add('Erro Conexão: ' + _SalvarPDFLote.ErroConexao);
+
+      if AnsiSameText(_SalvarPDFLote.Status, 'ERRO') then
+        mmoResposta.Lines.Add('ErroClasse: ' + ConverteErroClasse(_SalvarPDFLote.ErroClasse));
+
+      mmoResposta.Lines.Add('');
+
+    finally
+      mmoResposta.Lines.EndUpdate;
+    end;
+  end;
+
+end;

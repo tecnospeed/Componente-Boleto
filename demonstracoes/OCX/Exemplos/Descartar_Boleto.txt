@@ -1,0 +1,39 @@
+procedure TfrmExemploBoletoX.btnDescartarBoletosClick(Sender: TObject);
+var
+  _DescarteList: IspdretDescartarLista;
+  _DescarteItem: IspdRetDescartarTituloItem;
+  i: Integer;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+  try
+    InicioTempoResposta;
+    _DescarteList := FBoletoX.Descartar(edtIdIntegracao.Text);
+    FimTempoResposta;
+
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: DESCARTAR ::.');
+    mmoResposta.Lines.Add('Mensagem: ' + _DescarteList.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _DescarteList.Status);
+    if AnsiSameText(_DescarteList.Status, 'ERRO') then
+      mmoResposta.Lines.Add('ErroClasse: ' + ConverteErroClasse(_DescarteList.ErroClasse));
+
+    mmoResposta.Lines.Add('');
+
+    for i := 0 to _DescarteList.Count - 1 do
+    begin
+      _DescarteItem := _DescarteList.Item[i];
+      mmoResposta.Lines.Add('ITEM: ' + IntToStr(i+1));
+      mmoResposta.Lines.Add('  IdIntegracao: ' + _DescarteItem.IdIntegracao);
+      mmoResposta.Lines.Add('  Erro: ' + _DescarteItem.Erro);
+      mmoResposta.Lines.Add('  ErroClasse: ' + ConverteErroClasse(_DescarteItem.ErroClasse));
+
+      mmoResposta.Lines.Add('');
+    end;
+    
+  finally
+    mmoResposta.Lines.EndUpdate;
+  end;
+
+end;

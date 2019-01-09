@@ -1,0 +1,46 @@
+              
+var
+  _AlterarConta: IspdRetAlterarConta;
+  _Id: WideString;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+
+try
+    _Id := edtIDConta.Text;
+    InicioTempoResposta;
+    _AlterarConta := FBoletoX.AlterarConta(_Id, mmoTX2.Lines.Text);
+    FimTempoResposta;
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: Alterar Conta ::.');
+    mmoResposta.Lines.Add('Mensagem: ' + _AlterarConta.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _AlterarConta.Status);
+    mmoResposta.Lines.Add('Erro de conexao: ' + _AlterarConta.ErroConexao);
+    mmoResposta.Lines.Add('');
+
+
+if _AlterarConta.Status = 'SUCESSO' then
+begin
+  mmoResposta.Lines.Add('  Id Conta: ' + _AlterarConta.IdConta);
+  mmoResposta.Lines.Add('  Codigo Banco: ' + _AlterarConta.CodigoBanco);
+  mmoResposta.Lines.Add('  Agencia: ' + _AlterarConta.Agencia);
+  mmoResposta.Lines.Add('  AgenciaDV: ' + _AlterarConta.AgenciaDV);
+  mmoResposta.Lines.Add('  Conta: ' + _AlterarConta.Conta);
+  mmoResposta.Lines.Add('  Conta DV: ' + _AlterarConta.ContaDV);
+  mmoResposta.Lines.Add('  Tipo Conta: ' + _AlterarConta.TipoConta);
+  mmoResposta.Lines.Add('  Codigo Benefic�rio: ' + _AlterarConta.CodigoBeneficiario);
+  mmoResposta.Lines.Add('  Codigo Empresa: ' + _AlterarConta.CodigoEmpresa);
+  mmoResposta.Lines.Add('');
+end;
+
+  mmoResposta.SelStart  := 1;
+  mmoResposta.SelLength := 1;
+finally
+    mmoResposta.Lines.EndUpdate;
+    mmoTX2.Lines.Clear;
+end;
+
+end;
+              
+            

@@ -1,0 +1,38 @@
+procedure TfrmExemploBoletoX.btnCadastrarConvenioClick(Sender: TObject);
+var
+  _Convenio: IspdRetCadastrarConvenio;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+  try
+    _Convenio := FBoletoX.CadastrarConvenio(mmoTX2.Lines.Text);
+
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: Cadastrar Convenio ::.');
+    mmoResposta.Lines.Add('Mensgem: ' + _Convenio.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _Convenio.Status);
+    mmoResposta.Lines.Add('Erro de conexao: ' + _Convenio.ErroConexao);
+    mmoResposta.Lines.Add('');
+
+    if _Convenio.Status = 'SUCESSO' then
+    begin
+      mmoResposta.Lines.Add('  Id Convenio: ' + _Convenio.IdConvenio);
+      mmoResposta.Lines.Add('  Numero Convenio: ' + _Convenio.NumeroConvenio);
+      mmoResposta.Lines.Add('  Descricao: ' + _Convenio.DescricaoConvenio);
+      mmoResposta.Lines.Add('  Carteira: ' + _Convenio.Carteira);
+      mmoResposta.Lines.Add('  Especie: ' + _Convenio.Especie);
+      mmoResposta.Lines.Add('  Padrao CNAB: ' + _Convenio.PadraoCNAB);
+      mmoResposta.Lines.Add('  Utiliza VAN: ' + BoolToStr(_Convenio.UtilizaVan));
+      mmoResposta.Lines.Add('  Numero Remessa: ' + _Convenio.NumeroRemessa);
+      mmoResposta.Lines.Add('  Reiniciar Numero Remessa: ' + BoolToStr(_Convenio.ReiniciarDiariamente));
+      mmoResposta.Lines.Add('');
+    end;
+
+    mmoResposta.SelStart  := 1;
+    mmoResposta.SelLength := 1;
+  finally
+    mmoResposta.Lines.EndUpdate;
+    mmoTX2.Lines.Clear;
+  end;
+end;

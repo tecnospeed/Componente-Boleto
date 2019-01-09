@@ -1,0 +1,35 @@
+procedure TfrmExemploBoletoX.btnCadastrarCedenteClick(Sender: TObject);
+var
+  _Cedente: IspdRetCadastrarCedente;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+  try
+    _Cedente := FBoletoX.CadastrarCedente (mmoTX2.Lines.Text);
+
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: Cadastrar Cedente ::.');
+    mmoResposta.Lines.Add('Mensgem: ' + _Cedente.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _Cedente.Status);
+    mmoResposta.Lines.Add('Erro de conexao: ' + _Cedente.ErroConexao);
+    mmoResposta.Lines.Add('');
+
+    if _Cedente.Status = 'SUCESSO' then
+    begin
+      mmoResposta.Lines.Add('  Id Cedente: ' + _Cedente.IdCedente);
+      mmoResposta.Lines.Add('  Situacao: ' + _Cedente.Situacao);
+      mmoResposta.Lines.Add('  Token: ' + _Cedente.Token);
+      mmoResposta.Lines.Add('  CPF / CNPJ: ' + _Cedente.CpfCnpj);
+      mmoResposta.Lines.Add('  Razao Social: ' + _Cedente.RazaoSocial);
+      mmoResposta.Lines.Add('  Nome Fantasia: ' + _Cedente.NomeFantasia);
+      mmoResposta.Lines.Add('');
+    end;
+
+    mmoResposta.SelStart  := 1;
+    mmoResposta.SelLength := 1;
+  finally
+    mmoResposta.Lines.EndUpdate;
+    mmoTX2.Lines.Clear;
+  end;
+end;

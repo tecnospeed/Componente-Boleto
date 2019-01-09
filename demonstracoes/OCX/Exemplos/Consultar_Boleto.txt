@@ -1,0 +1,139 @@
+procedure TfrmExemploBoletoX.btnConsultarClick(Sender: TObject);
+var
+  _ConsultarList: IspdRetConsultarLista;
+  _ConsultarItem: IspdRetConsultarTituloItem;
+  i, j: Integer;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+
+  try
+    _ConsultarList := FBoletoX.Consultar(edtIdIntegracao.Text);
+
+    mmoResposta.Lines.Add('.:: Consultar Titulo ::.');
+    mmoResposta.Lines.Add('Mensagem: ' + _ConsultarList.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _ConsultarList.Status);
+
+    if _ConsultarList.ErroConexao <> '' then
+      mmoResposta.Lines.Add('Erro Conexao: ' + _ConsultarList.ErroConexao);
+
+    mmoResposta.Lines.Add('');
+
+    while _ConsultarList.Count <> 0 do
+    begin
+      for i := 0 to pred(_ConsultarList.Count) do    //o conte�do de pred � equivalente a (_ConsultarList.Count - 1)
+      begin
+        _ConsultarItem := _ConsultarList.Item[i];
+        mmoResposta.Lines.Add('ITEM: ' + IntToStr(i+1));
+        mmoResposta.Lines.Add('  IdIntegracao: ' + _ConsultarItem.IdIntegracao);
+        mmoResposta.Lines.Add('  Situacao: ' + _ConsultarItem.Situacao);
+        mmoResposta.Lines.Add('  Motivo: ' + _ConsultarItem.Motivo);
+        mmoResposta.Lines.Add('');
+        mmoResposta.Lines.Add('CEDENTE:');
+        mmoResposta.Lines.Add('  Agencia: ' + _ConsultarItem.CedenteAgencia);
+        mmoResposta.Lines.Add('  AgenciaDV: ' + _ConsultarItem.CedenteAgenciaDV);
+        mmoResposta.Lines.Add('  Codigo Banco: ' + _ConsultarItem.CedenteCodigoBanco);
+        mmoResposta.Lines.Add('  Carteira: ' + _ConsultarItem.CedenteCarteira);
+        mmoResposta.Lines.Add('  Conta: ' + _ConsultarItem.CedenteConta);
+        mmoResposta.Lines.Add('  DV da conta: ' + _ConsultarItem.CedenteContaNumeroDV);
+        mmoResposta.Lines.Add('  Numero Convenio: ' + _ConsultarItem.CedenteNumeroConvenio);
+        mmoResposta.Lines.Add('');
+        mmoResposta.Lines.Add('SACADO:');
+        mmoResposta.Lines.Add('  CPFCNPJ: ' + _ConsultarItem.SacadoCPFCNPJ);
+        mmoResposta.Lines.Add('  Nome: ' + _ConsultarItem.SacadoNome);
+        mmoResposta.Lines.Add('  Telefone: ' + _ConsultarItem.SacadoTelefone);
+        mmoResposta.Lines.Add('  Celular: ' + _ConsultarItem.SacadoCelular);
+        mmoResposta.Lines.Add('  Email: ' + _ConsultarItem.SacadoEmail);
+        mmoResposta.Lines.Add('  Endereco Numero: ' + _ConsultarItem.SacadoEnderecoNumero);
+        mmoResposta.Lines.Add('  Endereco Bairro: ' + _ConsultarItem.SacadoEnderecoBairro);
+        mmoResposta.Lines.Add('  Endereco CEP: ' + _ConsultarItem.SacadoEnderecoCEP);
+        mmoResposta.Lines.Add('  Endereco Cidade: ' + _ConsultarItem.SacadoEnderecoCidade);
+        mmoResposta.Lines.Add('  Endereco Complemento: ' + _ConsultarItem.SacadoEnderecoComplemento);
+        mmoResposta.Lines.Add('  Endereco Logradouro: ' + _ConsultarItem.SacadoEnderecoLogradouro);
+        mmoResposta.Lines.Add('  Endereco Pais: ' + _ConsultarItem.SacadoEnderecoPais);
+        mmoResposta.Lines.Add('  Endereco UF: ' + _ConsultarItem.SacadoEnderecoUF);
+        mmoResposta.Lines.Add('');
+        mmoResposta.Lines.Add('TITULO:');
+        mmoResposta.Lines.Add('  Numero Documento: ' + _ConsultarItem.TituloNumeroDocumento);
+        mmoResposta.Lines.Add('  Origem Documento: ' + _ConsultarItem.TituloOrigemDocumento);
+        mmoResposta.Lines.Add('  Linha Digitavel: ' + _ConsultarItem.TituloLinhaDigitavel);
+        mmoResposta.Lines.Add('  Codigo de Barras: ' + _ConsultarItem.TituloCodigoBarras);
+        mmoResposta.Lines.Add('  Codigo Emissao Bloqueto: ' + _ConsultarItem.TituloCodEmissaoBloqueto);
+        mmoResposta.Lines.Add('  Titulo Aceite: ' + _ConsultarItem.TituloAceite);
+        mmoResposta.Lines.Add('  Avalista: ' + _ConsultarItem.TituloInscricaoSacadorAvalista);
+        mmoResposta.Lines.Add('  Doc Especie: ' + _ConsultarItem.TituloDocEspecie);
+        mmoResposta.Lines.Add('  Nosso Numero: ' + _ConsultarItem.TituloNossoNumero);
+        mmoResposta.Lines.Add('  Codigo para baixa ou devolucao: ' + _ConsultarItem.TituloCodBaixaDevolucao);
+        mmoResposta.Lines.Add('  Prazo para baixa ou devolucao: ' + _ConsultarItem.TituloPrazoBaixa);
+        mmoResposta.Lines.Add('  Data Emissao: ' + _ConsultarItem.TituloDataEmissao);
+        mmoResposta.Lines.Add('  Forcar Fator Vencimento: ' + BoolToStr(_ConsultarItem.TituloForcarFatorVencimento, True));
+        mmoResposta.Lines.Add('  Data Vencimento: ' + _ConsultarItem.TituloDataVencimento);
+        mmoResposta.Lines.Add('  Codigo de Desconto: ' + _ConsultarItem.TituloCodDesconto);
+        mmoResposta.Lines.Add('  Data Desconto: ' + _ConsultarItem.TituloDataDesconto);
+        mmoResposta.Lines.Add('  Valor Desconto: ' + FloatToStr(_ConsultarItem.TituloValorDescontoTaxa));
+        mmoResposta.Lines.Add('  Codigo de Desconto2: ' + _ConsultarItem.TituloCodDesconto2);
+        mmoResposta.Lines.Add('  Outras Deducoes: ' + _ConsultarItem.TituloOutrasDeducoes);
+        mmoResposta.Lines.Add('  Data Desconto: ' + _ConsultarItem.TituloDataDesconto2);
+        mmoResposta.Lines.Add('  Valor Desconto: ' + FloatToStr(_ConsultarItem.TituloValorDescontoTaxa2));
+        mmoResposta.Lines.Add('  Codigo de Juros: ' + _ConsultarItem.TituloCodigoJuros);
+        mmoResposta.Lines.Add('  Data Juros: ' + _ConsultarItem.TituloDataJuros);
+        mmoResposta.Lines.Add('  Valor Juros: ' + FloatToStr(_ConsultarItem.TituloValorJuros));
+        mmoResposta.Lines.Add('  Prazo Protesto: ' + _ConsultarItem.TituloPrazoProtesto);
+        mmoResposta.Lines.Add('  Instrucoes: ' + _ConsultarItem.TituloInstrucoes);
+        mmoResposta.Lines.Add('  Mensagem 1: ' + _ConsultarItem.TituloMensagem01);
+        mmoResposta.Lines.Add('  Mensagem 2: ' + _ConsultarItem.TituloMensagem02);
+        mmoResposta.Lines.Add('  Mensagem 3: ' + _ConsultarItem.TituloMensagem03);
+        mmoResposta.Lines.Add('  Informacoes Adicionais: ' + _ConsultarItem.TituloInformacoesAdicionais);
+        mmoResposta.Lines.Add('  Local Pagamento: ' + _ConsultarItem.TituloLocalPagamento);
+        mmoResposta.Lines.Add('  Parcela: ' + _ConsultarItem.TituloParcela);
+        mmoResposta.Lines.Add('  Variacao Carteira: ' + _ConsultarItem.TituloVariacaoCarteira);
+        mmoResposta.Lines.Add('  Categoria: ' + _ConsultarItem.TituloCategoria);
+        mmoResposta.Lines.Add('  Modalidade: ' + _ConsultarItem.TituloModalidade);
+        mmoResposta.Lines.Add('  Cip: ' + _ConsultarItem.TituloCip);
+        mmoResposta.Lines.Add('  Ios "utilizado apenas pelo Santander": ' + _ConsultarItem.TituloIos);
+        mmoResposta.Lines.Add('  Cod Cliente "exclusivo para os bancos HSBC e Safra": ' + _ConsultarItem.TituloCodCliente);
+        mmoResposta.Lines.Add('  Valor: ' + FloatToStr(_ConsultarItem.TituloValor));
+        mmoResposta.Lines.Add('  Pagamento Minimo: ' + FloatToStr(_ConsultarItem.TituloPagamentoMinimo));
+        mmoResposta.Lines.Add('  Data Credito: ' + _ConsultarItem.PagamentoDataCredito);
+        mmoResposta.Lines.Add('  Valor Cobrado: ' + FloatToStr(_ConsultarItem.TituloValorCobrado));
+        mmoResposta.Lines.Add('  Titulo Pago: ' + BoolToStr(_ConsultarItem.PagamentoRealizado));
+        mmoResposta.Lines.Add('  Valor Credito: ' + FloatToStr(_ConsultarItem.PagamentoValorCredito));
+        mmoResposta.Lines.Add('  Valor Outros Acrescimos: ' + FloatToStr(_ConsultarItem.TituloValorOutrosAcrescimos));
+        mmoResposta.Lines.Add('  Valor Pago: ' + FloatToStr(_ConsultarItem.PagamentoValorPago));
+        mmoResposta.Lines.Add('  Valor Taxa Cobranca: ' + FloatToStr(_ConsultarItem.PagamentoValorTaxaCobranca));
+        mmoResposta.Lines.Add('  Valor Abatimento: ' + FloatToStr(_ConsultarItem.TituloValorAbatimento));
+        mmoResposta.Lines.Add('  Valor Outras Despesas: ' + FloatToStr(_ConsultarItem.PagamentoValorOutrasDespesas));
+        mmoResposta.Lines.Add('  Valor IOF: ' + FloatToStr(_ConsultarItem.PagamentoValorIOF));
+        mmoResposta.Lines.Add('  Codigo Multa: ' + _ConsultarItem.TituloCodigoMulta);
+        mmoResposta.Lines.Add('  Valor Multa: ' + FloatToStr(_ConsultarItem.TituloValorMulta));
+        mmoResposta.Lines.Add('  Valor Multa Taxa: ' + FloatToStr(_ConsultarItem.TituloValorMultaTaxa));
+        mmoResposta.Lines.Add('  Data Multa: ' + _ConsultarItem.PagamentoData);
+        mmoResposta.Lines.Add('  Data Pagamento: ' + _ConsultarItem.PagamentoData);
+        mmoResposta.Lines.Add('  Valor Outros Creditos: ' + FloatToStr(_ConsultarItem.PagamentoValorOutrosCreditos));
+        mmoResposta.Lines.Add('  Pagamento Valor Desconto: ' + FloatToStr(_ConsultarItem.PagamentoValorDesconto));
+        mmoResposta.Lines.Add('  Pagamento Valor Acrescimos: ' + FloatToStr(_ConsultarItem.PagamentoValorAcrescimos));
+        mmoResposta.Lines.Add('  Pagamento Valor Abatimento: ' + FloatToStr(_ConsultarItem.PagamentoValorAbatimento));
+        mmoResposta.Lines.Add('  Impressao Visualizada: ' + BoolToStr(_ConsultarItem.ImpressaoVisualizada, True));   //Converte o retorno para "False" ou "True"
+        mmoResposta.Lines.Add('');
+
+        if _ConsultarItem.TituloOcorrencias <> nil then
+        begin
+          mmoResposta.Lines.Add('  OCORR�NCIAS:');
+          for j := 0 to _ConsultarItem.TituloOcorrencias.Count - 1 do
+          begin
+            mmoResposta.Lines.Add('    C�digo: ' + IntToStr(j+1) + ': ' + _ConsultarItem.TituloOcorrencias.Item[j].Codigo);
+            mmoResposta.Lines.Add('    Mensagem: ' + IntToStr(j+1) + ': ' + _ConsultarItem.TituloOcorrencias.Item[j].Mensagem);
+          end;
+          mmoResposta.Lines.Add('');
+        end;
+      end;
+
+      _ConsultarList.PaginaSeguinte;           //Utilize este par�metro quando a consulta for feita com mais de 1000 idIntegracao por vez. O While far� a consulta de 20 em 20 idIntegracao, e o "PaginaSeguinte" repete a consulta enquanto houverem p�ginas a serem consultadas.
+
+    end;
+
+  finally
+    mmoResposta.Lines.EndUpdate;
+  end;
+end;

@@ -1,0 +1,38 @@
+procedure TfrmExemploBoletoX.btnCadastrarContaClick(Sender: TObject);
+var
+  _Conta: IspdRetCadastrarConta;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+  try
+    _Conta := FBoletoX.CadastrarConta(mmoTX2.Lines.Text);
+
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: Cadastrar Conta ::.');
+    mmoResposta.Lines.Add('Mensgem: ' + _Conta.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _Conta.Status);
+    mmoResposta.Lines.Add('Erro de conexao: ' + _Conta.ErroConexao);
+    mmoResposta.Lines.Add('');
+
+    if _Conta.Status = 'SUCESSO' then
+    begin
+      mmoResposta.Lines.Add('  Id Conta: ' + _Conta.IdConta);
+      mmoResposta.Lines.Add('  Codigo Banco: ' + _Conta.CodigoBanco);
+      mmoResposta.Lines.Add('  Agencia: ' + _Conta.Agencia);
+      mmoResposta.Lines.Add('  AgenciaDV: ' + _Conta.AgenciaDV);
+      mmoResposta.Lines.Add('  Conta: ' + _Conta.Conta);
+      mmoResposta.Lines.Add('  Conta DV: ' + _Conta.ContaDV);
+      mmoResposta.Lines.Add('  Tipo Conta: ' + _Conta.TipoConta);
+      mmoResposta.Lines.Add('  Codigo Beneficiario: ' + _Conta.CodigoBeneficiario);
+      mmoResposta.Lines.Add('  Codigo Empresa: ' + _Conta.CodigoEmpresa);
+      mmoResposta.Lines.Add('');
+    end;
+
+    mmoResposta.SelStart  := 1;
+    mmoResposta.SelLength := 1;
+  finally
+    mmoResposta.Lines.EndUpdate;
+    mmoTX2.Lines.Clear;
+  end;
+end;

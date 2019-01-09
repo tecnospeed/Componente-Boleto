@@ -1,0 +1,42 @@
+procedure TfrmExemploBoletoX.btnSolicitarImpressaoLoteClick(Sender: TObject);
+var
+  _ImprimirLoteList: IspdRetImprimirLote;
+  tipoImpressao : string;
+begin
+    mmoResposta.Lines.Clear;
+    mmoResposta.Refresh;
+    mmoResposta.Lines.BeginUpdate;
+    try
+      if cbbTipoImpressao.ItemIndex = 0 then        // impressão normal
+        tipoImpressao := '0'
+      else if cbbTipoImpressao.ItemIndex = 1 then   // impressão em modo carne duplo (paisagem)
+        tipoImpressao := '1'
+      else if cbbTipoImpressao.ItemIndex = 2 then   // impressão em modo carne triplo (retrato)
+        tipoImpressao := '2'
+      else if cbbTipoImpressao.ItemIndex = 3 then   // impressão dupla (retrato)
+        tipoImpressao := '3'
+      else tipoImpressao := '99';                   // impressão em modo personalizado
+
+
+      _ImprimirLoteList := FBoletoX.ImprimirLote(edtIdIntegracao.Text, tipoImpressao);
+
+      if _ImprimirLoteList.Protocolo <> EmptyStr then
+        edtProtocoloRetornoImpressaoLote.Text := _ImprimirLoteList.Protocolo;
+
+      mmoResposta.Lines.Clear;
+      mmoResposta.Lines.Add('.:: IMPRESSÃO EM LOTE ::.');
+      mmoResposta.Lines.Add('Mensagem: ' + _ImprimirLoteList.Mensagem);
+      mmoResposta.Lines.Add('Status: ' + _ImprimirLoteList.Status);
+      mmoResposta.Lines.Add('Protocolo: ' + _ImprimirLoteList.Protocolo);
+
+      if AnsiSameText(_ImprimirLoteList.Status, 'ERRO') then
+      begin
+        mmoResposta.Lines.Add('ErroClasse: ' + ConverteErroClasse(_ImprimirLoteList.ErroClasse));
+      end;
+
+      mmoResposta.Lines.Add('');
+
+    finally
+      mmoResposta.Lines.EndUpdate;
+    end;
+end;

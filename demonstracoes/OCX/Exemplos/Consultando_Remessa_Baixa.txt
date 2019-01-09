@@ -1,0 +1,55 @@
+procedure TfrmExemploBoletoX.btnConsultarRemessaBaixadaClick(Sender: TObject);
+var
+  _RetornoConsultarBaixa: IspdRetConsultarRemessaBaixaLista;
+  _RetornoConsultarBaixaItem: IspdRetConsultarRemessaBaixaItem;
+  i, j: Integer;
+  //_remessa: TStringList;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+  //_remesa := TStringList.Create;
+  try
+    _RetornoConsultarBaixa := FBoletoX.ConsultarRemessaBaixa(edtProcotoloRemessaBaixada.Text);
+
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: CONSULTA BAIXA ::.');
+    mmoResposta.Lines.Add('Mensagem: ' + _RetornoConsultarBaixa.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _RetornoConsultarBaixa.Status);
+    mmoResposta.Lines.Add('Situacao: ' + _RetornoConsultarBaixa.Situacao);
+
+    if AnsiSameText(_RetornoConsultarBaixa.Status, 'ERRO') then
+      mmoResposta.Lines.Add('ErroClasse: ' + ConverteErroClasse(_RetornoConsultarBaixa.ErroClasse));
+
+    if _RetornoConsultarBaixa.ErroConexao <> '' then
+      mmoResposta.Lines.Add('Erro Conexão: ' + _RetornoConsultarBaixa.ErroConexao);
+
+    mmoResposta.Lines.Add('');
+
+   for i := 0 to _RetornoConsultarBaixa.Count - 1 do
+    begin
+      _RetornoConsultarBaixaItem := _RetornoConsultarBaixa.Item[i];
+      mmoResposta.Lines.Add('ITEM: ' + IntToStr(i+1));
+      mmoResposta.Lines.Add('  Remessa: ' + _RetornoConsultarBaixaItem.Remessa);
+      //  Caso queira salvar remessa de baixa em um arquivo
+      //  _remessa.Text := _RetornoConsultarBaixaItem.Remessa;
+      //  _remessa.SaveToFile('c:\remessa.txt');
+      mmoResposta.Lines.Add('  Banco: ' + _RetornoConsultarBaixaItem.Banco);
+      mmoResposta.Lines.Add('  Conta: ' + _RetornoConsultarBaixaItem.Conta);
+      mmoResposta.Lines.Add('  Convenio: ' + _RetornoConsultarBaixaItem.Convenio);
+      mmoResposta.Lines.Add('  Erro: ' + _RetornoConsultarBaixaItem.Erro);
+      mmoResposta.Lines.Add('  ErroClasse: ' + ConverteErroClasse(_RetornoConsultarBaixaItem.ErroClasse));
+
+     for j := 0 to _RetornoConsultarBaixaItem.Titulos.Count-1 do
+      begin
+        mmoResposta.Lines.Add('  IdIntegracao ' + IntToStr(j+1) + ': ' + _RetornoConsultarBaixaItem.Titulos.Item[j]);
+      end;
+
+      mmoResposta.Lines.Add('');
+    end;
+
+  finally
+    mmoResposta.Lines.EndUpdate;
+  end;
+
+end;

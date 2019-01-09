@@ -1,0 +1,55 @@
+procedure TfrmExemploBoletoX.btnConsultarProtocoloRemessaAlteracaoClick(Sender: TObject);
+var
+  _RetornoConsultarAlteracao: IspdRetConsultarRemessaAlteracaoLista;
+  _RetornoConsultarAlteracaoItem: IspdRetConsultarRemessaAlteracaoItem;
+  i, j: Integer;
+ // _remessa: TStringList;
+
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+  //_remessa := TStringList.Create;
+
+  try
+    _RetornoConsultarAlteracao := FBoletoX.ConsultarRemessaAlteracao(edtProtocoloRetornoRemessaAlteracao.Text);
+
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: CONSULTA ALTERACAO ::.');
+    mmoResposta.Lines.Add('Mensagem: ' + _RetornoConsultarAlteracao.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _RetornoConsultarAlteracao.Status);
+    mmoResposta.Lines.Add('Situação: ' + _RetornoConsultarAlteracao.Situacao);
+
+    if _RetornoConsultarAlteracao.ErroConexao <> '' then
+      mmoResposta.Lines.Add('Erro Conexao: ' + _RetornoConsultarAlteracao.ErroConexao);
+
+    if AnsiSameText(_RetornoConsultarAlteracao.Status, 'ERRO') then
+      mmoResposta.Lines.Add('ErroClasse: ' + ConverteErroClasse(_RetornoConsultarAlteracao.ErroClasse));
+
+    mmoResposta.Lines.Add('');
+
+   for i := 0 to _RetornoConsultarAlteracao.Count - 1 do
+    begin
+      _RetornoConsultarAlteracaoItem := _RetornoConsultarAlteracao.Item[i];
+      mmoResposta.Lines.Add('ITEM: ' + IntToStr(i+1));
+      mmoResposta.Lines.Add('  Remessa: ' + _RetornoConsultarAlteracaoItem.Remessa);
+    // Em caso queira salvar a remessa
+    //  _remessa.Text := _RetornoConsultarAlteracaoItem.Remessa;
+    //  _remessa.SaveToFile('c:\remessa.txt');
+      mmoResposta.Lines.Add('  Banco: ' + _RetornoConsultarAlteracaoItem.Banco);
+      mmoResposta.Lines.Add('  Conta: ' + _RetornoConsultarAlteracaoItem.Conta);
+      mmoResposta.Lines.Add('  Convenio: ' + _RetornoConsultarAlteracaoItem.Convenio);
+      mmoResposta.Lines.Add('  Erro: ' + _RetornoConsultarAlteracaoItem.Erro);
+      mmoResposta.Lines.Add('  ErroClasse: ' + ConverteErroClasse(_RetornoConsultarAlteracaoItem.ErroClasse));
+
+     for j := 0 to _RetornoConsultarAlteracaoItem.Titulos.Count-1 do
+      begin
+        mmoResposta.Lines.Add('  IdIntegracao ' + IntToStr(j+1) + ': ' + _RetornoConsultarAlteracaoItem.Titulos.Item[j]);
+      end;
+
+     mmoResposta.Lines.Add('');
+    end;
+  finally
+    mmoResposta.Lines.EndUpdate;
+  end;
+end;

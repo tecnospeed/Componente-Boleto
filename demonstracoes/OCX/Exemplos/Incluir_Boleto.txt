@@ -1,0 +1,50 @@
+procedure TfrmExemploBoletoX.btnIncluirClick(Sender: TObject);
+var
+  _BoletoList: IspdRetIncluirLista;
+  i: Integer;
+  listaIdsIntegracao: string;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+  
+  try
+    _BoletoList := FBoletoX.Incluir(mmoTX2.Lines.Text);
+
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: Incluir Boleto ::.');
+    mmoResposta.Lines.Add('Mensgem: ' + _BoletoList.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _BoletoList.Status);
+    mmoResposta.Lines.Add('');
+
+    for i := 0 to _BoletoList.Count -1 do
+    begin
+      mmoResposta.Lines.Add('Item: ' + IntToStr(i+1));
+      mmoResposta.Lines.Add('  NumeroDocumento: ' + _BoletoList[i].NumeroDocumento);
+      mmoResposta.Lines.Add('  IdIntegracao: ' + _BoletoList[i].IdIntegracao);
+      mmoResposta.Lines.Add('  Situacao: ' + _BoletoList[i].Situacao);
+      mmoResposta.Lines.Add('  NossoNumero: ' + _BoletoList[i].NossoNumero);
+      mmoResposta.Lines.Add('  Banco: ' + _BoletoList[i].Banco);
+      mmoResposta.Lines.Add('  Conta: ' + _BoletoList[i].Conta);
+      mmoResposta.Lines.Add('  Convenio: ' + _BoletoList[i].Convenio);
+      mmoResposta.Lines.Add('  Erro: ' + _BoletoList[i].Erro);
+      mmoResposta.Lines.Add('  ErroClasse: ' + ConverteErroClasse(_BoletoList[i].ErroClasse));
+      mmoResposta.Lines.Add('');
+
+      if i = 0 then                                       //este if identifica se foi feito o envio de 1 boleto por tx2 ou de um lote de boletos, para alimentar os campos que recebem os idIntegracao
+      listaIdsIntegracao := _BoletoList[i].IdIntegracao
+      else
+      listaIdsIntegracao := _BoletoList[i].IdIntegracao + ',' + listaIdsIntegracao;
+
+      edtIdIntegracao.Text  := listaIdsIntegracao;
+
+    end;
+
+    mmoResposta.SelStart  := 1;
+    mmoResposta.SelLength := 1;
+    
+  finally
+    mmoResposta.Lines.EndUpdate;
+    mmoTX2.Lines.Clear;
+  end;
+end;

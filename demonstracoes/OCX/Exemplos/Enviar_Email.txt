@@ -1,0 +1,36 @@
+procedure TfrmExemploBoletoX.btnEnviarEmailLoteClick(Sender: TObject);
+var
+  _EnviarEmailLoteResposta: IspdRetEnvioEmailLote;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+
+  try
+    _EnviarEmailLoteResposta := FBoletoX.EnviarEmailLote(mmoTX2.Text);
+
+
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: Enviar Email Lote ::.');
+    mmoResposta.Lines.Add('Mensagem: ' + _EnviarEmailLoteResposta.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _EnviarEmailLoteResposta.Status);
+    mmoResposta.Lines.Add('Protocolo: ' + _EnviarEmailLoteResposta.Protocolo);
+
+    edtProtocoloEmailLote.Text :=  _EnviarEmailLoteResposta.Protocolo;
+
+    if AnsiSameText(_EnviarEmailLoteResposta.Status, 'ERRO') then
+      mmoResposta.Lines.Add('ErroClasse: ' + ConverteErroClasse(_EnviarEmailLoteResposta.ErroClasse));
+
+    if _EnviarEmailLoteResposta.ErroConexao <> '' then
+      mmoResposta.Lines.Add('Erro Conexão: ' + _EnviarEmailLoteResposta.ErroConexao);
+
+    mmoResposta.Lines.Add('');
+
+    mmoResposta.SelStart := 1;
+    mmoResposta.SelLength := 1;
+
+
+  finally
+    mmoResposta.Lines.EndUpdate;
+  end;
+end;

@@ -1,0 +1,28 @@
+procedure TfrmExemploBoletoX.btnImprimirLoteClick(Sender: TObject);
+var
+  _Impressao: IspdRetConsultarLoteImpressao;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+
+  try
+    _Impressao := FBoletoX.ConsultarLoteImpressao(edtProtocoloRetornoImpressaoLote.Text, cbbImpressora.Text);
+    
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: CONSULTAR PROTOCOLO LOTE IMPRESSAO ::.');
+    mmoResposta.Lines.Add('Situacao: ' + _Impressao.Situacao);    //'PROCESSANDO': impressão em processamento  // 'PROCESSADA': impressão processada com sucesso  //  'FALHA': erro ao gerar a impressão. (O erro estará preenchido na propriedade Mensagem)  //  'CANCELADA': impressão abortada
+    mmoResposta.Lines.Add('Mensagem: ' + _Impressao.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _Impressao.Status);
+    if _Impressao.ErroConexao <> '' then
+      mmoResposta.Lines.Add('Erro Conexão: ' + _Impressao.ErroConexao);
+
+    if AnsiSameText(_Impressao.Status, 'ERRO') then
+      mmoResposta.Lines.Add('ErroClasse: ' + ConverteErroClasse(_Impressao.ErroClasse));
+
+    mmoResposta.Lines.Add('');
+
+  finally
+    mmoResposta.Lines.EndUpdate;
+  end;
+end;

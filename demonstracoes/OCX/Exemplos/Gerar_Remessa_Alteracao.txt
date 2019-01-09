@@ -1,0 +1,37 @@
+procedure TfrmExemploBoletoX.btnGerarRemessaAlteracaoClick(Sender: TObject);
+var
+  _GerarResposta: IspdRetGerarRemessaAlteracao;
+begin
+
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+
+  try
+    if cbbTipoRemessaAlteracao.ItemIndex = 0 then
+    begin
+      _GerarResposta := FBoletoX.GerarRemessaAlteracao('0', mmoTX2.Text); //Tipo "0" indica a alteração de vencimento
+      mmoResposta.Lines.Add('.:: Gerar alteração de Vencimento ::.');
+    end
+    else
+    begin
+      _GerarResposta := FBoletoX.GerarRemessaAlteracao('1', mmoTX2.Text);  //Tipo "1" indica a alteração de valor
+      mmoResposta.Lines.Add('.:: Gerar alteração de Valor ::.')
+    end ;
+
+    if _GerarResposta.Protocolo <> EmptyStr then
+      edtProtocoloRetornoRemessaAlteracao.Text := _GerarResposta.Protocolo;
+
+    mmoResposta.Lines.Add('Mensagem: ' + _GerarResposta.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _GerarResposta.Status);
+    mmoResposta.Lines.Add('Protocolo: ' + _GerarResposta.Protocolo);
+
+    if AnsiSameText(_GerarResposta.Status, 'ERRO') then
+      mmoResposta.Lines.Add('ErroClasse: ' + ConverteErroClasse(_GerarResposta.ErroClasse));
+
+    mmoResposta.Lines.Add('');
+    
+  finally
+    mmoResposta.Lines.EndUpdate;
+  end;
+end;

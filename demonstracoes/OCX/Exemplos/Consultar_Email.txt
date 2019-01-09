@@ -1,0 +1,18 @@
+procedure TfrmExemploBoletoX.Button1Click(Sender: TObject);
+var
+  _RespostaEmailLote: IspdRetConsultarEmailLote;
+
+begin
+  _RespostaEmailLote := FBoletoX.ConsultarEmailLote(edtProtocoloEmailLote.Text);
+
+  mmoResposta.Lines.Clear;
+  mmoResposta.Lines.Add('.:: Consulta de emails em Lote ::.');
+  mmoResposta.Lines.Add('');
+  mmoResposta.Lines.Add('Mensagem: ' + _RespostaEmailLote.Mensagem);
+  mmoResposta.Lines.Add('Status: ' + _RespostaEmailLote.Status);
+  mmoResposta.Lines.Add('Situação: ' + _RespostaEmailLote.Situacao);
+
+  if _RespostaEmailLote.ErroConexao <> '' then
+    mmoResposta.Lines.Add('Erro Conexão: ' + _RespostaEmailLote.ErroConexao);
+
+end;

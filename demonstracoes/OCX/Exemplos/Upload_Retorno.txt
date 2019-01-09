@@ -1,0 +1,40 @@
+procedure TfrmExemploBoletoX.btnUploadRetornoClick(Sender: TObject);
+var
+  _UploadRetornoList: IspdRetProcessarRetorno;
+  _ConteudoArqRet: WideString;
+  _ss: TStringStream;
+begin
+  if dlgOpenArqRet.Execute then
+  begin
+    _ss := TStringStream.Create;
+    try
+      _ss.LoadFromFile(dlgOpenArqRet.FileName);
+      _ConteudoArqRet := _ss.DataString;
+    finally
+      _ss.Free;
+    end;
+
+    mmoResposta.Lines.Clear;
+    mmoResposta.Refresh;
+    mmoResposta.Lines.BeginUpdate;
+
+    try
+      _UploadRetornoList := FBoletoX.ProcessarRetorno(_ConteudoArqRet); //Passar sempre o conteúdo do arquivo, e não apenas o caminho
+
+      mmoResposta.Lines.Clear;
+      mmoResposta.Lines.Add('.:: UPLOAD RETORNO ::.');
+      mmoResposta.Lines.Add('Mensagem: ' + _UploadRetornoList.Mensagem);
+      mmoResposta.Lines.Add('Status: ' + _UploadRetornoList.Status);
+      mmoResposta.Lines.Add('Protocolo: ' + _UploadRetornoList.Protocolo);
+
+      edtProtocoloRetornoProcessamento.Text := _UploadRetornoList.Protocolo;
+      if AnsiSameText(_UploadRetornoList.Status, 'ERRO') then
+        mmoResposta.Lines.Add('ErroClasse: ' + ConverteErroClasse(_UploadRetornoList.ErroClasse));
+        
+      mmoResposta.Lines.Add('');
+
+    finally
+      mmoResposta.Lines.EndUpdate;
+    end;
+  end;
+end;

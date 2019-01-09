@@ -1,0 +1,67 @@
+rocedure TfrmExemploBoletoX.btnConsultarRetornoProcessamentoClick(Sender: TObject);
+var
+  _RetornoConsultarProcessamento: IspdRetConsultarRetornoProcessamento;
+  _RetornoConsultarProcessamentoItem: IspdRetConsultarRetornoProcessamentoItem;
+  _RetornoConsultarProcessamentoItemNaoConciliado : IspdRetConsultarRetornoProcessamentoItemNaoConciliado;
+  i, j: Integer;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+  try
+    _RetornoConsultarProcessamento := FBoletoX.ConsultaRetornoProcessamento(edtProtocoloRetornoProcessamento.Text);
+
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: CONSULTA RETORNO PROCESSAMENTO ::.');
+    mmoResposta.Lines.Add('Mensagem: ' + _RetornoConsultarProcessamento.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _RetornoConsultarProcessamento.Status);
+    mmoResposta.Lines.Add('Situação: ' + _RetornoConsultarProcessamento.Situacao);
+
+    if _RetornoConsultarProcessamento.ErroConexao <> '' then
+      mmoResposta.Lines.Add('Erro Conexao: ' + _RetornoConsultarProcessamento.ErroConexao);
+
+    if AnsiSameText(_RetornoConsultarProcessamento.Status, 'ERRO') then
+      mmoResposta.Lines.Add('ErroClasse: ' + ConverteErroClasse(_RetornoConsultarProcessamento.ErroClasse));
+
+    mmoResposta.Lines.Add('');
+
+    for i := 0 to _RetornoConsultarProcessamento.Count - 1 do
+    begin
+      _RetornoConsultarProcessamentoItem := _RetornoConsultarProcessamento.Titulos[i];
+      mmoResposta.Lines.Add('TITULO: ' + IntToStr(i+1));
+      mmoResposta.Lines.Add('  idIntegracao: ' + _RetornoConsultarProcessamentoItem.IdIntegracao);
+      mmoResposta.Lines.Add('');
+    end;
+
+    for i := 0 to _RetornoConsultarProcessamento.CountTitulosNaoConciliados - 1 do
+    begin
+      _RetornoConsultarProcessamentoItemNaoConciliado := _RetornoConsultarProcessamento.TitulosNaoConciliados[i];
+      mmoResposta.Lines.Add('TITULO NAO CONCILIADO: ' + IntToStr(i+1));
+      mmoResposta.Lines.Add('  Codigo Movimento: ' + _RetornoConsultarProcessamentoItemNaoConciliado.CodigoMovimento);
+      mmoResposta.Lines.Add('  Nosso Numero: ' + _RetornoConsultarProcessamentoItemNaoConciliado.TituloNossoNumero);
+      mmoResposta.Lines.Add('  Nosso Numero Original: ' + _RetornoConsultarProcessamentoItemNaoConciliado.TituloNossoNumeroOriginal);
+      mmoResposta.Lines.Add('  Data Vencimeto: ' + _RetornoConsultarProcessamentoItemNaoConciliado.TituloDataVencimento);
+      mmoResposta.Lines.Add('  Valor Pago: ' + FloatToStr(_RetornoConsultarProcessamentoItemNaoConciliado.PagamentoValorPago));
+      mmoResposta.Lines.Add('  Valor Credito: ' + FloatToStr(_RetornoConsultarProcessamentoItemNaoConciliado.PagamentoValorCredito));
+      mmoResposta.Lines.Add('  Valor Taxa Cobranca: ' + FloatToStr(_RetornoConsultarProcessamentoItemNaoConciliado.PagamentoValorTaxaCobranca));
+      mmoResposta.Lines.Add('  Valor Acrescimos: ' + FloatToStr(_RetornoConsultarProcessamentoItemNaoConciliado.PagamentoValorAcrescimos));
+      mmoResposta.Lines.Add('  Data Pagamento: ' + _RetornoConsultarProcessamentoItemNaoConciliado.PagamentoData);
+      mmoResposta.Lines.Add('  Data Credito: ' + _RetornoConsultarProcessamentoItemNaoConciliado.PagamentoDataCredito);
+      mmoResposta.Lines.Add('  Titulo Pago: ' + BoolToStr(_RetornoConsultarProcessamentoItemNaoConciliado.PagamentoRealizado));
+      mmoResposta.Lines.Add('');
+
+      for j := 0 to _RetornoConsultarProcessamentoItemNaoConciliado.CountOcorrencias - 1 do
+        mmoResposta.Lines.Add('Ocorrencia ' + IntToStr(j+1) + ': ' + _RetornoConsultarProcessamentoItemNaoConciliado.Ocorrencias[j]);
+
+      mmoResposta.Lines.Add('');
+
+      for j := 0 to _RetornoConsultarProcessamentoItemNaoConciliado.CountCodigosOcorrencias - 1 do
+        mmoResposta.Lines.Add('Codigo Ocorrencia ' + IntToStr(j+1) + ': ' + _RetornoConsultarProcessamentoItemNaoConciliado.CodigosOcorrencias[j]);
+
+      mmoResposta.Lines.Add('');
+    end;
+
+  finally
+    mmoResposta.Lines.EndUpdate;
+  end;
+end;

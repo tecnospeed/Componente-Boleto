@@ -1,0 +1,50 @@
+procedure TfrmExemploBoletoX.btnGerarRemessaClick(Sender: TObject);
+var
+  _RemessaList: IspdRetGerarRemessaLista;
+  _RemessaItem: IspdRetGerarRemessaItem;
+  i, j: Integer;
+  conteudoRemessa: TStringList;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+
+  try
+    _RemessaList := FBoletoX.GerarRemessa(edtIdIntegracao.Text);
+
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: GERAR REMESSA ::.');
+    mmoResposta.Lines.Add('Mensagem: ' + _RemessaList.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _RemessaList.Status);
+    mmoResposta.Lines.Add('');
+
+    for i := 0 to _RemessaList.Count - 1 do
+    begin
+      _RemessaItem := _RemessaList.Item[i];
+      mmoResposta.Lines.Add('ITEM: ' + IntToStr(i+1));
+      mmoResposta.Lines.Add('  Remessa: ' + _RemessaItem.Remessa);
+      mmoResposta.Lines.Add('  Banco: ' + _RemessaItem.Banco);
+      mmoResposta.Lines.Add('  Conta: ' + _RemessaItem.Conta);
+      mmoResposta.Lines.Add('  Número Atual da Remessa: ' + IntToStr(_RemessaItem.NumeroAtualRemessa));
+      mmoResposta.Lines.Add('  Erro: ' + _RemessaItem.Erro);
+
+      conteudoRemessa := TStringList.Create;                       // ---
+      conteudoRemessa.Text := _RemessaItem.Remessa ;               //    |--> Salva o conteúdo da remessa em um arquivo texto
+      conteudoRemessa.SaveToFile('C:\Temp\conteudoRemessa.txt');   // ---
+
+      for j := 0 to _RemessaItem.Titulos.Count-1 do
+      begin
+        mmoResposta.Lines.Add('  IdIntegracao ' + IntToStr(j+1) + ': ' + _RemessaItem.Titulos.Item[j]);
+      end;
+
+      mmoResposta.Lines.Add('');
+
+      conteudoRemessa.Free;
+
+    end;
+
+  finally
+    mmoResposta.Lines.EndUpdate;
+
+  end;
+end;

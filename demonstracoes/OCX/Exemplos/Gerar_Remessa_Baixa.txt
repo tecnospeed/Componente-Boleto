@@ -1,0 +1,30 @@
+procedure TfrmExemploBoletoX.btnGerarBaixaClick(Sender: TObject);
+var
+  _GerarResposta: IspdRetGerarRemessaBaixa;
+begin
+
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+
+  try
+    _GerarResposta := FBoletoX.GerarRemessaBaixa(edtIdIntegracao.Text);
+
+    if _GerarResposta.Protocolo <> EmptyStr then
+      edtProcotoloRemessaBaixada.Text := _GerarResposta.Protocolo;
+
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: GERAR BAIXA ::.');
+    mmoResposta.Lines.Add('Mensagem: ' + _GerarResposta.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _GerarResposta.Status);
+    mmoResposta.Lines.Add('Protocolo: ' + _GerarResposta.Protocolo);
+
+    if AnsiSameText(_GerarResposta.Status, 'ERRO') then
+      mmoResposta.Lines.Add('ErroClasse: ' + ConverteErroClasse(_GerarResposta.ErroClasse));
+
+    mmoResposta.Lines.Add('');
+
+  finally
+    mmoResposta.Lines.EndUpdate;
+  end;
+end;
