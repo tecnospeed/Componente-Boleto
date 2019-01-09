@@ -1,0 +1,35 @@
+var
+  _AlterarCedente: IspdRetAlterarCedente;
+  _Id: WideString;
+begin
+  mmoResposta.Lines.Clear;
+  mmoResposta.Refresh;
+  mmoResposta.Lines.BeginUpdate;
+  try
+    _Id := edtIDCedente.Text;
+    _AlterarCedente := FBoletoX.AlterarCedente(_Id, mmoTX2.Lines.Text);
+    mmoResposta.Lines.Clear;
+    mmoResposta.Lines.Add('.:: Alterar Cedente ::.');
+    mmoResposta.Lines.Add('Mensgem: ' + _AlterarCedente.Mensagem);
+    mmoResposta.Lines.Add('Status: ' + _AlterarCedente.Status);
+    mmoResposta.Lines.Add('');
+
+if _AlterarCedente.Status = 'SUCESSO' then
+begin
+  mmoResposta.Lines.Add('  Id Cedente: ' + _AlterarCedente.IdCedente);
+  mmoResposta.Lines.Add('  Situacao: ' + _AlterarCedente.Situacao);
+  mmoResposta.Lines.Add('  Token: ' + _AlterarCedente.Token);
+  mmoResposta.Lines.Add('  CPF / CNPJ: ' + _AlterarCedente.CpfCnpj);
+  mmoResposta.Lines.Add('  Razao Social: ' + _AlterarCedente.RazaoSocial);
+  mmoResposta.Lines.Add('  Nome Fantasia: ' + _AlterarCedente.NomeFantasia);
+  mmoResposta.Lines.Add('');
+end;
+mmoResposta.SelStart  := 1;
+mmoResposta.SelLength := 1;
+
+finally
+    mmoResposta.Lines.EndUpdate;
+    mmoTX2.Lines.Clear;
+  end;
+end;
+              
