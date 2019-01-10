@@ -1,0 +1,31 @@
+        private void btnDescartarBoletos_Click(object sender, EventArgs e)
+        {
+            IspdRetDescartarLista _DescarteLlist;
+            IspdRetDescartarTituloItem _DescarteItem;
+
+            rtResposta.Clear();
+            rtTx2.Clear();
+
+            _DescarteLlist = boletox.Descartar(tBoxIdIntegracao.Text);
+
+            rtResposta.AppendText(".:: Descartar Boletos ::." + Environment.NewLine);
+            rtResposta.AppendText("Mensagem: " + _DescarteLlist.Mensagem + Environment.NewLine);
+            rtResposta.AppendText("Status: " + _DescarteLlist.Status + Environment.NewLine);
+
+            if (_DescarteLlist.Status == "ERRO")
+            {
+                rtResposta.AppendText("ErroClasse" + _DescarteLlist.ErroClasse);
+            }
+
+            rtResposta.AppendText(Environment.NewLine);
+
+            for (int i = 0; i <= _DescarteLlist.Count() - 1; i++)
+            {
+                _DescarteItem = _DescarteLlist.Item[i];
+                rtResposta.AppendText("Item: " + Convert.ToString(i) + Environment.NewLine);
+                rtResposta.AppendText("IdIntegracao: " + _DescarteItem.IdIntegracao + Environment.NewLine);
+                rtResposta.AppendText("Erro " + _DescarteItem.Erro + Environment.NewLine);
+                rtResposta.AppendText("ErroClasse " + _DescarteItem.ErroClasse + Environment.NewLine);
+                rtResposta.AppendText(Environment.NewLine);
+            }
+        }
