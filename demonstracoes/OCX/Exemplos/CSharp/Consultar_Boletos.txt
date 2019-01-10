@@ -1,0 +1,111 @@
+private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            IspdRetConsultarLista _ConsultarLista;
+            rtResposta.Clear();
+
+            _ConsultarLista = boletox.Consultar(tBoxIdIntegracao.Text);
+
+            rtResposta.AppendText(".:: Consultar Título ::." + Environment.NewLine);
+            rtResposta.AppendText("Mensagem" + _ConsultarLista.Mensagem + Environment.NewLine);
+            rtResposta.AppendText("Status" + _ConsultarLista.Status + Environment.NewLine);
+
+            if (_ConsultarLista.Status == "Erro")
+            {
+                rtResposta.AppendText("ErroClasse: " + _ConsultarLista.ErroClasse.ToString());
+            }
+
+            rtResposta.AppendText(Environment.NewLine);
+
+            for (int i = 0; i <= _ConsultarLista.Count() - 1; i++)
+            {
+                BoletoX.spdRetConsultarTituloItem _ConsultaItem = _ConsultarLista.Item[i];
+                rtResposta.AppendText("ITEM: " + Convert.ToString(i + 1) + Environment.NewLine);
+                rtResposta.AppendText("  IdIntegracao: " + _ConsultaItem.IdIntegracao + Environment.NewLine);
+                rtResposta.AppendText("  Situacao: " + _ConsultaItem.Situacao + Environment.NewLine);
+                rtResposta.AppendText("  Motivo: " + _ConsultaItem.Motivo + Environment.NewLine);
+                rtResposta.AppendText(Environment.NewLine);
+                rtResposta.AppendText("CEDENTE: " + Environment.NewLine);
+                rtResposta.AppendText("  Agencia: " + _ConsultaItem.CedenteAgencia + Environment.NewLine);
+                rtResposta.AppendText("  AgenciaDV: " + _ConsultaItem.CedenteAgenciaDV + Environment.NewLine);
+                rtResposta.AppendText("  Código Banco: " + _ConsultaItem.CedenteCodigoBanco + Environment.NewLine);
+                rtResposta.AppendText("  Carteira: " + _ConsultaItem.CedenteCarteira + Environment.NewLine);
+                rtResposta.AppendText("  Conta: " + _ConsultaItem.CedenteConta + Environment.NewLine);
+                rtResposta.AppendText("  Numero Convênio: " + _ConsultaItem.CedenteNumeroConvenio + Environment.NewLine);
+                rtResposta.AppendText(Environment.NewLine);
+                rtResposta.AppendText("SACADO: " + Environment.NewLine);
+                rtResposta.AppendText("  CPFCNPJ: " + _ConsultaItem.SacadoCPFCNPJ + Environment.NewLine);
+                rtResposta.AppendText("  Nome: " + _ConsultaItem.SacadoNome + Environment.NewLine);
+                rtResposta.AppendText("  Telefone: " + _ConsultaItem.SacadoTelefone + Environment.NewLine);
+                rtResposta.AppendText("  Email: " + _ConsultaItem.SacadoEmail + Environment.NewLine);
+                rtResposta.AppendText("  Endereço Número: " + _ConsultaItem.SacadoEnderecoNumero + Environment.NewLine);
+                rtResposta.AppendText("  Endereço Bairro: " + _ConsultaItem.SacadoEnderecoBairro + Environment.NewLine);
+                rtResposta.AppendText("  Endereço CEP: " + _ConsultaItem.SacadoEnderecoCEP + Environment.NewLine);
+                rtResposta.AppendText("  Endereço Cidade: " + _ConsultaItem.SacadoEnderecoCidade + Environment.NewLine);
+                rtResposta.AppendText("  Endereço Complemento: " + _ConsultaItem.SacadoEnderecoComplemento + Environment.NewLine);
+                rtResposta.AppendText("  Endereço Logradouro: " + _ConsultaItem.SacadoEnderecoLogradouro + Environment.NewLine);
+                rtResposta.AppendText("  Endereço País: " + _ConsultaItem.SacadoEnderecoPais + Environment.NewLine);
+                rtResposta.AppendText("  Endereço UF: " + _ConsultaItem.SacadoEnderecoUF + Environment.NewLine);
+                rtResposta.AppendText(Environment.NewLine);
+                rtResposta.AppendText("TÍTULO: " + Environment.NewLine);
+                rtResposta.AppendText("  Número Documento: " + _ConsultaItem.TituloNumeroDocumento + Environment.NewLine);
+                rtResposta.AppendText("  Origem Documento: " + _ConsultaItem.TituloOrigemDocumento + Environment.NewLine);
+                rtResposta.AppendText("  Nosso Número: " + _ConsultaItem.TituloNossoNumero + Environment.NewLine);
+                rtResposta.AppendText("  Data Emissão: " + _ConsultaItem.TituloDataEmissao + Environment.NewLine);
+                rtResposta.AppendText("  Data Vencimento: " + _ConsultaItem.TituloDataVencimento + Environment.NewLine);
+                rtResposta.AppendText("  Data Desconto: " + _ConsultaItem.TituloDataDesconto + Environment.NewLine);
+                rtResposta.AppendText("  Valor Desconto: " + _ConsultaItem.TituloValorDesconto + Environment.NewLine);
+                rtResposta.AppendText("  Valor Juros: " + _ConsultaItem.TituloValorJuros + Environment.NewLine);
+                rtResposta.AppendText("  Prazo Protesto: " + _ConsultaItem.TituloPrazoProtesto + Environment.NewLine);
+                rtResposta.AppendText("  Mensagem 1: " + _ConsultaItem.TituloMensagem01 + Environment.NewLine);
+                rtResposta.AppendText("  Mensagem 2: " + _ConsultaItem.TituloMensagem02 + Environment.NewLine);
+                rtResposta.AppendText("  Mensagem 3: " + _ConsultaItem.TituloMensagem03 + Environment.NewLine);
+                rtResposta.AppendText("  Valor: " + _ConsultaItem.TituloValor + Environment.NewLine);
+                rtResposta.AppendText("  Data Crédito: " + _ConsultaItem.PagamentoDataCredito + Environment.NewLine);
+                rtResposta.AppendText("  Título Pago: " + _ConsultaItem.PagamentoRealizado + Environment.NewLine);
+                rtResposta.AppendText("  Valor Crédito: " + _ConsultaItem.PagamentoValorCredito + Environment.NewLine);
+                rtResposta.AppendText("  Valor Outros Acréscimos: " + _ConsultaItem.TituloValorOutrosAcrescimos + Environment.NewLine);
+                rtResposta.AppendText("  Valor Pago: " + _ConsultaItem.PagamentoValorPago + Environment.NewLine);
+                rtResposta.AppendText("  Valor Taxa Cobrança: " + _ConsultaItem.PagamentoValorTaxaCobranca + Environment.NewLine);
+                rtResposta.AppendText("  Valor Abatimento: " + _ConsultaItem.TituloValorAbatimento + Environment.NewLine);
+                rtResposta.AppendText("  Valor Outras Despesas: " + _ConsultaItem.PagamentoValorOutrasDespesas + Environment.NewLine);
+                rtResposta.AppendText("  Valor IOF: " + _ConsultaItem.PagamentoValorIOF + Environment.NewLine);
+                rtResposta.AppendText("  Data Pagamento: " + _ConsultaItem.PagamentoData + Environment.NewLine);
+                rtResposta.AppendText("  Valor Outros Créditos: " + _ConsultaItem.PagamentoValorOutrosCreditos + Environment.NewLine);
+                rtResposta.AppendText("  Pagamento Valor Desconto: " + _ConsultaItem.PagamentoValorDesconto + Environment.NewLine);
+                rtResposta.AppendText("  Pagamento Valor Acréscimos: " + _ConsultaItem.PagamentoValorAcrescimos + Environment.NewLine);
+                rtResposta.AppendText("  Pagamento Valor Abatimento: " + _ConsultaItem.PagamentoValorAbatimento + Environment.NewLine);
+                rtResposta.AppendText("  Impressão Visualizada: " + _ConsultaItem.ImpressaoVisualizada.ToString() + Environment.NewLine);
+                rtResposta.AppendText(Environment.NewLine);
+
+                if (_ConsultaItem.TituloOcorrencias != null)
+                {
+                    rtResposta.AppendText("- OCORRÊNCIAS: " + Environment.NewLine);
+                    for (int j = 0; j <= _ConsultaItem.TituloOcorrencias.Count() - 1; j++)
+                    {
+                        rtResposta.AppendText("Codigo: " + _ConsultaItem.TituloOcorrencias.Item[j].Codigo + Environment.NewLine);
+                        rtResposta.AppendText("Mensagem: " + _ConsultaItem.TituloOcorrencias.Item[j].Mensagem + Environment.NewLine);
+
+
+                    }
+                    rtResposta.AppendText(Environment.NewLine);
+                }
+
+
+                for (int k = 0; k <= _ConsultaItem.CountTituloMovimentos() -1; k++)
+                {
+                    rtResposta.AppendText("   - Movimentos: " + Environment.NewLine);
+                    rtResposta.AppendText("     Movimento Código: " + _ConsultaItem.TituloMovimentos[k].Codigo + Environment.NewLine);
+                    rtResposta.AppendText("     Movimento Mensagem: " + _ConsultaItem.TituloMovimentos[k].Mensagem + Environment.NewLine);
+
+                    for (int l = 0; l <= _ConsultaItem.TituloMovimentos[k].CountOcorrencias() -1; l++)
+                    {
+                        rtResposta.AppendText("   - Ocorrências: " + Environment.NewLine);
+                        rtResposta.AppendText("     Ocorrência Código: " + _ConsultaItem.TituloMovimentos[k].Ocorrencias[l].Codigo + Environment.NewLine);
+                        rtResposta.AppendText("     Ocorrência Mensagem: " + _ConsultaItem.TituloMovimentos[k].Ocorrencias[l].Mensagem + Environment.NewLine);
+                    }
+
+                    rtResposta.AppendText(Environment.NewLine);
+                }
+
+            }
+        }

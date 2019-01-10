@@ -1,0 +1,50 @@
+ private void btnGerarRemessa_Click(object sender, EventArgs e)
+        {
+            IspdRetGerarRemessaLista _RemessaList;
+            IspdRetGerarRemessaItem _RemessaItem;
+
+            rtResposta.Clear();
+            rtTx2.Clear();
+
+            _RemessaList = boletox.GerarRemessa(tBoxIdIntegracao.Text);
+
+            rtResposta.Text += ".:: GERAR REMESSA: ::." + Environment.NewLine;
+            rtResposta.Text += "Mensagem: " + _RemessaList.Mensagem + Environment.NewLine;
+            rtResposta.Text += "Status: " + _RemessaList.Status + Environment.NewLine;
+
+            for (var i = 0; i < _RemessaList.Count(); i++)
+            {
+                rtResposta.Text += Environment.NewLine;
+                _RemessaItem = _RemessaList.Item[i];
+                rtResposta.Text += "Item: " + (i + 1).ToString() + Environment.NewLine;
+
+                Encoding utf8WithoutBom = new UTF8Encoding(false);
+                using (FileStream fs = new FileStream(AppDomain.CurrentDomain.BaseDirectory + @"\Remessas\" + _RemessaItem.Conta + ".txt", FileMode.Create, FileAccess.Write, FileShare.ReadWrite))
+                {
+                    StreamWriter sw = new StreamWriter(fs, utf8WithoutBom);
+                    sw.Write(_RemessaItem.Remessa);
+                    sw.Flush();
+                    sw.Close();
+                    fs.Close();
+
+                }
+
+                rtResposta.Text += "Remessa salva no arquivo " + AppDomain.CurrentDomain.BaseDirectory + @"Remessas\" + _RemessaItem.Convenio + ".txt" + Environment.NewLine + Environment.NewLine;   //Usado para salvar a remessa em um arquivo
+
+                rtResposta.Text += "Mensagem: " + _RemessaItem.Mensagem + Environment.NewLine;
+                rtResposta.Text += "Remessa: " + _RemessaItem.Remessa + Environment.NewLine;
+                rtResposta.Text += "Banco: " + _RemessaItem.Banco + Environment.NewLine;
+                rtResposta.Text += "Conta: " + _RemessaItem.Conta + Environment.NewLine;
+                rtResposta.Text += "Convenio: " + _RemessaItem.Convenio + Environment.NewLine;
+                rtResposta.Text += "Número Atual da Remessa: " + _RemessaItem.NumeroAtualRemessa + Environment.NewLine;
+                rtResposta.Text += "Transmissão automática? " + _RemessaItem.TransmissaoAutomatica + Environment.NewLine;
+                rtResposta.Text += "Erro: " + _RemessaItem.Erro + Environment.NewLine;
+
+
+                for (var j = 0; j < _RemessaItem.Titulos.Count(); j++)
+                {
+                    rtResposta.AppendText("IdIntegracao: " + _RemessaItem.Titulos.Item[j] + Environment.NewLine);
+                }
+
+            }
+        }

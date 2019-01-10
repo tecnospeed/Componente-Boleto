@@ -1,0 +1,16 @@
+ private void btnGerarPDF_Click(object sender, EventArgs e)
+        {
+            string CaminhoPDF;
+            SaveFileDialog svdlg = new SaveFileDialog();
+
+            if (svdlg.ShowDialog() == DialogResult.OK)
+            {
+                CaminhoPDF = svdlg.FileName;
+            }
+
+            BoletoX.spdRetSalvarPDF retorno = boletox.SalvarPDF(tBoxIdIntegracao.Text, svdlg.FileName);
+
+            rtResposta.AppendText(".:: SALVAR PDF ::. " + Environment.NewLine);
+            rtResposta.AppendText("Mensagem: " + retorno.Mensagem + Environment.NewLine);
+            rtResposta.AppendText("Status: " + retorno.Status + Environment.NewLine);
+        }

@@ -1,0 +1,28 @@
+private void btnCadastrarConvenio_Click(object sender, EventArgs e)
+        {
+            IspdRetCadastrarConvenio _CadastrarConvenio;
+
+            rtResposta.Clear();
+
+            _CadastrarConvenio = boletox.CadastrarConvenio(rtTx2.Text);
+
+            rtResposta.AppendText(" .:: CADASTRAR CONVÊNIO ::. " + Environment.NewLine);
+            rtResposta.AppendText("Mensagem: " + _CadastrarConvenio.Mensagem + Environment.NewLine);
+            rtResposta.AppendText("Status: " + _CadastrarConvenio.Status + Environment.NewLine);
+            rtResposta.AppendText("Erro de Conexão: " + _CadastrarConvenio.ErroConexao + Environment.NewLine);
+            rtResposta.AppendText(Environment.NewLine);
+
+            if (_CadastrarConvenio.Status == "SUCESSO")
+            {
+                rtResposta.AppendText(" Id Convênio: " + _CadastrarConvenio.IdConvenio + Environment.NewLine);
+                rtResposta.AppendText(" Número Convênio: " + _CadastrarConvenio.NumeroConvenio  + Environment.NewLine);
+                rtResposta.AppendText(" Descrição: " + _CadastrarConvenio.DescricaoConvenio + Environment.NewLine);
+                rtResposta.AppendText(" Carteira: " + _CadastrarConvenio.Carteira + Environment.NewLine);
+                rtResposta.AppendText(" Espécie: " + _CadastrarConvenio.Especie + Environment.NewLine);
+                rtResposta.AppendText(" Padrão CNAB: " + _CadastrarConvenio.PadraoCNAB + Environment.NewLine);
+                rtResposta.AppendText(" Utiliza VAN: " + _CadastrarConvenio.UtilizaVan  + Environment.NewLine);
+                rtResposta.AppendText(" Número Remessa: " + _CadastrarConvenio.NumeroRemessa + Environment.NewLine);
+                rtResposta.AppendText(" Reiniciar Número Remessa: " + _CadastrarConvenio.ReiniciarDiariamente + Environment.NewLine);
+                rtResposta.AppendText(Environment.NewLine);
+            }
+        }

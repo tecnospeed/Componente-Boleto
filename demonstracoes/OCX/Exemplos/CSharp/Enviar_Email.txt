@@ -1,0 +1,21 @@
+private void btnEnviarEmailLote_Click(object sender, EventArgs e)
+        {
+            IspdRetEnvioEmailLote _EnviarEmailLoteResposta;
+           
+            rtResposta.Clear();
+
+            _EnviarEmailLoteResposta = boletox.EnviarEmailLote(rtTx2.Text);
+
+            
+
+            rtResposta.AppendText("### Enviar Email Lote ###" + Environment.NewLine);
+            rtResposta.AppendText("Mensagem: " + _EnviarEmailLoteResposta.Mensagem + Environment.NewLine);
+            rtResposta.AppendText("Status: " + _EnviarEmailLoteResposta.Status + Environment.NewLine);
+            rtResposta.AppendText("Protocolo: " + _EnviarEmailLoteResposta.Protocolo + Environment.NewLine);
+            rtResposta.AppendText(Environment.NewLine);
+
+            tbProtocoloEnvioEmail.Text = _EnviarEmailLoteResposta.Protocolo;
+
+            
+
+        }

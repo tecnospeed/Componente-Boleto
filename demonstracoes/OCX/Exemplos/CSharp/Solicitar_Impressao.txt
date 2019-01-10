@@ -1,0 +1,45 @@
+ private void btnSolicitarImpressaoLote_Click(object sender, EventArgs e)
+        {
+            IspdRetImprimirLote _ImprimirLoteList;
+
+            string TipoImpressao;
+
+            rtResposta.Clear();
+
+            if (cbbTipoImpressao.SelectedIndex == 0)
+            {
+                TipoImpressao = "0";
+            }
+            else if (cbbTipoImpressao.SelectedIndex == 1)
+            {
+                TipoImpressao = "1";
+            }
+            else if (cbbTipoImpressao.SelectedIndex == 2)
+            {
+                TipoImpressao = "2";
+            }
+            else if (cbbTipoImpressao.SelectedIndex == 3)
+            {
+                TipoImpressao = "3";
+            }
+            else TipoImpressao = "99";
+
+            _ImprimirLoteList = boletox.ImprimirLote(tBoxIdIntegracao.Text, TipoImpressao);
+
+            if (_ImprimirLoteList.Protocolo != null)
+            {
+                tbProtocoloRetornoImpressaoLote.Text = _ImprimirLoteList.Protocolo;
+            }
+
+            rtResposta.Clear();
+            rtResposta.AppendText(".:: Impressão em Lote" + Environment.NewLine);
+            rtResposta.AppendText("Mensagem: " + _ImprimirLoteList.Mensagem + Environment.NewLine);
+            rtResposta.AppendText("Status: " + _ImprimirLoteList.Status + Environment.NewLine);
+
+            if (_ImprimirLoteList.Status == "ERRO")
+            {
+                rtResposta.AppendText("ErroClasse: " + _ImprimirLoteList.ErroClasse);
+            }
+
+            rtResposta.AppendText(Environment.NewLine);
+        }

@@ -1,0 +1,43 @@
+private void btnConsultarProtocoloRemessaAlteracao_Click(object sender, EventArgs e)
+        {
+            IspdRetConsultarRemessaAlteracaoLista _RetornoConsultarAlteracao;
+            IspdRetConsultarRemessaAlteracaoItem _RetornoConsultarAlteracaoItem;
+
+            rtResposta.Clear();
+            rtTx2.Clear();
+
+            _RetornoConsultarAlteracao = boletox.ConsultarRemessaAlteracao(tBoxProtocoloRetornoRemessaAlteracao.Text);
+
+            rtResposta.AppendText(".:: Consulta Remessa de Alteração" + Environment.NewLine);
+            rtResposta.AppendText("MEnsagem: " + _RetornoConsultarAlteracao.Mensagem + Environment.NewLine);
+            rtResposta.AppendText("Status: " + _RetornoConsultarAlteracao.Status + Environment.NewLine);
+            rtResposta.AppendText("Situação: " + _RetornoConsultarAlteracao.Situacao + Environment.NewLine);
+
+            if(_RetornoConsultarAlteracao.Status == "ERRO")
+            {
+                rtResposta.AppendText("ErroClasse: " + _RetornoConsultarAlteracao.ErroClasse);
+            }
+
+            for(int i = 0; i<= _RetornoConsultarAlteracao.Count() -1; i++)
+            {
+                _RetornoConsultarAlteracaoItem = _RetornoConsultarAlteracao.Item[i];
+                rtResposta.AppendText("Item: " + Convert.ToString(i) + Environment.NewLine);
+                rtResposta.AppendText("  Mensagem: " + _RetornoConsultarAlteracaoItem.Mensagem + Environment.NewLine);
+                rtResposta.AppendText("  Remessa: " + _RetornoConsultarAlteracaoItem.Remessa + Environment.NewLine);
+                rtResposta.AppendText("  Banco: " + _RetornoConsultarAlteracaoItem.Banco + Environment.NewLine);
+                rtResposta.AppendText("  Conta: " + _RetornoConsultarAlteracaoItem.Conta + Environment.NewLine);
+                rtResposta.AppendText("  Convênio: " + _RetornoConsultarAlteracaoItem.Convenio + Environment.NewLine);
+                rtResposta.AppendText("  Número Atual da Remessa: " + _RetornoConsultarAlteracaoItem.NumeroAtualRemessa + Environment.NewLine);
+                rtResposta.AppendText("  Transmissão automática? " + _RetornoConsultarAlteracaoItem.TransmissaoAutomatica + Environment.NewLine);
+                rtResposta.AppendText("  Erro: " + _RetornoConsultarAlteracaoItem.Erro + Environment.NewLine);
+                rtResposta.AppendText("  ErroClasse: " + _RetornoConsultarAlteracaoItem.ErroClasse + Environment.NewLine);
+
+                for (int j =0; j <= _RetornoConsultarAlteracaoItem.Titulos.Count() -1; j++)
+                {
+                    rtResposta.AppendText("IdIntegracao: " + Convert.ToString(j + 1) + ": " + _RetornoConsultarAlteracaoItem.Titulos.Item[j]);
+                }
+
+                rtResposta.AppendText(Environment.NewLine);
+
+            }
+        }

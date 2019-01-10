@@ -1,0 +1,20 @@
+private void btnUploadRetorno_Click(object sender, EventArgs e)
+        {
+            rtResposta.Clear();
+            rtTx2.Clear();
+
+            dlgArqRetorno.InitialDirectory = Application.StartupPath;
+            if (dlgArqRetorno.ShowDialog() == DialogResult.OK)
+            {
+                rtTx2.Text = System.IO.File.ReadAllText(dlgArqRetorno.FileName);
+            }
+            BoletoX.spdRetProcessarRetorno _ProcessarRetorno = boletox.ProcessarRetorno(rtTx2.Text);
+
+            rtResposta.AppendText(" .:: UPLOAD RETORNO " + Environment.NewLine);
+            rtResposta.AppendText("Mensagem: " + _ProcessarRetorno.Mensagem + Environment.NewLine);
+            rtResposta.AppendText("Status: " + _ProcessarRetorno.Status + Environment.NewLine);
+            rtResposta.AppendText("Protocolo: " + _ProcessarRetorno.Protocolo + Environment.NewLine);
+
+            tBoxRetProcessamento.Text = _ProcessarRetorno.Protocolo;
+
+        }

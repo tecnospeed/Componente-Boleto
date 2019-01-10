@@ -1,0 +1,53 @@
+private void btnConsRetProcessamento_Click(object sender, EventArgs e)
+        {
+            IspdRetConsultarRetornoProcessamento _RetornoConsultarProcessamento;
+            IspdRetConsultarRetornoProcessamentoItem _RetornoConsultarProcessamentoItem;
+            IspdRetConsultarRetornoProcessamentoItemNaoConciliado _RetornoConsultarProcessamentoItemNaoConciliado;
+
+            _RetornoConsultarProcessamento = boletox.ConsultaRetornoProcessamento(tBoxRetProcessamento.Text);
+
+            rtResposta.Clear();
+            rtResposta.Text += ".:: CONSULTA RETORNO PROCESSAMENTO ::." + Environment.NewLine;
+            rtResposta.Text += "Mensagem: " + _RetornoConsultarProcessamento.Mensagem + Environment.NewLine;
+            rtResposta.Text += "Status: " + _RetornoConsultarProcessamento.Status + Environment.NewLine;
+            rtResposta.Text += "Situação: " + _RetornoConsultarProcessamento.Situacao + Environment.NewLine;
+
+            rtResposta.Text += Environment.NewLine;
+
+            for (var i= 0; i < _RetornoConsultarProcessamento.Count(); i++)   
+            {
+                _RetornoConsultarProcessamentoItem = _RetornoConsultarProcessamento.Titulos[i];
+                rtResposta.Text += "TÍTULO: " + (i + 1).ToString() + Environment.NewLine;
+                rtResposta.Text += "IDintegração: " + _RetornoConsultarProcessamentoItem.IdIntegracao + Environment.NewLine;
+                rtResposta.Text += Environment.NewLine;  
+            }
+            for (var j = 0; j < _RetornoConsultarProcessamento.CountTitulosNaoConciliados(); j++)
+            {
+                _RetornoConsultarProcessamentoItemNaoConciliado = _RetornoConsultarProcessamento.TitulosNaoConciliados[j];
+                rtResposta.Text += "Título Não-Conciliado: " + (j + 1).ToString() + Environment.NewLine;
+                rtResposta.Text += "   Código do Movimento: " + _RetornoConsultarProcessamentoItemNaoConciliado.CodigoMovimento + Environment.NewLine;
+                rtResposta.Text += "   Nosso Número: " + _RetornoConsultarProcessamentoItemNaoConciliado.TituloNossoNumero + Environment.NewLine;
+                rtResposta.Text += "   Nosso Número Original: " + _RetornoConsultarProcessamentoItemNaoConciliado.TituloNossoNumeroOriginal + Environment.NewLine;
+                rtResposta.Text += "   Data de Vencimento: " + _RetornoConsultarProcessamentoItemNaoConciliado.TituloDataVencimento + Environment.NewLine;
+                rtResposta.Text += "   Valor Pago: " + _RetornoConsultarProcessamentoItemNaoConciliado.PagamentoValorPago + Environment.NewLine;
+                rtResposta.Text += "   Valor Crédito: " + _RetornoConsultarProcessamentoItemNaoConciliado.PagamentoValorCredito + Environment.NewLine;
+                rtResposta.Text += "   Valor Taxa Cobrança: " + _RetornoConsultarProcessamentoItemNaoConciliado.PagamentoValorTaxaCobranca + Environment.NewLine;
+                rtResposta.Text += "   Valor Acréscimos: " + _RetornoConsultarProcessamentoItemNaoConciliado.PagamentoValorAcrescimos + Environment.NewLine;
+                rtResposta.Text += "   Data Pagamento: " + _RetornoConsultarProcessamentoItemNaoConciliado.PagamentoData + Environment.NewLine;
+                rtResposta.Text += "   Data Credito: " + _RetornoConsultarProcessamentoItemNaoConciliado.PagamentoDataCredito + Environment.NewLine;
+                rtResposta.Text += "   Título Pago: " + _RetornoConsultarProcessamentoItemNaoConciliado.PagamentoRealizado + Environment.NewLine;
+                rtResposta.Text += Environment.NewLine;
+
+                for (var k = 0; k < _RetornoConsultarProcessamentoItemNaoConciliado.CountOcorrencias(); k++)
+                {
+                    rtResposta.Text += "   Ocorrência:   " + (k + 1).ToString() + ": " + _RetornoConsultarProcessamentoItemNaoConciliado.Ocorrencias[k] + Environment.NewLine;
+                }
+
+                for (var l = 0; l < _RetornoConsultarProcessamentoItemNaoConciliado.CountCodigosOcorrencias(); l++)
+                {
+                    rtResposta.Text += "   Código Ocorrências: " + (l + 1).ToString() + ": " + _RetornoConsultarProcessamentoItemNaoConciliado.CodigosOcorrencias[l] + Environment.NewLine;
+                }
+
+                rtResposta.Text += Environment.NewLine;
+            }
+        }

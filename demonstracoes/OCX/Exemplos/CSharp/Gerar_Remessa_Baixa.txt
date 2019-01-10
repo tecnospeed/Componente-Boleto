@@ -1,0 +1,23 @@
+private void btnGerarBaixa_Click(object sender, EventArgs e)
+        {
+            IspdRetGerarRemessaBaixa _GerarResposta;
+
+            rtResposta.Clear();
+
+            _GerarResposta = boletox.GerarRemessaBaixa(tBoxIdIntegracao.Text);
+
+            if(_GerarResposta.Protocolo != "")
+            {
+                tBoxProcotoloRemessaBaixada.Text = _GerarResposta.Protocolo;
+            }
+
+            rtResposta.AppendText(".:: Gerar Remessa de Alteração ::." + Environment.NewLine);
+            rtResposta.AppendText("Mensagem: " + _GerarResposta.Mensagem + Environment.NewLine);
+            rtResposta.AppendText("Status: " + _GerarResposta.Status + Environment.NewLine);
+            rtResposta.AppendText("Protocolo: " + _GerarResposta.Protocolo + Environment.NewLine);
+
+            if(_GerarResposta.Status == "Erro")
+            {
+                rtResposta.AppendText("ErroClasse: " + _GerarResposta.ErroClasse);
+            }
+        }

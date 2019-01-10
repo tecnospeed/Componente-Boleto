@@ -1,0 +1,48 @@
+ private void btnIncluir_Click(object sender, EventArgs e)
+        {
+            IspdRetIncluirLista _BoletoList;
+            string listaIdsIntegracao = "";
+
+            rtResposta.Clear();
+
+            try
+            {
+                _BoletoList = boletox.Incluir(rtTx2.Text);
+
+                rtResposta.AppendText(".:: Incluir Boleto ::." + Environment.NewLine);
+                rtResposta.AppendText("Mensagem: " + _BoletoList.Mensagem + Environment.NewLine);
+                rtResposta.AppendText("Status: " + _BoletoList.Status + Environment.NewLine);
+                rtResposta.AppendText(Environment.NewLine);
+
+                for (int i = 0; i <= _BoletoList.Count() - 1; i++)
+                {
+                    rtResposta.AppendText("Item nº " + Convert.ToString(i + 1) + Environment.NewLine);
+                    rtResposta.AppendText(" Número do documento: " + _BoletoList[i].NumeroDocumento + Environment.NewLine);
+                    rtResposta.AppendText(" IdIntegracao: " + _BoletoList[i].IdIntegracao + Environment.NewLine);
+                    rtResposta.AppendText(" Situação: " + _BoletoList[i].Situacao + Environment.NewLine);
+                    rtResposta.AppendText(" Nosso Número: " + _BoletoList[i].NossoNumero + Environment.NewLine);
+                    rtResposta.AppendText(" Banco: " + _BoletoList[i].Banco + Environment.NewLine);
+                    rtResposta.AppendText(" Conta: " + _BoletoList[i].Conta + Environment.NewLine);
+                    rtResposta.AppendText(" Convênio: " + _BoletoList[i].Convenio + Environment.NewLine);
+                    rtResposta.AppendText(" Erro: " + _BoletoList[i].Erro + Environment.NewLine);
+                    rtResposta.AppendText(" ErroClasse: " + _BoletoList.ErroClasse + Environment.NewLine);
+                    rtResposta.AppendText(Environment.NewLine);
+
+                    if (i == 0)
+                    {
+                        listaIdsIntegracao = _BoletoList[i].IdIntegracao;
+                    }
+                    else
+                    {
+                        listaIdsIntegracao += "," + _BoletoList[i].IdIntegracao;
+                    }
+
+                    tBoxIdIntegracao.Text = listaIdsIntegracao;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }

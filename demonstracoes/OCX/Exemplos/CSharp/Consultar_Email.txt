@@ -1,0 +1,15 @@
+private void btnConsultaEmailLote_Click(object sender, EventArgs e)
+        {
+            IspdRetConsultarEmailLote _RespostaEmailLote;
+
+            rtResposta.Clear();
+
+            _RespostaEmailLote = boletox.ConsultarEmailLote(tbProtocoloEnvioEmail.Text);
+
+
+            rtResposta.AppendText("### E-Mail enviado com sucesso" + Environment.NewLine);
+            rtResposta.AppendText("Mensagem: " + _RespostaEmailLote.Mensagem + Environment.NewLine);
+            rtResposta.AppendText("Status: " + _RespostaEmailLote.Status + Environment.NewLine);
+            rtResposta.AppendText("Situação: " + _RespostaEmailLote.Situacao + Environment.NewLine);
+            rtResposta.AppendText(Environment.NewLine);
+        }

@@ -1,0 +1,28 @@
+ private void btnCadastrarConta_Click(object sender, EventArgs e)
+        {
+            IspdRetCadastrarConta _CadastrarConta;
+
+            rtResposta.Clear();
+
+            _CadastrarConta = boletox.CadastrarConta(rtTx2.Text);
+
+            rtResposta.AppendText(" .:: CADASTRAR CONTA ::. " + Environment.NewLine);
+            rtResposta.AppendText("Mensagem: " + _CadastrarConta.Mensagem + Environment.NewLine);
+            rtResposta.AppendText("Status: " + _CadastrarConta.Status + Environment.NewLine);
+            rtResposta.AppendText("Erro de Conexão: " + _CadastrarConta.ErroConexao + Environment.NewLine);
+            rtResposta.AppendText(Environment.NewLine);
+
+            if (_CadastrarConta.Status == "SUCESSO")
+            {
+                rtResposta.AppendText(" Id Conta: " + _CadastrarConta.IdConta + Environment.NewLine);
+                rtResposta.AppendText(" Código Banco: " + _CadastrarConta.CodigoBanco + Environment.NewLine);
+                rtResposta.AppendText(" Agência: " + _CadastrarConta.Agencia  + Environment.NewLine);
+                rtResposta.AppendText(" AgênciaDV: " + _CadastrarConta.AgenciaDV  + Environment.NewLine);
+                rtResposta.AppendText(" Conta: " + _CadastrarConta.Conta  + Environment.NewLine);
+                rtResposta.AppendText(" Conta DV: " + _CadastrarConta.ContaDV  + Environment.NewLine);
+                rtResposta.AppendText(" Tipo Conta: " + _CadastrarConta.TipoConta  + Environment.NewLine);
+                rtResposta.AppendText(" Código Beneficiário: " + _CadastrarConta.CodigoBeneficiario  + Environment.NewLine);
+                rtResposta.AppendText(" Código Empresa: " + _CadastrarConta.CodigoEmpresa  + Environment.NewLine);
+                rtResposta.AppendText(Environment.NewLine);
+            }
+        }

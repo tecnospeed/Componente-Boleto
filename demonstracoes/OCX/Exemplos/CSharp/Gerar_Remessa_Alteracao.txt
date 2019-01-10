@@ -1,0 +1,38 @@
+private void btnGerarRemessaAlteracao_Click(object sender, EventArgs e)
+        {
+            IspdRetGerarRemessaAlteracao _GerarResposta;
+            _GerarResposta = null;
+
+            rtResposta.Clear();
+            while (cbbTipoRemessaAlteracao.SelectedIndex == -1)
+            {
+                MessageBox.Show("Escolha um tipo de remessa de alteração", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            if (cbbTipoRemessaAlteracao.SelectedIndex == 0)
+            {
+                _GerarResposta = boletox.GerarRemessaAlteracao("0", rtTx2.Text);                        // Tipo 0 indica a alteração de vencimento
+                rtResposta.AppendText(".:: Gerar alteração de Vencimento ::." + Environment.NewLine);
+            }
+            if (cbbTipoRemessaAlteracao.SelectedIndex == 1)
+            {
+                _GerarResposta = boletox.GerarRemessaAlteracao("1", rtTx2.Text);                        // Tipo 1 indica a alteração de vencimento
+                rtResposta.AppendText(".:: Gerar alteração de Valor ::." + Environment.NewLine);
+            }
+
+
+            if (_GerarResposta.Protocolo != "")
+            {
+                tBoxProtocoloRetornoRemessaAlteracao.Text = _GerarResposta.Protocolo;
+            }
+
+            rtResposta.AppendText("Mensagem: " + _GerarResposta.Mensagem + Environment.NewLine);
+            rtResposta.AppendText("Status: " + _GerarResposta.Status + Environment.NewLine);
+            rtResposta.AppendText("Protocolo: " + _GerarResposta.Protocolo + Environment.NewLine);
+
+            if (_GerarResposta.Status == "Erro")
+            {
+                rtResposta.AppendText("ErroClasse: " + _GerarResposta.ErroClasse);
+            }
+
+        }

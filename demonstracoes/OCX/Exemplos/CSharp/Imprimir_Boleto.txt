@@ -1,0 +1,11 @@
+private void btnImprimirLote_Click(object sender, EventArgs e)
+        {
+            IspdRetConsultarLoteImpressao _LoteImpressao;
+
+            rtResposta.Clear();
+            rtTx2.Clear();
+
+            _LoteImpressao = boletox.ConsultarLoteImpressao(tbProtocoloRetornoImpressaoLote.Text, cbbImpressora.Text);
+
+            rtResposta.AppendText(".:: Consultar Protocolo Lote Impressão");
+        }
