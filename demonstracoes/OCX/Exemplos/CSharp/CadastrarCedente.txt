@@ -1,0 +1,26 @@
+{
+      IspdRetCadastrarCedente _CadastrarCedente;
+
+  rtResposta.Clear();
+
+    _CadastrarCedente = boletox.CadastrarCedente(rtTx2.Text);
+
+    rtResposta.AppendText(" .:: CADASTRAR CEDENTE ::. " + Environment.NewLine);
+    rtResposta.AppendText("Mensagem: " + _CadastrarCedente.Mensagem + Environment.NewLine);
+    rtResposta.AppendText("Status: " + _CadastrarCedente.Status + Environment.NewLine);
+    rtResposta.AppendText("Erro de Conexão: " + _CadastrarCedente.ErroConexao + Environment.NewLine);
+    rtResposta.AppendText(Environment.NewLine);
+
+  if (_CadastrarCedente.Status == "SUCESSO") 
+  {
+      rtResposta.AppendText(" Id Cedente: " + _CadastrarCedente.IdCedente + Environment.NewLine);
+      rtResposta.AppendText(" Situação: " + _CadastrarCedente.Situacao + Environment.NewLine);
+      rtResposta.AppendText(" Token: " + _CadastrarCedente.Token + Environment.NewLine);
+      rtResposta.AppendText(" CPF/CNPJ: " + _CadastrarCedente.CpfCnpj + Environment.NewLine);
+      rtResposta.AppendText(" Razao Social: " + _CadastrarCedente.RazaoSocial + Environment.NewLine);
+      rtResposta.AppendText(" Nome Fantasia: " + _CadastrarCedente.NomeFantasia + Environment.NewLine);
+      rtResposta.AppendText(Environment.NewLine);
+
+      edtIDCedente.Text = _CadastrarCedente.IdCedente;
+  }
+}
