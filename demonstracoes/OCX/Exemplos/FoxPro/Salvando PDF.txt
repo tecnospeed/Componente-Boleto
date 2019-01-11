@@ -1,0 +1,16 @@
+         
+PUBLIC SalvarPDFLote AS BoletoX.spdRetSalvarLoteImpressaoPDF
+
+SalvarPDFLote = Boleto.SalvarLoteImpressaoPDF(THISFORM.txtProtocoloRetornoImpressaoLote.Value, "C:\TesteVFPLote.pdf") 
+
+THISFORM.edtResposta.Value = ".:: Consultar Protocolo Lote Impressão ::." + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + SalvarPDFLote.Mensagem + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + SalvarPDFLote.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Arquivo PDF: C:\TesteVFPLote.pdf" + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+IF Impressao.Status = "ERRO"
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "ErroClasse: " + SalvarPDFLote.ErroClasse
+ENDIF
+       
+    

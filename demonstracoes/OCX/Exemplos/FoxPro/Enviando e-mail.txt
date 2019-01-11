@@ -1,0 +1,12 @@
+        
+PUBLIC retornolote As BOLETOX.IspdRetEnvioEmailLote
+
+retornolote = Boleto.EnviarEmailLote(THISFORM.edtTx2.Value)
+
+  THISFORM.edtResposta.Value = ".:: E-mail em Lote - Boleto ::." + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + retornolote.Mensagem + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + retornolote.Status + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Protocolo: " + retornolote.Protocolo + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+      
+    

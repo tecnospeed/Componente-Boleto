@@ -1,0 +1,27 @@
+                
+  PUBLIC AlterarCedente As BoletoX.IspdRetAlterarCedente
+  PUBLIC IDCedente AS String
+
+IDCedente = THISFORM.PAGEframe1.page2.txtIDCedente.Value
+
+
+AlterarCedente = Boleto.AlterarCedente(IDCedente, THISFORM.edtTx2.Value)
+
+
+THISFORM.edtResposta.Value = ".:: Alterar Cedente ::." + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + AlterarCedente.Mensagem + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + AlterarCedente.Status + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+
+If AlterarCedente.Status = "SUCESSO" Then
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + ".:: Alterar Cedente ::." + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "    Id Cedente: " + AlterarCedente .IdCedente+ chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "    Situacao: " + AlterarCedente.Situacao + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "    Token: " + AlterarCedente.Token + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "    CPF / CNPJ: " + AlterarCedente.CpfCnpj + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "    Razao Social: " + AlterarCedente.RazaoSocial + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "    Nome Fantasia: " + AlterarCedente.NomeFantasia + chr(13) + chr(10)
+  ENDIF
+              
+            

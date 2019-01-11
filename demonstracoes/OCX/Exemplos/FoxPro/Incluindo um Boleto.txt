@@ -1,0 +1,27 @@
+        
+PUBLIC retorno As BoletoX.spdRetIncluirLista
+
+retorno = Boleto.Incluir(THISFORM.edtTx2.Value)
+
+THISFORM.edtResposta.Value = ".:: Incluir Boleto ::." + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + retorno.Mensagem + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + retorno.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+
+  FOR i = 0 TO retorno.Count -1
+    THISFORM.edtResposta.VALUE = THISFORM.edtResposta.Value + "Item: " + STR(i+1) + chr(13) + chr(10)
+    THISFORM.edtResposta.VALUE = THISFORM.edtResposta.Value + "   Número Documento: " + retorno.Item[i].NumeroDocumento + chr(13) + chr(10)
+    THISFORM.edtResposta.VALUE = THISFORM.edtResposta.Value + "   Id Integração: " + retorno.Item[i].IdIntegracao + chr(13) + chr(10)
+    THISFORM.edtResposta.VALUE = THISFORM.edtResposta.Value + "   Situação: " + retorno.Item[i].Situacao + chr(13) + chr(10)
+    THISFORM.edtResposta.VALUE = THISFORM.edtResposta.Value + "   Nosso Número: " + retorno.Item[i].NossoNumero + chr(13) + chr(10)
+    THISFORM.edtResposta.VALUE = THISFORM.edtResposta.Value + "   Erro: " + retorno.Item[i].Erro + chr(13) + chr(10)
+
+
+    IF retorno.Item[i].Situacao <> "Falha"
+       THISFORM.txtIdIntegracao.Value = THISFORM.txtIdIntegracao.Value + retorno.Item[i].IdIntegracao + ","
+    ENDIF
+
+  ENDFOR  
+        
+      

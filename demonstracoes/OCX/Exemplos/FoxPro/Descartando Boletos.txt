@@ -1,0 +1,24 @@
+        
+PUBLIC DescarteList As BOLETOX.spdRetDescartarLista
+PUBLIC DescarteItem As BOLETOX.spdRetDescartarTituloItem
+
+DescarteList = Boleto.Descartar(THISFORM.txtIdIntegracao.Value)
+
+THISFORM.edtResposta.Value = ".:: Descartar Boleto ::." + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + DescarteList.Mensagem + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + DescarteList.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+IF DescarteList.Status = "ERRO"
+  THISFORM.edtResposta.Value = THIFORM.edtResposta.Value + "ErroClasse: " + DescarteList.ErroClasse
+ENDIF
+
+FOR i=0 TO DescarteList.Count -1
+  DescarteItem = DescarteList.Item[i]
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "ITEM: " + Str((i + 1)) + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  IdIntegracao: " + DescarteItem.IdIntegracao + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Erro: " + DescarteItem.Erro + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)  
+ENDFOR
+        
+      

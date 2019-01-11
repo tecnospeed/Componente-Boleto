@@ -1,0 +1,15 @@
+      
+Private Sub cmdEnviarEmailLote_Click()
+Dim _RespostaEmailLote As BoletoX.IspdRetConsultarEmailLote
+
+  Set _RespostaEmailLote = FBoletoX.ConsultarEmailLote(txtTx2.Text)
+
+  txtRetorno.Text = "### Enviar Email Lote ###" & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & _RespostaEmailLote.Mensagem
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & _RespostaEmailLote.Status
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Situacao : " & _RespostaEmailLote.Situacao
+  txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+End Sub
+      
+    

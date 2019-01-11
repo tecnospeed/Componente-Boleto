@@ -1,0 +1,39 @@
+        
+
+PUBLIC ImprimirLoteList As BOLETOX.spdRetImprimirLote
+PUBLIC TipoImpressao AS String
+
+TipoImpressao = ""
+
+
+DO CASE
+  CASE THISFORM.CbbImpressora.ListIndex = 1
+    TipoImpressao = "0"
+  CASE THISFORM.CbbImpressora.ListIndex = 2
+    TipoImpressao = "1"
+  CASE THISFORM.CbbImpressora.ListIndex = 3
+    TipoImpressao = "2"
+  CASE THISFORM.CbbImpressora.ListIndex = 4
+    TipoImpressao = "99"      
+
+ENDCASE       
+
+
+ImprimirLoteList = Boleto.ImprimirLote(THISFORM.txtIdIntegracao.Value,TipoImpressao)
+
+
+THISFORM.txtProtocoloRetornoImpressaoLote.VALUE = ImprimirLoteList.Protocolo
+
+
+THISFORM.edtResposta.Value = ".:: Impressão em Lote - Boleto ::." + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + ImprimirLoteList.Mensagem + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + ImprimirLoteList.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Protocolo: " + ImprimirLoteList.Protocolo + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+
+IF (ImprimirLoteList.Status = "ERRO") THEN
+  TTHISFORM.edtResposta.Value = THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   ErroClasse: " + ImprimirLoteList.ErroClasse + chr(13) + chr(10)
+ENDIF
+         
+      

@@ -1,0 +1,38 @@
+        
+
+PUBLIC retornoConsultaProcessamento As BoletoX.spdRetConsultarRetornoProcessamento
+PUBLIC retornoConsultaProcessamentoItem As BoletoX.spdRetConsultarRetornoProcessamentoItem
+PUBLIC RetornoConsultarProcessamentoItemNaoConciliado As BoletoX.spdRetConsultarRetornoProcessamentoItemNaoConciliado
+
+
+retornoConsultaProcessamento = Boleto.ConsultaRetornoProcessamento(THISFORM.txtProtocolo.Value)
+
+THISFORM.edtResposta.Value = ".:: Consulta Retorno - Boleto ::." + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + retornoConsultaProcessamento.Mensagem + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + retornoConsultaProcessamento.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Situação: " + retornoConsultaProcessamento.Situacao + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+For i = 0 To retornoConsultaProcessamento.Count - 1
+    retornoConsultaProcessamentoItem = retornoConsultaProcessamento.Titulos(i)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "Titulo: " + Str((i + 1)) + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "Idintegracao: " + retornoConsultaProcessamentoItem.IdIntegracao + chr(13) + chr(10)
+ENDFOR
+For i = 0 To retornoConsultaProcessamento.CountTitulosNaoConciliados - 1
+    RetornoConsultarProcessamentoItemNaoConciliado = retornoConsultaProcessamento.TitulosNaoConciliados(i)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   .:: Não Conciliados::. " + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Codigo Movimento: " + RetornoConsultarProcessamentoItemNaoConciliado.CodigoMovimento + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Nosso Numero: " + RetornoConsultarProcessamentoItemNaoConciliado.TituloNossoNumero + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Nosso Numero Original: " + RetornoConsultarProcessamentoItemNaoConciliado.TituloNossoNumeroOriginal + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Data Vencimeto: " + RetornoConsultarProcessamentoItemNaoConciliado.TituloDataVencimento + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Valor Pago: " + STR(RetornoConsultarProcessamentoItemNaoConciliado.PagamentoValorPago) + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Valor Crédito: " + STR(RetornoConsultarProcessamentoItemNaoConciliado.PagamentoValorCredito) + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Valor Taxa Cobrança: " + STR(RetornoConsultarProcessamentoItemNaoConciliado.PagamentoValorTaxaCobranca) + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Valor Acréscimos: " + STR(RetornoConsultarProcessamentoItemNaoConciliado.PagamentoValorAcrescimos) + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Data Pagamento: " + RetornoConsultarProcessamentoItemNaoConciliado.PagamentoData + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Data Credito: " + RetornoConsultarProcessamentoItemNaoConciliado.PagamentoDataCredito + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Título Pago: " + IIF(RetornoConsultarProcessamentoItemNaoConciliado.PagamentoRealizado, "True","False") + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+ENDFOR
+        
+      

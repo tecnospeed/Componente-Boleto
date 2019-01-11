@@ -1,0 +1,30 @@
+                
+PUBLIC CadastrarContaList As BoletoX.IspdRetCadastrarCadastrarContaList
+
+CadastrarContaList = Boleto.CadastrarConta (THISFORM.edtTx2.Value)
+
+
+THISFORM.edtResposta.Value = ".:: Cadastrar Conta ::." + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + CadastrarContaList.Mensagem + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + CadastrarContaList.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   ErroConexao: " + CadastrarContaList.ErroConexao + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+If CadastrarContaList.Status = "SUCESSO" Then
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   .:: Cadastrar Conta ::." + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Id Conta: " + CadastrarContaList.IdConta + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Código Banco: " + CadastrarContaList.CodigoBanco + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Agência: " + CadastrarContaList.Agencia + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       AgênciaDV: " + CadastrarContaList.AgenciaDV + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Conta : " + CadastrarContaList.Conta + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Conta DV: " + CadastrarContaList.ContaDV + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Tipo Conta: " + CadastrarContaList.TipoConta + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Código Beneficiário: " + CadastrarContaList.CodigoBeneficiario + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Código Empresa: " + CadastrarContaList.CodigoEmpresa + chr(13) + chr(10)
+
+
+THISFORM.PAGEframe1.page2.txtIDConta.Value = CadastrarContaList.IdConta
+
+ENDIF
+                
+              
+

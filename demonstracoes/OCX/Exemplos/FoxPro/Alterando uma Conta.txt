@@ -1,0 +1,32 @@
+                
+  PUBLIC AlterarContaList As BoletoX.IspdRetAlterarContaList
+  PUBLIC IDConta AS String
+
+IDConta = THISFORM.PAGEframe1.page2.txtIDConta.Value
+
+
+AlterarContaList = Boleto.AlterarConta (IDConta, THISFORM.edtTx2.Value)
+
+
+THISFORM.edtResposta.Value = ".:: ALTERAR CONTA ::." + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + AlterarContaList.Mensagem + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + AlterarContaList.Status + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   ErroConexao: " + AlterarContaList.ErroConexao + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+
+If CadastrarContaList.Status = "SUCESSO" Then
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   .:: Cadastrar Conta ::." + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Id Conta: " + AlterarContaList.IdConta + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Código Banco: " + AlterarContaList.CodigoBanco + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Agência: " + AlterarContaList.Agencia + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       AgênciaDV: " + AlterarContaList.AgenciaDV + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Conta : " + AlterarContaList.Conta + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Conta DV: " + AlterarContaList.ContaDV + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Tipo Conta: " + AlterarContaList.TipoConta + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Código Beneficiário: " + AlterarContaList.CodigoBeneficiario + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Código Empresa: " + AlterarContaList.CodigoEmpresa + chr(13) + chr(10)
+  ENDIF
+                
+              
+

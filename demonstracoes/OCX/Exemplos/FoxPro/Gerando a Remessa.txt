@@ -1,0 +1,38 @@
+      
+PUBLIC retornoItem  As BoletoX.spdRetGerarRemessaItem
+retornoLista = Boleto.GerarRemessa(THISFORM.txtIdIntegracao.Value)
+
+THISFORM.edtResposta.Value = ".:: Gerar Remessa ::." + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + retornoLista.Mensagem + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + retornoLista.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+
+FOR i=0 TO retornoLista.Count -1
+  retornoItem = retornoLista.Item[i]
+  Titulos = retornoItem.Titulos
+
+
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "ITEM: " + Str((i + 1)) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Mensagem: " + retornoItem.Mensagem + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Remessa: " + retornoItem.Remessa + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Banco: " + retornoItem.Banco + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Conta: " + retornoItem.Conta + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Número Atual da Remessa: " + STR(retornoItem.NumeroAtualRemessa) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Transmissao automática?  " + IIF(retornoItem.TransmissaoAutomatica, "True","False") + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Erro: " + retornoItem.Erro + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+
+FOR j=0 TO Titulos.Count - 1
+     THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "IdIntegracao " + Str((i + 1)) + " - " + Titulos.Item[j] + + chr(13) + chr(10)
+   ENDFOR
+
+
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+
+ENDFOR
+      
+    

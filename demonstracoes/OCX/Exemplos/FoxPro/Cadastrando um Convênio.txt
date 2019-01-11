@@ -1,0 +1,27 @@
+                
+PUBLIC CadastrarConvenioList As BoletoX.IspdRetCadastrarConvenio
+CadastrarConvenioList = Boleto.CadastrarConvenio(THISFORM.edtTx2.Value)
+THISFORM.edtResposta.Value = ".:: Cadastrar Convenio ::." + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + CadastrarConvenioList.Mensagem + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + CadastrarConvenioList.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   ErroConexao: " + CadastrarConvenioList.ErroConexao + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+If CadastrarConvenioList.Status = "SUCESSO" Then
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   .:: Cadastrar Convenio ::." + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Id Convenio: " + CadastrarConvenioList.IdConvenio + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Número Convênio: " + CadastrarConvenioList.NumeroConvenio + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Descrição: " + CadastrarConvenioList.DescricaoConvenio + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Carteira: " + CadastrarConvenioList.Carteira + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Espécie: " + CadastrarConvenioList.Especie + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Padrão CNAB: " + CadastrarConvenioList.PadraoCNAB + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Utiliza VAN: " + IIF(CadastrarConvenioList.UtilizaVan, "True","False") + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Número Remessa: " + CadastrarConvenioList.NumeroRemessa + chr(13) + chr(10)
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "       Reiniciar Número Remessa: " + IIF(CadastrarConvenioList.ReiniciarDiariamente, "True","False") + chr(13) + chr(10)
+
+THISFORM.PAGEframe1.page2.txtIDConvenio.Value = CadastrarConvenioList.IdConvenio
+
+ENDIF
+
+
+
+              

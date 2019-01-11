@@ -1,0 +1,92 @@
+                
+* Método que faz a consulta pelos dados do boleto, com base no idIntegracao preenchido no edtIdIntegracao.Value
+
+PUBLIC ConsultarList As BOLETOX.spdRetConsultarLista
+PUBLIC ConsultarItem AS BOLETOX.spdRetConsultarTituloItem
+ConsultarList = Boleto.Consultar(THISFORM.txtIdIntegracao.Value)
+THISFORM.edtResposta.Value = ".:: Consultar Boleto ::." + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + ConsultarList.Mensagem + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + ConsultarList.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+FOR i = 0 TO ConsultarList.Count -1
+   ConsultarItem = ConsultarList.Item[i]
+   THISFORM.edtResposta.Value = "ITEM: " + Str((i + 1)) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  IdIntegracao: " + ConsultarItem.IdIntegracao + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Situacao: " + ConsultarItem.Situacao + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Motivo: " + ConsultarItem.Motivo + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  CEDENTE:" + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Agencia: " + ConsultarItem.CedenteAgencia + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  AgenciaDV: " + ConsultarItem.CedenteAgenciaDV + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Código Banco: " + ConsultarItem.CedenteCodigoBanco + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Carteira: " + ConsultarItem.CedenteCarteira + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Conta: " + ConsultarItem.CedenteCarteira + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Numero Convênio: " + ConsultarItem.CedenteNumeroConvenio + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  SACADO:" + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  CPFCNPJ: " + ConsultarItem.SacadoCPFCNPJ + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Nome: " + ConsultarItem.SacadoNome + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Telefone: " + ConsultarItem.SacadoTelefone + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Email: " + ConsultarItem.SacadoEmail + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Endereço Número: " + ConsultarItem.SacadoEnderecoNumero + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Endereço Bairro: " + ConsultarItem.SacadoEnderecoBairro + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Endereço CEP: " + ConsultarItem.SacadoEnderecoCEP + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Endereço Cidade: " + ConsultarItem.SacadoEnderecoCidade + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Endereço Complemento: " + ConsultarItem.SacadoEnderecoComplemento + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Endereço Logradouro: " + ConsultarItem.SacadoEnderecoLogradouro + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Endereço País: " + ConsultarItem.SacadoEnderecoPais + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Endereço UF: " + ConsultarItem.SacadoEnderecoUF + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  TÍTULO:" + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Número Documento: " + ConsultarItem.TituloNumeroDocumento + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Origem Documento: " + ConsultarItem.TituloOrigemDocumento + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Nosso Número: " + ConsultarItem.TituloNossoNumero + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Data Emissão: " + ConsultarItem.TituloDataEmissao + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Data Vencimento: " + ConsultarItem.TituloDataVencimento + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Data Desconto: " +  ConsultarItem.TituloDataDesconto + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Valor Desconto: " + STR(ConsultarItem.TituloValorDesconto) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Valor Juros: " + STR(ConsultarItem.TituloValorJuros) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Prazo Protesto: " + ConsultarItem.TituloPrazoProtesto + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Mensagem 1: " + ConsultarItem.TituloMensagem01 + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Mensagem 2: " + ConsultarItem.TituloMensagem02 + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Mensagem 3: " + ConsultarItem.TituloMensagem03 + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Valor: " + STR(ConsultarItem.TituloValor) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Data Crédito: " + ConsultarItem.PagamentoDataCredito + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Título Pago: " + IIF(ConsultarItem.PagamentoRealizado, "True","False") + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Valor Crédito: " + STR(ConsultarItem.PagamentoValorCredito) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Valor Outros Acréscimos: " + STR(ConsultarItem.TituloValorOutrosAcrescimos) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Valor Pago: " + STR(ConsultarItem.PagamentoValorPago) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Valor Taxa Cobrança: " + STR(ConsultarItem.PagamentoValorTaxaCobranca) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Valor Abatimento: " + STR(ConsultarItem.TituloValorAbatimento) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Valor Outras Despesas: " + STR(ConsultarItem.PagamentoValorOutrasDespesas) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Valor IOF: " + STR(ConsultarItem.PagamentoValorIOF) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Data Pagamento: " + ConsultarItem.PagamentoData + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Valor Outros Créditos: " + STR(ConsultarItem.PagamentoValorOutrosCreditos) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Pagamento Valor Desconto: " + STR(ConsultarItem.PagamentoValorDesconto) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Pagamento Valor Acréscimos: " + STR(ConsultarItem.PagamentoValorAcrescimos) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Pagamento Valor Abatimento: " + STR(ConsultarItem.PagamentoValorAbatimento) + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Impressão Visualizada: " + IIF(ConsultarItem.ImpressaoVisualizada, "True","False") + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+   THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  OCORRÊNCIAS:" + chr(13) + chr(10)
+
+
+FOR k = 0 TO ConsultarItem.CountTituloMovimentos -1
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + " -Movimentos: " + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + " Código Movimento: " + ConsultarItem.TituloMovimentos[k].Codigo + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + " Código Mensagem: " + ConsultarItem.TituloMovimentos[k].Mensagem + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + " Data: " + ConsultarItem.TituloMovimentos[k].Data + chr(13) + chr(10)
+
+  FOR l = 0 TO ConsultarItem.TituloMovimentos[k].CountOcorrencias -1
+      THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "    -Ocorrências: " + chr(13) + chr(10)
+      THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "      Código Ocorrência: " + ConsultarItem.TituloMovimentos[k].Ocorrencias[l].Codigo + chr(13) + chr(10)
+      THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "      Código Ocorrência:  " + ConsultarItem.TituloMovimentos[k].Ocorrencias[l].Mensagem + chr(13) + chr(10)
+  ENDFOR
+
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+ENDFOR
+
+ENDFOR
+
+              
+            

@@ -1,0 +1,21 @@
+        
+PUBLIC GerarResposta As BoletoX.spdRetGerarRemessaBaixa
+
+GerarResposta = Boleto.GerarRemessaBaixa(THISFORM.txtIdIntegracao.Value)
+
+
+THISFORM.txtProtocoloRemessaBaixada.Value = GerarResposta.Protocolo
+
+
+THISFORM.edtResposta.Value = ".:: Gerar Remessa de Baixa ::." + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + GerarResposta.Mensagem + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + GerarResposta.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Protocolo: " + GerarResposta.Protocolo + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+
+If (GerarResposta.Status = "ERRO") Then
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "ErroClasse: " + GerarResposta.ErroClasse
+ENDIF
+        
+      

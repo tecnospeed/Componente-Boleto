@@ -1,0 +1,33 @@
+        
+PUBLIC RetornoConsultarBaixa As BoletoX.spdRetConsultarRemessaBaixaLista
+PUBLIC RetornoConsultarRemessaBaixaItem As BoletoX.spdRetConsultarRemessaBaixaItem
+
+RetornoConsultarBaixa = Boleto.ConsultarRemessaBaixa(THISFORM.TxtProtocoloRemessaBaixada.Value)
+
+THISFORM.edtResposta.Value = ".:: Consultar Protocolo da Remessa de Baixa ::." + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + RetornoConsultarBaixa.Mensagem + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + RetornoConsultarBaixa.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Situação: " + RetornoConsultarBaixa.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+IF RetornoConsultarBaixa.Status = "ERRO"
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "ErroClasse: " + RetornoConsultarBaixa.ErroClasse
+ENDIF
+
+For i = 0 To RetornoConsultarBaixa.Count - 1
+  RetornoConsultarRemessaBaixaItem = RetornoConsultarBaixa.Item[i]
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "Item : " + STR(i + 1) + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Mensagem: " + RetornoConsultarRemessaBaixaItem.Mensagem + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Remessa : " + RetornoConsultarRemessaBaixaItem.Remessa + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Banco : " + RetornoConsultarRemessaBaixaItem.Banco + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Conta : " + RetornoConsultarRemessaBaixaItem.Conta + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Número Atual da Remessa: " + STR(RetornoConsultarRemessaBaixaItem.NumeroAtualRemessa) + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Transmissao automática?  " + IIF(RetornoConsultarRemessaBaixaItem.TransmissaoAutomatica, "True","False") + chr(13) + chr(10)
+  THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "  Erro : " + RetornoConsultarRemessaBaixaItem.Erro + chr(13) + chr(10)
+
+  For j = 0 To RetornoConsultarRemessaBaixaItem.Titulos.Count - 1
+    THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "Id Integração : " + STR(j + 1) + " - " + RetornoConsultarRemessaBaixaItem.Titulos.Item[j] + chr(13) + chr(10)
+  ENDFOR
+ENDFOR
+        
+      

@@ -1,0 +1,14 @@
+        
+PUBLIC ProcessarRetornoList AS BoletoX.spdRetProcessarRetorno
+
+ProcessarRetornoList = Boleto.ProcessarRetorno(THISFORM.edtTx2.Value)
+
+THISFORM.edtResposta.Value = ".:: Upload do Arquivo de Retorno ::." + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Mensagem: " + ProcessarRetornoList.Mensagem + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Status: " + ProcessarRetornoList.Status + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + "   Protocolo: " + ProcessarRetornoList.Protocolo + chr(13) + chr(10)
+THISFORM.edtResposta.Value = THISFORM.edtResposta.Value + chr(13) + chr(10)
+
+THISFORM.txtProtocolo.Value = ProcessarRetornoList.Protocolo
+        
+      
