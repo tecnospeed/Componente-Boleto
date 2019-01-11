@@ -1,0 +1,28 @@
+       
+
+Private Sub cmdImprimirLote_Click()
+  Dim Impressao As spdRetConsultarLoteImpressao
+
+txtRetorno.Text = ""
+  txtTx2.Text = ""
+
+
+Set Impressao = FBoletoX.ConsultarLoteImpressao(txtProtocoloRetornoImpressaoLote.Text, "")
+
+
+txtRetorno.Text = ".:: Impressão em Lote::."
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & Impressao.Mensagem
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & Impressao.Status
+
+
+If (Impressao.Status = "ERRO") Then
+    txtRetorno.Text = txtRetorno.Text & "ErroClasse: " & Impressao.ErroClasse
+  End If
+
+
+txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+
+End Sub
+       
+    

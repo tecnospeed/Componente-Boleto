@@ -1,0 +1,23 @@
+         
+Private Sub cmdSalvarPDFLote_Click()
+
+  Dim SalvarPDFLote As spdRetSalvarLoteImpressaoPDF
+
+  txtRetorno.Text = ""
+  txtTx2.Text = ""
+
+  Set SalvarPDFLote = FBoletoX.SalvarLoteImpressaoPDF(txtProtocoloRetornoImpressaoLote.Text, "C:\testeVBLote.pdf")
+
+  txtRetorno.Text = ".:: Consultar Protocolo Lote Impress�o::."
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & SalvarPDFLote.Mensagem
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & SalvarPDFLote.Status
+
+  If (SalvarPDFLote.Status = "ERRO") Then
+    txtRetorno.Text = txtRetorno.Text & "ErroClasse: " & SalvarPDFLote.ErroClasse
+  End If
+
+  txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+End Sub
+       
+    

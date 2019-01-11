@@ -1,0 +1,48 @@
+        
+Private Sub cmdConsultarRemessaBaixada_Click()
+Dim retornoConsultarBaixa As spdRetConsultarRemessaBaixaLista
+
+Set retornoConsultarBaixa = FBoletoX.ConsultarRemessaBaixa(txtProtocoloRemessaBaixada.Text)
+
+txtRetorno.Text = ""
+txtRetorno.Text = " .:: CONSULTA BAIXA .:: " & vbNewLine
+txtRetorno.Text = txtRetorno.Text & vbNewLine & " Mensagem : " & retornoConsultarBaixa.Mensagem & vbNewLine
+txtRetorno.Text = txtRetorno.Text & vbNewLine & " Status : " & retornoConsultarBaixa.Status & vbNewLine
+txtRetorno.Text = txtRetorno.Text & vbNewLine & " Situação : " & retornoConsultarBaixa.Situacao & vbNewLine
+
+If (retornoConsultarBaixa.ErroConexao <> "") Then
+    txtRetorno.Text = txtRetorno.Text & "ErroConexão: " & retornoConsultarBaixa.ErroConexao & vbNewLine
+End If
+
+
+If StrComp(retornoConsultarBaixa.Status, "ERRO") Then
+    txtRetorno.Text = txtRetorno.Text & " ErroClasse: " & retornoConsultarBaixa.ErroClasse & vbNewLine
+End If
+
+txtRetorno.Text = ""
+
+For i = 0 To retornoConsultarBaixa.Count - 1
+
+    txtRetorno.Text = txtRetorno.Text & " ITEM : " & CStr(i + 1) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & " Mensagem : " & retornoConsultarBaixa.Item(i).Mensagem & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & " Remessa : " & retornoConsultarBaixa.Item(i).Remessa & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & " Banco : " & retornoConsultarBaixa.Item(i).Banco & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & " Convenio : " & retornoConsultarBaixa.Item(i).Convenio & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & " Número Atual da Remessa : " & CStr(retornoConsultarBaixa.Item(i).NumeroAtualRemessa) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & " Transmissão Automática? " & retornoConsultarBaixa.Item(i).TransmissaoAutomatica & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & " Erro : " & retornoConsultarBaixa.Item(i).Erro & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & " ErroClasse : " & retornoConsultarBaixa.Item(i).ErroClasse & vbNewLine
+
+
+    For j = 0 To retornoConsultarBaixa.Item(i).Titulos.Count - 1
+        txtRetorno.Text = txtRetorno.Text & " IdIntegracao " & CStr(j + 1) & ":" & retornoConsultarBaixa.Item(i).Titulos.Item(j) & vbNewLine
+    Next j
+
+    txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+Next i
+
+
+End Sub
+        
+      

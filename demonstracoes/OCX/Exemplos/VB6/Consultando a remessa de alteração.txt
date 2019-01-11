@@ -1,0 +1,54 @@
+        
+Private Sub cmdConsultarProtocoloRemessaAlteracao_Click()
+Dim RetornoConsultarAlteracao As spdRetConsultarRemessaAlteracaoLista
+
+Set RetornoConsultarAlteracao = FBoletoX.ConsultarRemessaAlteracao(txtProtocoloRetornoRemessaAlteracao.Text)
+
+
+txtRetorno.Text = ""
+txtRetorno.Text = " .:: CONSULTA ALTERAÇÃO .:: "
+txtRetorno.Text = txtRetorno.Text & vbNewLine & " Mensagem : " & RetornoConsultarAlteracao.Mensagem
+txtRetorno.Text = txtRetorno.Text & vbNewLine & " Status : " & RetornoConsultarAlteracao.Status
+txtRetorno.Text = txtRetorno.Text & vbNewLine & " Situação : " & RetornoConsultarAlteracao.Situacao
+
+
+If (RetornoConsultarAlteracao.ErroConexao <> "") Then
+    txtRetorno.Text = txtRetorno.Text & "ErroConexão: " & RetornoConsultarAlteracao.ErroConexao
+End If
+
+
+If StrComp(RetornoConsultarAlteracao.Status, "ERRO") Then
+    txtRetorno.Text = txtRetorno.Text & " ErroClasse: " & RetornoConsultarAlteracao.ErroClasse
+End If
+
+
+txtRetorno.Text = ""
+
+
+For i = 0 To RetornoConsultarAlteracao.Count - 1
+
+
+txtRetorno.Text = txtRetorno.Text & " ITEM : " & CStr(i + 1) & vbNewLine
+txtRetorno.Text = txtRetorno.Text & " Mensagem : " & RetornoConsultarAlteracao.Item(i).Mensagem & vbNewLine
+txtRetorno.Text = txtRetorno.Text & " Remessa : " & RetornoConsultarAlteracao.Item(i).Remessa & vbNewLine
+txtRetorno.Text = txtRetorno.Text & " Banco : " & RetornoConsultarAlteracao.Item(i).Banco & vbNewLine
+txtRetorno.Text = txtRetorno.Text & " Convenio : " & RetornoConsultarAlteracao.Item(i).Convenio & vbNewLine
+txtRetorno.Text = txtRetorno.Text & " Número Atual da Remessa : " & RetornoConsultarAlteracao.Item(i).NumeroAtualRemessa & vbNewLine
+txtRetorno.Text = txtRetorno.Text & " Transmissão Automática? " & RetornoConsultarAlteracao.Item(i).TransmissaoAutomatica & vbNewLine
+txtRetorno.Text = txtRetorno.Text & " Erro : " & RetornoConsultarAlteracao.Item(i).Erro & vbNewLine
+txtRetorno.Text = txtRetorno.Text & " ErroClasse : " & RetornoConsultarAlteracao.Item(i).ErroClasse & vbNewLine
+
+
+For j = 0 To RetornoConsultarAlteracao.Item(i).Titulos.Count - 1
+    txtRetorno.Text = txtRetorno.Text & " IdIntegracao " & CStr(j + 1) & ":" & RetornoConsultarAlteracao.Item(i).Titulos.Item(j) & vbNewLine
+
+Next j
+
+txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+Next i
+
+
+End Sub
+        
+      

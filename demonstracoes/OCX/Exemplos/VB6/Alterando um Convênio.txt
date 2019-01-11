@@ -1,0 +1,34 @@
+                
+  Private Sub btnAlterarConvenio_Click(Index As Integer)
+  Dim AlterarConvenioList As BoletoX.spdRetAlterarConvenio
+  Dim Id_Convenio As String
+
+Id_Convenio = txtIDConvenio.Text
+
+
+Set AlterarConvenioList = FBoletoX.AlterarConvenio(Id_Convenio, txtTx2.Text)
+
+
+txtRetorno.Text = ".:: ALTERAR CONVENIO ::."
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem: " & AlterarConvenioList.Mensagem
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status: " & AlterarConvenioList.Status
+  txtRetorno.Text = txtRetorno.Text
+
+
+If (AlterarConvenioList.Status = "SUCESSO") Then
+
+
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Id Convênio: " & AlterarConvenioList.IdConvenio
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Número Convênio: " & AlterarConvenioList.NumeroConvenio
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Descrição: " & AlterarConvenioList.DescricaoConvenio
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Carteira: " & AlterarConvenioList.Carteira
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Espécie: " & AlterarConvenioList.Especie
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Padrão CNAB: " & AlterarConvenioList.PadraoCNAB
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Utiliza VAN: " & AlterarConvenioList.UtilizaVan
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Número Remessa: " & AlterarConvenioList.NumeroRemessa
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Reiniciar Número Remessa: " & AlterarConvenioList.ReiniciarDiariamente
+
+End If
+  End Sub
+                
+              

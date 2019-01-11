@@ -1,0 +1,50 @@
+      
+Private Sub cmdGerarRemessa_Click()
+Dim retornoLista As BoletoX.spdRetGerarRemessaLista
+  Dim retornoItem  As BoletoX.spdRetGerarRemessaItem
+  Set retornoLista = FBoletoX.GerarRemessa(txtIdIntegracao.Text)
+  txtRetorno.Text = ".:: GERAR REMESSA ::."
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & retornoLista.Mensagem
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & retornoLista.Status
+  txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+  For i = 0 To retornoLista.Count - 1
+    txtRetorno.Text = txtRetorno.Text & vbNewLine
+    Set retornoItem = retornoLista.Item(i)
+    txtRetorno.Text = txtRetorno.Text & "Item : " & CStr(i + 1) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Mensagem : " & retornoItem.Mensagem & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Remessa : " & retornoItem.Remessa & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Banco : " & retornoItem.Banco & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Conta : " & retornoItem.Conta & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Número Atual da Remessa : " & retornoItem.NumeroAtualRemessa & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Transmissão Automática? " & retornoItem.TransmissaoAutomatica & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Erro : " & retornoItem.Erro & vbNewLine  
+
+    For j = 0 To retornoItem.Titulos.Count - 1
+      txtRetorno.Text = txtRetorno.Text & "Id Integração : " & CStr(j + 1) & " - " & retornoItem.Titulos.Item(j) & vbNewLine
+    Next j
+
+  Next i
+
+''' Salvar a remessa em UTF-8(SEM BOM)
+   Set objStream = CreateObject("ADODB.Stream")
+   Set objStreamNoBOM = CreateObject("ADODB.Stream")
+   With objStream
+      .Open
+      .Charset = "UTF-8"
+      .WriteText retornoItem.Remessa
+      .Position = 0
+   End With
+   With objStreamNoBOM
+      .Charset = "Windows-1252"
+      .Open
+      .Type = 2
+      .WriteText objStream.ReadText
+      .SaveToFile "c:\Temp\TesteRemessa.txt", 2
+      .Close
+   End With
+   objStream.Close 
+
+End Sub
+      
+    

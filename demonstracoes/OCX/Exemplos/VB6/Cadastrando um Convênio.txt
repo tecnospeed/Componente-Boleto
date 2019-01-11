@@ -1,0 +1,30 @@
+Private Sub btnCadastrarConvenio_Click()
+Dim CadastrarConvenioList As BoletoX.spdRetCadastrarConvenio
+
+Set CadastrarConvenioList = FBoletoX.CadastrarConvenio(txtTx2.Text)
+
+txtRetorno.Text = ".:: CADASTRAR CONVENIO ::."
+ txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & CadastrarConvenioList.Mensagem
+ txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & CadastrarConvenioList.Status
+ txtRetorno.Text = txtRetorno.Text & vbNewLine & "Erro de Conexão: " & CadastrarConvenioList.ErroConexao
+ txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+
+If (CadastrarConvenioList.Status = "SUCESSO") Then
+
+
+txtRetorno.Text = txtRetorno.Text & "Id Convênio: " & CadastrarConvenioList.IdConvenio & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Número Convênio: " & CadastrarConvenioList.NumeroConvenio & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Descrição: " & CadastrarConvenioList.DescricaoConvenio & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Carteira: " & CadastrarConvenioList.Carteira & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Espécie: " & CadastrarConvenioList.Especie & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Padrão CNAB: " & CadastrarConvenioList.PadraoCNAB & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Utiliza VAN: " & CadastrarConvenioList.UtilizaVan & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Número Remessa: " & CadastrarConvenioList.NumeroRemessa & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Reiniciar Número Remessa: " & CadastrarConvenioList.ReiniciarDiariamente & vbNewLine
+
+txtIDConvenio.Text = CadastrarConvenioList.IdConvenio
+
+End If
+
+End Sub

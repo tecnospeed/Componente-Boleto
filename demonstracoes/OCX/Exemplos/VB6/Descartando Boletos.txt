@@ -1,0 +1,27 @@
+        
+Private Sub cmdDescartarBoletos_Click()
+  Dim DescarteList As BoletoX.spdRetDescartarLista
+  Dim DescarteItem As BoletoX.spdRetDescartarTituloItem
+
+  Set DescarteList = FBoletoX.Descartar(txtIdIntegracao.Text)
+
+  txtRetorno.Text = ""
+  txtRetorno.Text = txtRetorno.Text & ".:: Descartar ::." & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Mensagem: " & DescarteList.Mensagem & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Status: " & DescarteList.Status & vbNewLine
+
+  If (DescarteList.Status = "ERRO") Then
+    txtRetorno.Text = txtRetorno.Text & "ErroClasse: " & DescarteList.ErroClasse
+  End If
+
+  For i = 0 To DescarteList.Count - 1
+    Set DescarteItem = DescarteList.Item(i)
+    txtRetorno.Text = txtRetorno.Text & "Item: " & (i + 1) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "IdIntegracao: " & DescarteItem.IdIntegracao & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Erro: " & DescarteItem.Erro & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "ErroClasse: " & DescarteItem.ErroClasse & vbNewLine
+  Next i
+
+End Sub
+        
+      

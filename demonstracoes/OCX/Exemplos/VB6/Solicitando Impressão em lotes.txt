@@ -1,0 +1,43 @@
+         
+
+Private Sub cmdSolicitarImpressaoLote_Click()
+  Dim ImprimirLoteList As spdRetImprimirLote
+  Dim TipoImpressao As String
+
+If cbbTipoImpressao.ListIndex = 0 Then
+    TipoImpressao = "0"    'I mpressão modo Normal
+  ElseIf cbbTipoImpressao.ListIndex = 1 Then
+    TipoImpressao = "1"    ' Impressão em modo Carne
+  ElseIf cbbTipoImpressao.ListIndex = 2 Then
+    TipoImpressao = "2"    ' Impressão em modo Carne triplo
+  ElseIf cbbTipoImpressao.ListIndex = 3 Then
+    TipoImpressao = "99"   ' Impresão Personalizada
+  End If
+
+
+Set ImprimirLoteList = FBoletoX.ImprimirLote(txtIntegraoImpressao.Text, TipoImpressao)
+
+
+If (ImprimirLoteList.Protocolo <> "") Then
+    txtProtocoloRetornoImpressaoLote.Text = ImprimirLoteList.Protocolo
+  End If
+
+
+txtRetorno.Text = ""
+  txtTx2.Text = ""
+
+
+txtRetorno.Text = ".:: Impressão em Lote::."
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & ImprimirLoteList.Mensagem
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & ImprimirLoteList.Status
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Protocolo : " & ImprimirLoteList.Status
+
+
+If (ImprimirLoteList.Status = "ERRO") Then
+    txtRetorno.Text = txtRetorno.Text & vbNewLine & "ErroClasse : " & ImprimirLoteList.ErroClasse
+  End If
+
+
+End Sub
+         
+      

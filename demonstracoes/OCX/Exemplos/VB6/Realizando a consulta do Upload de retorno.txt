@@ -1,0 +1,23 @@
+        
+Private Sub cmdConsultarRetornoProcessamento_Click()
+  Dim retornoConsultaProcessamento As BoletoX.spdRetConsultarRetornoProcessamento
+  Dim retornoConsultaProcessamentoItem As BoletoX.spdRetConsultarRetornoProcessamentoItem
+
+  Set retornoConsultaProcessamento = FBoletoX.ConsultaRetornoProcessamento(txtProtocolo)
+
+  txtRetorno.Text = ".:: CONSULTA RETORNO PROCESSAMENTO ::."
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & retornoConsultaProcessamento.Mensagem
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & retornoConsultaProcessamento.Status
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & retornoConsultaProcessamento.Situacao
+
+  txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+
+  For i = 0 To retornoConsultaProcessamento.Count - 1
+    Set retornoConsultaProcessamentoItem = retornoConsultaProcessamento.Titulos(i)
+    txtRetorno.Text = txtRetorno.Text & "Titulo : " & CStr(i + 1) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "IdIntegracao : " & retornoConsultaProcessamentoItem.IdIntegracao & vbNewLine
+  Next i
+End Sub
+        
+      

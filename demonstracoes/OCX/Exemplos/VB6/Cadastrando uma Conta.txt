@@ -1,0 +1,30 @@
+Private Sub btnCadastrarConta_Click()
+Dim CadastrarContaList As BoletoX.spdRetCadastrarConta
+
+Set CadastrarContaList = FBoletoX.CadastrarConta(txtTx2.Text)
+
+txtRetorno.Text = ".:: CADASTRAR CONTA ::."
+ txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & CadastrarContaList.Mensagem
+ txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & CadastrarContaList.Status
+ txtRetorno.Text = txtRetorno.Text & vbNewLine & "Erro de Conexão: " & CadastrarContaList.ErroConexao
+ txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+
+If (CadastrarContaList.Status = "SUCESSO") Then
+
+
+txtRetorno.Text = txtRetorno.Text & "Id Conta: " & CadastrarContaList.IdConta & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Código Banco: " & CadastrarContaList.CodigoBanco & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Agência: " & CadastrarContaList.Agencia & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "AgênciaDV: " & CadastrarContaList.AgenciaDV & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Conta: " & CadastrarContaList.Conta & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Conta DV: " & CadastrarContaList.ContaDV & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Tipo Conta: " & CadastrarContaList.TipoConta & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Código Beneficiário: " & CadastrarContaList.CodigoBeneficiario & vbNewLine
+txtRetorno.Text = txtRetorno.Text & "Código Empresa: " & CadastrarContaList.CodigoEmpresa & vbNewLine
+
+txtIDConta.Text = CadastrarContaList.IdConta
+
+End If
+
+End Sub

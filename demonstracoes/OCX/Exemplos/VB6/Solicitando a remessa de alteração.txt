@@ -1,0 +1,23 @@
+        
+Private Sub cmdGerarRemessaAlteracao_Click()
+
+  Dim GerarResposta As BoletoX.spdRetGerarRemessaAlteracao
+
+  Set GerarResposta = FBoletoX.GerarRemessaAlteracao("0", txtTx2.Text)
+
+  If (GerarResposta.Protocolo <> "") Then
+    txtProtocoloRetornoRemessaAlteracao.Text = GerarResposta.Protocolo
+  End If
+
+  txtRetorno.Text = ".:: Gerar Alteração::."
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & GerarResposta.Mensagem
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & GerarResposta.Status
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Protocolo: " & GerarResposta.Protocolo
+
+  If (GerarResposta.Status = "ERRO") Then
+    txtRetorno.Text = txtRetorno.Text & "ErroClasse: " & GerarResposta.ErroClasse
+  End If
+
+End Sub
+        
+      

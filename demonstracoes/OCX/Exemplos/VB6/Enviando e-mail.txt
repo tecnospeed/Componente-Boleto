@@ -1,0 +1,15 @@
+        
+Private Sub cmdEnviarEmailLote_Click()
+Dim retornolote As BoletoX.IspdRetEnvioEmailLote
+
+  Set retornolote = FBoletoX.EnviarEmailLote(txtTx2.Text)
+
+  txtRetorno.Text = "### Enviar Email Lote ###" & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & retornolote.Mensagem
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & retornolote.Status
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Protocolo : " & retornolote.Protocolo
+  txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+End Sub
+      
+    

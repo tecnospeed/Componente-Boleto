@@ -1,0 +1,20 @@
+        
+Private Sub cmdUploadRet_Click()
+  Dim ProcessarRetornoList As BoletoX.spdRetProcessarRetorno
+
+  cmdAbrirArqRet.ShowOpen                'Abre a janela para selecionar o arquivo de retorno
+  If cmdAbrirArqRet.FileName <> "" Then
+     txtTx2.Text = ReadUTF8File(cmdAbrirArqRet.FileName)
+  End If
+
+  Set ProcessarRetornoList = FBoletoX.ProcessarRetorno(txtTx2.Text)  'Envia o retorno
+
+  txtRetorno.Text = "### UPLOAD RETORNO ###" & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Mensagem: " + ProcessarRetornoList.Mensagem & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Status: " + ProcessarRetornoList.Status & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Protocolo: " + ProcessarRetornoList.Protocolo & vbNewLine
+
+  txtProtocolo.Text = ProcessarRetornoList.Protocolo
+End Sub
+        
+      

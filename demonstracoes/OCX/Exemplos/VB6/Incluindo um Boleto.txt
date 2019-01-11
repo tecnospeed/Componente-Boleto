@@ -1,0 +1,32 @@
+        
+Dim retorno As BoletoX.spdRetIncluirLista
+Set retorno = FBoletoX.Incluir(txtTx2.Text)
+Dim listaIdsIntegracao As String
+
+txtRetorno.Text = ".:: INCLUIR BOLETO ::."
+txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & retorno.Mensagem
+txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & retorno.Status
+txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+For i = 0 To retorno.Count - 1
+  txtRetorno.Text = txtRetorno.Text & "Item : " & CStr(i + 1) & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Número Documento : " & retorno.Item(i).NumeroDocumento & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Id Integração : " & retorno.Item(i).IdIntegracao & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Situação : " & retorno.Item(i).Situacao & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Nosso Número : " & retorno.Item(i).NossoNumero & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Banco : " & retorno.Item(i).Banco & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Conta : " & retorno.Item(i).Conta & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Convênio : " & retorno.Item(i).Convenio & vbNewLine
+  txtRetorno.Text = txtRetorno.Text & "Erro : " & retorno.Item(i).Erro & vbNewLine
+
+  If i = 0 Then
+     listaIdsIntegracao = retorno.Item(i).IdIntegracao
+  Else
+     listaIdsIntegracao = listaIdsIntegracao & "," & retorno.Item(i).IdIntegracao
+  End If
+
+  txtIdIntegracao.Text = listaIdsIntegracao
+
+Next i
+        
+      

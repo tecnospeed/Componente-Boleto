@@ -1,0 +1,37 @@
+                
+  Private Sub btnAlterarConta_Click(Index As Integer)
+  Dim AlterarContaList As BoletoX.spdRetAlterarConta
+  Dim Id_Conta As String
+
+Id_Conta = txtIDConta.Text
+
+
+Set AlterarContaList = FBoletoX.AlterarConta(Id_Conta, txtTx2.Text)
+
+
+txtRetorno.Text = ".:: ALTERAR CONTA.::"
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem: " & AlterarContaList.Mensagem
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status:" & AlterarContaList.Status
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Erro de Conexão: " & AlterarContaList.ErroConexao
+  txtRetorno.Text = txtRetorno.Text
+
+
+If (AlterarContaList.Status = "SUCESSO") Then
+
+
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Id Conta: " & AlterarContaList.IdConta
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Código Banco: " & AlterarContaList.CodigoBanco
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Agência: " & AlterarContaList.Agencia
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Agência DV: " & AlterarContaList.AgenciaDV
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Conta: " & AlterarContaList.Conta
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Conta DV: " & AlterarContaList.ContaDV
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Tipo Conta: " & AlterarContaList.TipoConta
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Código Beneficiário: " & AlterarContaList.CodigoBeneficiario
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Código Empresa: " & AlterarContaList.CodigoEmpresa
+  txtRetorno.Text = txtRetorno.Text
+
+End If
+  End Sub
+                
+              
+

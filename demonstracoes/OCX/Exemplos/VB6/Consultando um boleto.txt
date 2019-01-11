@@ -1,0 +1,100 @@
+                
+Private Sub cmdConsultarBoleto_Click()
+Dim ConsultarList As BoletoX.spdRetConsultarLista
+Dim ConsultarItem As BoletoX.spdRetConsultarTituloItem
+
+Set ConsultarList = FBoletoX.Consultar(txtIdIntegracao.Text)
+
+
+txtRetorno.Text = ".:: Consultar Título ::."
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & ConsultarList.Mensagem
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & ConsultarList.Status
+  txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+
+Do While ConsultarList.Count <> 0
+
+
+ For i = 0 To ConsultarList.Count - 1
+    Set ConsultarItem = ConsultarList.Item(i)
+    txtRetorno.Text = txtRetorno.Text & "ITEM: " & Str((i + 1)) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "IdIntegracao: " & ConsultarItem.IdIntegracao & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Situacao: " + ConsultarItem.Situacao & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Motivo: " + ConsultarItem.Motivo & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+    txtRetorno.Text = txtRetorno.Text & "CEDENTE:" & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Agencia: " + ConsultarItem.CedenteAgencia & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "AgenciaDV: " + ConsultarItem.CedenteAgenciaDV & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Código Banco: " + ConsultarItem.CedenteCodigoBanco & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Carteira: " + ConsultarItem.CedenteCarteira & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Conta: " + ConsultarItem.CedenteCarteira & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Numero Convênio: " + ConsultarItem.CedenteNumeroConvenio & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+    txtRetorno.Text = txtRetorno.Text & "SACADO:" & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "CPFCNPJ: " + ConsultarItem.SacadoCPFCNPJ & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Nome: " + ConsultarItem.SacadoNome & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Telefone: " + ConsultarItem.SacadoTelefone & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Email: " + ConsultarItem.SacadoEmail & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Endereço Número: " + ConsultarItem.SacadoEnderecoNumero & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Endereço Bairro: " + ConsultarItem.SacadoEnderecoBairro & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Endereço CEP: " + ConsultarItem.SacadoEnderecoCEP & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Endereço Cidade: " + ConsultarItem.SacadoEnderecoCidade & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Endereço Complemento: " + ConsultarItem.SacadoEnderecoComplemento & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Endereço Logradouro: " + ConsultarItem.SacadoEnderecoLogradouro & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Endereço País: " + ConsultarItem.SacadoEnderecoPais & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Endereço UF: " + ConsultarItem.SacadoEnderecoUF & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+    txtRetorno.Text = txtRetorno.Text & "TÍTULO:" & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Número Documento: " + ConsultarItem.TituloNumeroDocumento & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Origem Documento: " + ConsultarItem.TituloOrigemDocumento & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Nosso Número: " + ConsultarItem.TituloNossoNumero & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Data Emissão: " + ConsultarItem.TituloDataEmissao & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Data Vencimento: " + ConsultarItem.TituloDataVencimento & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Data Desconto: " + CStr(ConsultarItem.TituloDataDesconto) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Valor Desconto: " + CStr(ConsultarItem.TituloValorDesconto) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Valor Juros: " + CStr(ConsultarItem.TituloValorJuros) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Prazo Protesto: " + ConsultarItem.TituloPrazoProtesto & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Mensagem 1: " + ConsultarItem.TituloMensagem01 & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Mensagem 2: " + ConsultarItem.TituloMensagem02 & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Mensagem 3: " + ConsultarItem.TituloMensagem03 & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Valor: " + CStr(ConsultarItem.TituloValor) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Data Crédito: " + ConsultarItem.PagamentoDataCredito & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Título Pago: " + CStr(ConsultarItem.PagamentoRealizado) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Valor Crédito: " + CStr(ConsultarItem.PagamentoValorCredito) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Valor Outros Acréscimos: " + CStr(ConsultarItem.TituloValorOutrosAcrescimos) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Valor Pago: " + CStr(ConsultarItem.PagamentoValorPago) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Valor Taxa Cobrança: " + CStr(ConsultarItem.PagamentoValorTaxaCobranca) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Valor Abatimento: " + CStr(ConsultarItem.TituloValorAbatimento) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Valor Outras Despesas: " + CStr(ConsultarItem.PagamentoValorOutrasDespesas) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Valor IOF: " + CStr(ConsultarItem.PagamentoValorIOF) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Data Pagamento: " + ConsultarItem.PagamentoData & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Valor Outros Créditos: " + CStr(ConsultarItem.PagamentoValorOutrosCreditos) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Pagamento Valor Desconto: " + CStr(ConsultarItem.PagamentoValorDesconto) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Pagamento Valor Acréscimos: " + CStr(ConsultarItem.PagamentoValorAcrescimos) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Pagamento Valor Abatimento: " + CStr(ConsultarItem.PagamentoValorAbatimento) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & "Impressão Visualizada: " + CStr(ConsultarItem.ImpressaoVisualizada) & vbNewLine
+    txtRetorno.Text = txtRetorno.Text & vbNewLine
+    For k = 0 To ConsultarItem.CountTituloMovimentos - 1
+      txtRetorno.Text = txtRetorno.Text & "  - Movimentos: " & vbNewLine
+      txtRetorno.Text = txtRetorno.Text & "    Movimento Código: " & ConsultarItem.TituloMovimentos(k).Codigo & vbNewLine     'Código de Movimento
+      txtRetorno.Text = txtRetorno.Text & "    Movimento Mensagem: " & ConsultarItem.TituloMovimentos(k).Mensagem & vbNewLine  'Mensagem do Movimento
+      txtRetorno.Text = txtRetorno.Text & "    Data: " & ConsultarItem.TituloMovimentos(k).Data & vbNewLine  'Data do Movimento
+
+      For l = 0 To ConsultarItem.TituloMovimentos(k).CountOcorrencias - 1
+          txtRetorno.Text = txtRetorno.Text & "    - Ocorrências: " & vbNewLine
+          txtRetorno.Text = txtRetorno.Text & "      Ocorrências Código: " & ConsultarItem.TituloMovimentos(k).Ocorrencias(l).Codigo & vbNewLine 'Código da ocorrência viculada vinculada ao movimento
+          txtRetorno.Text = txtRetorno.Text & "      Ocorrências Mensagem: " & ConsultarItem.TituloMovimentos(k).Ocorrencias(l).Mensagem & vbNewLine  'Mensagem da ocorrência viculada vinculada ao movimento
+      Next l
+
+    txtRetorno.Text = txtRetorno.Text & vbNewLine
+
+Next k
+  Next i
+
+Loop
+End Sub
+              
+            

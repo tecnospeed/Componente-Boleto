@@ -1,0 +1,26 @@
+        
+Private Sub cmdGerarBaixa_Click()
+  Dim GerarResposta As BoletoX.spdRetGerarRemessaBaixa
+
+Set GerarResposta = FBoletoX.GerarRemessaBaixa(txtIdIntegracao.Text)
+
+
+If (GerarResposta.Protocolo <> "") Then
+    txtProtocoloRemessaBaixada.Text = GerarResposta.Protocolo
+  End If
+
+
+txtRetorno.Text = ".:: Gerar Baixa::."
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Mensagem : " & GerarResposta.Mensagem
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Status : " & GerarResposta.Status
+  txtRetorno.Text = txtRetorno.Text & vbNewLine & "Protocolo: " & GerarResposta.Protocolo
+
+
+If (GerarResposta.Status = "ERRO") Then
+    txtRetorno.Text = txtRetorno.Text & "ErroClasse: " & GerarResposta.ErroClasse
+  End If
+
+
+End Sub
+        
+      
