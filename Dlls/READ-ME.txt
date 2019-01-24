@@ -1,0 +1,1 @@
+Estes arquivos são utilizados para a correção da mensagem de erro "Could not load SSL library".
