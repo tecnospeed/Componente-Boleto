@@ -1,0 +1,831 @@
+{
+	"info": {
+		"_postman_id": "17b1b827-044d-4458-8503-154981f65a77",
+		"name": "Apresentação Boleto - API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Envio via tx2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arquivo",
+							"value": "SU5DTFVJUkJPTEVUTw0KQ2VkZW50ZUNvbnRhTnVtZXJvPTEyMzQ1DQpDZWRlbnRlQ29udGFOdW1lcm9EVj02DQpDZWRlbnRlQ29udmVuaW9OdW1lcm89NjU0MzIzMQ0KQ2VkZW50ZUNvbnRhQ29kaWdvQmFuY289MzQxDQpUaXR1bG9Eb2NFc3BlY2llPTA2DQoNClNhY2Fkb0VtYWlsPXNhY2Fkb0B0ZXN0ZS5jb20uYnINClNhY2Fkb05vbWU9U2FjYWRvIFRlc3RlDQpTYWNhZG9DUEZDTlBKPTAxMDAxMDAxMDAwMTEzDQpTYWNhZG9FbmRlcmVjb0NFUD04NzAyMDAyNQ0KU2FjYWRvQ2VsdWxhcj00NDAwMDAwMDANClNhY2Fkb0VuZGVyZWNvTnVtZXJvPTcxNg0KU2FjYWRvRW5kZXJlY29CYWlycm89SmQgV2FzaGluZ3RvbiANClNhY2Fkb0VuZGVyZWNvQ2lkYWRlPU1hcmluZ2ENClNhY2Fkb0VuZGVyZWNvTG9ncmFkb3Vybz1BVi4gQlJBU0lMDQpTYWNhZG9FbmRlcmVjb1BhaXM9QlJBU0lMDQpTYWNhZG9FbmRlcmVjb1VGPVBSDQpTYWNhZG9UZWxlZm9uZT00NDMzMzMzMzMzDQoNClRpdHVsb05vc3NvTnVtZXJvPTAwMDI1NQ0KVGl0dWxvTnVtZXJvRG9jdW1lbnRvPTAwMDE1DQpUaXR1bG9EYXRhVmVuY2ltZW50bz0zMC8wNS8yMDE3DQpUaXR1bG9EYXRhRW1pc3Nhbz0xMC8wMS8yMDE3DQpUaXR1bG9WYWxvcj0xLDAxDQoNClRpdHVsb01lbnNhZ2VtMDE9TWVuc2FnZW0gbGluaGEgMQ0KVGl0dWxvTWVuc2FnZW0wMj1NZW5zYWdlbSBsaW5oYSAyDQpUaXR1bG9NZW5zYWdlbTAzPU1lbnNhZ2VtIGxpbmhhIDMNCg0KVGl0dWxvSW5mb3JtYWNvZXNBZGljaW9uYWlzPVRlc3RlIGluZi5BZGljaW9uYWlzOiBOdW1lcm8gTkY6IDANClRpdHVsb0luc3RydWNvZXM9VGVzdGUgSW5zdHJ1Y29lczogRGVzY29udG8gZGUgNSUgYXRlIDEwLzAyLzE3DQoNClNBTFZBUkJPTEVUTw==",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/boletos/lote",
+				"description": "Envio de boleto usando arquivo tx2 convertido em base64"
+			},
+			"response": []
+		},
+		{
+			"name": "Envio via json",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"CedenteContaNumero\": \"12345\",\n        \"CedenteContaNumeroDV\": \"6\",\n        \"CedenteConvenioNumero\": \"1234123456\",\n        \"CedenteContaCodigoBanco\": \"341\",\n        \"SacadoNome\": \"Teste de Souza\",\n        \"SacadoTelefone\": \"4499999999\",\n        \"SacadoCelular\": \"44999999999\",\n        \"SacadoCPFCNPJ\": \"28436161661\",\n        \"SacadoEmail\": \"email@sacado.com\",\n        \"SacadoEnderecoNumero\": \"987\",\n        \"SacadoEnderecoBairro\": \"Centro\",\n        \"SacadoEnderecoCEP\": \"87098765\",\n        \"SacadoEnderecoCidade\": \"Maringá\",\n        \"SacadoEnderecoComplemento\": \"Fundos\",\n        \"SacadoEnderecoLogradouro\": \"Rua teste, 987\",\n        \"SacadoEnderecoPais\": \"Brasil\",\n        \"SacadoEnderecoUF\": \"PR\",\n        \"TituloDocEspecie\": \"01\",\n        \"TituloDataEmissao\": \"01/01/2020\",\n        \"TituloDataVencimento\": \"01/01/2020\",\n        \"TituloMensagem01\": \"Primeiro campo de mensagem\",\n        \"TituloMensagem02\": \"Segundo campo de mensagem\",\n        \"TituloMensagem03\": \"Terceiro campo de mensagem\",\n        \"TituloNossoNumero\": \"{{$randomInt}}\",\n        \"TituloNumeroDocumento\": \"01012020\",\n        \"TituloValor\": \"0,02\",\n        \"TituloLocalPagamento\": \"Pagável em qualquer banco até o vencimento.\"\n    }\n]"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/boletos/lote",
+				"description": "Envio de boleto usando arquivo tx2 convertido em base64"
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta idIntegracao",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/boletos?idintegracao=SkAAtfi8m&idintegracao=Bykxczj8Q",
+					"protocol": "http",
+					"host": [
+						"homologacao",
+						"cobrancabancaria",
+						"tecnospeed",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"v1",
+						"boletos"
+					],
+					"query": [
+						{
+							"key": "idintegracao",
+							"value": "SkAAtfi8m"
+						},
+						{
+							"key": "idintegracao",
+							"value": "Bykxczj8Q"
+						}
+					]
+				},
+				"description": "Rota GET que recebe os idIntegracao a serem usados na consulta"
+			},
+			"response": []
+		},
+		{
+			"name": "Descarta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    \"SkkrjK5l4\",\n    \"H1x1iK9xN\"\n]"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/boletos/descarta/lote",
+				"description": "Rota para o descarte de boletos com situação igual a \"Emitido\", \"Rejeitado\" ou \"Falha\""
+			},
+			"response": []
+		},
+		{
+			"name": "Impressão em Lote/Carnet/Personalizada",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tipoImpressao\": \"2\",\n    \"boletos\": [\n        \"rJry3YqlV\",\n        \"SkdlnY9xN\"\n    ]\n}"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/boletos/impressao/lote",
+				"description": "Operação Assíncrona. Esta requisição retorna um número de protocolo que deve ser utilizado para efetivamente obter o conteúdo da impressão.\n\nNo Json, o \"tipoImpressao\" pode receber os seguintes valores:\n    Impressão normal = \"0\"\n    Impressao carnet = \"1\"\n    Impressão personalizada = \"99\"\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Impressão em Lote/Carnet/Personalizada com Protocolo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/boletos/impressao/lote/HyZ72FceE",
+				"description": "Rota GET em que é informado o conteúdo do procotolo, e é devolvido o PDF da impressão, de acordo com o tipo selecionado na requisição anterior."
+			},
+			"response": []
+		},
+		{
+			"name": "Solicitando o envio de Email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"IdIntegracao\": [\n        \"rJx9zgGYUW\",\n        \"HkePuxGYLb\",\n        \"ByxipeMYIW\"\n    ],\n    \"EmailNomeRemetente\": \"Empresa Exemplo\",\n    \"EmailRemetente\": \"exemplo@remetente.com.br\",\n    \"EmailAssunto\": \"Boleto para pagamento\",\n    \"EmailConteudoHtml\": true,\n    \"EmailMensagem\": \"Segue o link do boleto:<br> ${linkBoleto}<br>Considere não imprimir este email.<br><b>Código HTML dentro da Tag</b>\",\n    \"EmailDestinatario\": [\n        \"email1@tecnospeed.com.br\",\n        \"email2@tecnospeed.com.br\"\n    ],\n    \"EmailAnexarBoleto\": true,\n    \"Anexos\": [\n        {\n            \"Arquivo\": \"base64\",\n            \"Nome\": \"nome.extensão do arquivo\"\n        },\n        {\n            \"Arquivo\": \"base64\",\n            \"Nome\": \"nome.extensão do arquivo2\"\n        }\n    ]\n}"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/email/lote",
+				"description": "Requisição de exemplo da solicitação de email"
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta do Protocolo do envio de Email",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br:8080/api/v1/email/lote/SJR1u9ceV",
+				"description": "Requisição de exemplo mostrando a consulta do protocolo gerado na requisição de solicitação de envio de email."
+			},
+			"response": []
+		},
+		{
+			"name": "Geração de Remessa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    \"rJx9zgGYUW\",\n    \"HkePuxGYLb\",\n    \"ByxipeMYIW\"\n]"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/remessas/lote",
+				"description": "Rota recebe um array de idIntegracao e devolve o conteúdo da remessa codificado em base64"
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Retorno",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arquivo",
+							"value": "MDAxMDAwMDAgICAgICAgICAyNzc3NDcyMDgwMDAxMDEwMDIzNjcwMzEwMDE0ICAgICAgIDAzMjg0MDAwMDAwMDAzODgwMDkgRU1QUkVTQUFBQSBURUNOT0xPR0lBIERFIElORk9SQkFOQ08gRE8gQlJBU0lMICAgICAgICAgICAgICAgICAgICAgICAgIDIwMTA2MjAxNjAxMDQyMTAwMDczMjAzMDAwMDAwMDM2MjE0MDMyUFJPQ0VTU0FNRU4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQowMDEwMDAxMVQwMTAwMDIwIDIwNzc3NDcyMDgwMDAxMDEwMDIzNjcwMzEwMDE0ICAgICAgIDAzMjg0MDAwMDAwMDAzODgwMDkgRU1QUkVTQUFBQSBURUNOT0xPR0lBIERFIElORk9SICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwMDAwMDAwMDAxMDYyMDE2MDAwMDAwMDAgIDAwMDAwMDAwMCAgICAgICAgICAgICAgICAgICAgICANCjAwMTAwMDEzMDAwMDFUIDA2MDMyODQwMDAwMDAwMDM4ODAwOSAyMzY3MDMxMDAwODA2MTU3MCAgIDI4MDYxNTcwICAgICAgICAzMDA0MjAxNjAwMDAwMDAwMDAzMTU2MDIzNzAyNDczMDYxNTcwICAgICAgICAgICAgICAgICAgICAwOTAwMDAwMDAwMDAwMDEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwICAgMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwICAgICAgICAxNzAxOTIzNjcwMzEgICAgIA0KMDAxMDAwMTMwMDAwMlUgMDYwMDAwMDAwMDAwMDA5ODMwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMzI1NDMwMDAwMDAwMDAwMzI1NDMwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTA2MjAxNjAyMDYyMDE2ICAgICAgICAgICAgMDAwMDAwMDAwMDAwMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgDQowMDEwMDAxMzAwMDAzVCAxNzAzMjg0MDAwMDAwMDAzODgwMDkgMjM2NzAzMTAwMDgwNjg0MjkgICA3ICAgICAgICAgICAgICAgMDAwMDAwMDAwMDAwMDAwMDAwMTM2Mzg3NTYwMzA3MDAgICAgICAgICAgICAgICAgICAgICAgICAgMDkwMDAwMDAwMDAwMDAxMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCAgIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAyNDUwMyAgICAgICAgMTcwMTkyMzY3MDMxICAgICANCjAwMTAwMDEzMDAwMDRVIDE3MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDEzNjM4MDAwMDAwMDAwMDEzMzkzMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDEwNjIwMTYwMjA2MjAxNiAgICAgICAgICAgIDAwMDAwMDAwMDAwMDAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgIA0KMDAxMDAwMTUgICAgICAgICAwMDAwMDYwMDAwNDQwMDAwMDAwMDAwMTU2NDMxNjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQowMDE5OTk5OSAgICAgICAgIDAwMDAwMTAwMDAwODAwMDAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwICAgICAgICAgICAgICAgICAgICANCg==",
+							"type": "text"
+						},
+						{
+							"key": "nome",
+							"value": "Exemplo.txt",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/retornos",
+				"description": "Rota recebe o conteúdo do arquivo de retorno em base64 e devolve o número do protocolo, que precisa ser salvo para ser utilizado na rota da \"Consulta do Protocolo do Upload Retorno\""
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta do Protocolo do Upload Retorno",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/retornos/BklcE6sxwZ",
+				"description": "Rota recebe o número do protocolo obtido na rota de Upload Retorno, e devolve os idIntegracao que foram atualizados em nossa base de dados"
+			},
+			"response": []
+		},
+		{
+			"name": "Gerar Remessa de Baixa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    \"BJZ0S7_8Ub\",\n    \"SJg7KGd8IW\"\n]"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/boletos/baixa/lote",
+				"description": "Rota recebe um array de idIntegracao e retorna um número de protocolo para ser consultado posteriormente."
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar Remessa de Baixa",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/boletos/baixa/lote/B12f89qlN",
+				"description": "Rota que recebe o protocolo gerado na rota de \"Geraçõ de Remessa de Baixa\", e que devolve o conteúdo da remessa em base64"
+			},
+			"response": []
+		},
+		{
+			"name": "Gerar Remessa de Alteração (via JSON)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tipo\": \"0\",\n    \"boletos\": [\n        {\n            \"idintegracao\": \"SkdlnY9xN\",\n            \"TituloDataVencimento\": \"21/12/2019\"\n        },\n        {\n            \"idintegracao\": \"rJry3YqlV\",\n            \"TituloDataVencimento\": \"21/12/2019\"\n        }\n    ]\n}"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/boletos/altera/lote",
+				"description": "Rota que recebe um json com o(s) idIntegracao dos boletos que terão a data de vencimento alterada.\nComo é uma operação assíncrona, ela devolve um protocolo para ser consultado posteriormente."
+			},
+			"response": []
+		},
+		{
+			"name": "Gerar Remessa de Alteração (via tx2)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"tipo\" : \"0\",\r\n\t\"arquivo\" : \"SU5DTFVJUkFMVEVSQUNBTw0KSWRJbnRlZ3JhY2FvPXJKcnkzWXFsVg0KVGl0dWxvRGF0YVZlbmNpbWVudG89MjEvMTIvMjAxOQ0KU0FMVkFSQUxURVJBQ0FP\"\r\n}"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/boletos/altera/lote",
+				"description": "Rota que recebe um tx2 com o(s) idIntegracao dos boletos que terão a data de vencimento alterada.\nComo é uma operação assíncrona, ela devolve um protocolo para ser consultado posteriormente."
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Protocolo Remessa de Alteração",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/boletos/altera/lote/S1Xzv55eV",
+				"description": "Rota que recebe o protocolo de envio da remessa de alteração e devolve o conteúdo da remessa"
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrando um Cedente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CedenteRazaoSocial\": \"Empresa Ltda\",\r\n    \"CedenteNomeFantasia\": \"Empresa\",\r\n    \"CedenteCPFCNPJ\": \"90332254000108\",\r\n    \"CedenteEnderecoLogradouro\": \"Av. Analista Jucá de Souza\",\r\n    \"CedenteEnderecoNumero\": \"123\",\r\n    \"CedenteEnderecoComplemento\": \"sala 987\",\r\n    \"CedenteEnderecoBairro\": \"Centro\",\r\n    \"CedenteEnderecoCEP\": \"87012345\",\r\n    \"CedenteEnderecoCidadeIBGE\": \"4115200\",\r\n    \"CedenteTelefone\": \"(44) 3033-1234\",\r\n    \"CedenteEmail\": \"cobranca@boleto.com.br\"\r\n}"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/cedentes"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultando os Cedentes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/cedentes"
+			},
+			"response": []
+		},
+		{
+			"name": "Alterando um Cedente (JSON)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"CedenteRazaoSocial\": \"Nova razão social (editado)\",\r\n  \"CedenteNumero\": 123,\r\n  \"CedenteCep\": \"85012251\",\r\n  \"CedenteTelefone\": 4499991234\r\n}"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/cedentes/41",
+				"description": "Para alterar o convênio, passe o body da requisição o campo que você deseja alterar e o novo valor deste campo."
+			},
+			"response": []
+		},
+		{
+			"name": "Alterando um Cedente (TX2)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arquivo",
+							"value": "Q2VkZW50ZVJhemFvU29jaWFsPU5vdmEgUmF6w6NvIFNvY2lhbCAoQWx0ZXJhZGEpDQpDZWRlbnRlTnVtZXJvPTEyMw0KQ2VkZW50ZUNlcD04NTAxMjI1MQ0KQ2VkZW50ZVRlbGVmb25lPTQ0OTk5OTEyMzQNCg==",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/cedentes/41",
+				"description": "Para alterar o convênio, passe o body da requisição o campo que você deseja alterar e o novo valor deste campo."
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrando uma conta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ContaCodigoBanco\": \"001\",\n    \"ContaNumero\": \"111222333\",\n    \"ContaNumeroDV\": \"3\",\n    \"ContaAgencia\": \"1234\",\n    \"ContaAgenciaDV\": \"\",\n    \"ContaTipo\": \"CORRENTE\",\n    \"ContaCodigoBeneficiario\": \"40473\"\n}"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/cedentes/contas"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultando as contas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/cedentes/contas"
+			},
+			"response": []
+		},
+		{
+			"name": "Alterando as contas",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ContaAgencia\": \"12345\",\r\n    \"ContaAgenciaDV\": \"6\"\r\n}"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/cedentes/contas/1824",
+				"description": "Para alterar a conta, passe o body da requisição o campo que você deseja alterar e o novo valor deste campo."
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrando um convênio",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ConvenioNumero\": \"11122233344455\",\n    \"ConvenioDescricao\": \"Convenio da tecnospeed\",\n    \"ConvenioCarteira\": \"109\",\n    \"ConvenioEspecie\": \"R$\",\n    \"ConvenioPadraoCNAB\": \"240\",\n    \"conta\": 1824\n}"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/cedentes/contas/convenios"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultando os Convênios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/cedentes/contas/convenios"
+			},
+			"response": []
+		},
+		{
+			"name": "Alterando um convênio",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ConvenioNumero\": \"44455566677\",\n    \"ConvenioDescricao\": \"Convenio da tecnospeed\",\n    \"ConvenioCarteira\": \"109\",\n    \"ConvenioEspecie\": \"R$\",\n    \"ConvenioPadraoCNAB\": \"240\",\n    \"conta\": 1\n}"
+				},
+				"url": "http://homologacao.cobrancabancaria.tecnospeed.com.br/api/v1/cedentes/contas/convenios/1637",
+				"description": "Para alterar o convênio, passe o body da requisição o campo que você deseja alterar e o novo valor deste campo."
+			},
+			"response": []
+		}
+	]
+}
