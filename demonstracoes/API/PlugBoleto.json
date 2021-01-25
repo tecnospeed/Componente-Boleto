@@ -1,0 +1,794 @@
+{
+	"info": {
+		"_postman_id": "64694b48-ec49-4f39-9312-406f6e3cebab",
+		"name": "Apresentação Boleto - API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Envio via tx2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arquivo",
+							"value": "SU5DTFVJUkJPTEVUTw0KQ2VkZW50ZUNvbnRhTnVtZXJvPTEyMzQ1DQpDZWRlbnRlQ29udGFOdW1lcm9EVj02DQpDZWRlbnRlQ29udmVuaW9OdW1lcm89NjU0MzIzMQ0KQ2VkZW50ZUNvbnRhQ29kaWdvQmFuY289MzQxDQpUaXR1bG9Eb2NFc3BlY2llPTA2DQoNClNhY2Fkb0VtYWlsPXNhY2Fkb0B0ZXN0ZS5jb20uYnINClNhY2Fkb05vbWU9U2FjYWRvIFRlc3RlDQpTYWNhZG9DUEZDTlBKPTAxMDAxMDAxMDAwMTEzDQpTYWNhZG9FbmRlcmVjb0NFUD04NzAyMDAyNQ0KU2FjYWRvQ2VsdWxhcj00NDAwMDAwMDANClNhY2Fkb0VuZGVyZWNvTnVtZXJvPTcxNg0KU2FjYWRvRW5kZXJlY29CYWlycm89SmQgV2FzaGluZ3RvbiANClNhY2Fkb0VuZGVyZWNvQ2lkYWRlPU1hcmluZ2ENClNhY2Fkb0VuZGVyZWNvTG9ncmFkb3Vybz1BVi4gQlJBU0lMDQpTYWNhZG9FbmRlcmVjb1BhaXM9QlJBU0lMDQpTYWNhZG9FbmRlcmVjb1VGPVBSDQpTYWNhZG9UZWxlZm9uZT00NDMzMzMzMzMzDQoNClRpdHVsb05vc3NvTnVtZXJvPTAwMDI1NQ0KVGl0dWxvTnVtZXJvRG9jdW1lbnRvPTAwMDE1DQpUaXR1bG9EYXRhVmVuY2ltZW50bz0zMC8wNS8yMDE3DQpUaXR1bG9EYXRhRW1pc3Nhbz0xMC8wMS8yMDE3DQpUaXR1bG9WYWxvcj0xLDAxDQoNClRpdHVsb01lbnNhZ2VtMDE9TWVuc2FnZW0gbGluaGEgMQ0KVGl0dWxvTWVuc2FnZW0wMj1NZW5zYWdlbSBsaW5oYSAyDQpUaXR1bG9NZW5zYWdlbTAzPU1lbnNhZ2VtIGxpbmhhIDMNCg0KVGl0dWxvSW5mb3JtYWNvZXNBZGljaW9uYWlzPVRlc3RlIGluZi5BZGljaW9uYWlzOiBOdW1lcm8gTkY6IDANClRpdHVsb0luc3RydWNvZXM9VGVzdGUgSW5zdHJ1Y29lczogRGVzY29udG8gZGUgNSUgYXRlIDEwLzAyLzE3DQoNClNBTFZBUkJPTEVUTw==",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/boletos/lote",
+				"description": "Envio de boleto usando arquivo tx2 convertido em base64"
+			},
+			"response": []
+		},
+		{
+			"name": "Envio via json",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[{\n  \"CedenteContaNumero\": \"12345\",\n  \"CedenteContaNumeroDV\": \"6\",\n  \"CedenteConvenioNumero\": \"1234123456\",\n  \"CedenteContaCodigoBanco\": \"341\",\n  \"SacadoCPFCNPJ\": \"08357906000170\",\n  \"SacadoEnderecoNumero\": \"987\",\n  \"SacadoEnderecoBairro\": \"Centro\",\n  \"SacadoEnderecoCEP\": \"87045430\",\n  \"SacadoEnderecoCidade\": \"Maringá\",\n  \"SacadoEnderecoComplemento\": \"Fundos\",\n  \"SacadoEnderecoLogradouro\": \"Rua teste, 987\",\n  \"SacadoEnderecoPais\": \"Brasil\",\n  \"SacadoEnderecoUF\": \"PR\",\n  \"SacadoNome\": \"FooBarTeste\",\n  \"SacadoTelefone\": \"4499999999\",\n  \"SacadoCelular\":true,\n  \"TituloDataEmissao\": \"22/04/2019\",\n  \"TituloDataVencimento\": \"24/04/2019\",\n  \"TituloMensagem01\": \"Teste\",\n  \"TituloMensagem02\": \"Nao receber apos 30 dias de atraso\",\n  \"TituloMensagem03\": \" sujito a protesto apos 30 dias\",\n  \"TituloNumeroDocumento\": \"321\",\n  \"TituloDocEspecie\": \"01\",\n  \"TituloNossoNumero\": \"1234855\",\n  \"TituloValor\": \"0,10\",\n  \"TituloCodigoJuros\": \"2\",\n  \"TituloValorJuros\": \"1,50\",\n  \"TituloDataJuros\": \"25/04/2019\",\n  \"titulosacadoravalistaenderecoNumero\": \"155\",\n  \"TituloLocalPagamento\": \"Pagável em qualquer banco até o vencimento.\",\n  \"TituloSacadorAvalistaBairro\":\"JDestes\"\n  }]"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/boletos/lote",
+				"description": "Envio de boleto usando arquivo tx2 convertido em base64"
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta idIntegracao",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"url": {
+					"raw": "http://homologacao.plugboleto.com.br/api/v1/boletos?idintegracao=Sa65aQMa4",
+					"protocol": "http",
+					"host": [
+						"homologacao",
+						"plugboleto",
+						"com",
+						"br"
+					],
+					"path": [
+						"api",
+						"v1",
+						"boletos"
+					],
+					"query": [
+						{
+							"key": "idintegracao",
+							"value": "Sa65aQMa4"
+						}
+					]
+				},
+				"description": "Rota GET que recebe os idIntegracao a serem usados na consulta"
+			},
+			"response": []
+		},
+		{
+			"name": "Descarta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    \"SkkrjK5l4\",\n    \"H1x1iK9xN\"\n]"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/boletos/descarta/lote",
+				"description": "Rota para o descarte de boletos com situação igual a \"Emitido\", \"Rejeitado\" ou \"Falha\""
+			},
+			"response": []
+		},
+		{
+			"name": "Impressão em Lote/Carnet/Personalizada",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tipoImpressao\": \"2\",\n    \"boletos\": [\n        \"rJry3YqlV\",\n        \"SkdlnY9xN\"\n    ]\n}"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/boletos/impressao/lote",
+				"description": "Operação Assíncrona. Esta requisição retorna um número de protocolo que deve ser utilizado para efetivamente obter o conteúdo da impressão.\n\nNo Json, o \"tipoImpressao\" pode receber os seguintes valores:\n    Impressão normal = \"0\"\n    Impressao carnet = \"1\"\n    Impressão personalizada = \"99\"\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Impressão em Lote/Carnet/Personalizada com Protocolo",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"url": "http://homologacao.plugboleto.com.br/api/v1/boletos/impressao/lote/HyZ72FceE",
+				"description": "Rota GET em que é informado o conteúdo do procotolo, e é devolvido o PDF da impressão, de acordo com o tipo selecionado na requisição anterior."
+			},
+			"response": []
+		},
+		{
+			"name": "Solicitando o envio de Email",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"IdIntegracao\": [\"eSaGbE3t3\"],\n    \"TipoImpressao\":\"2\",\n    \"EmailNomeRemetente\": \"Empresa Exemplo\",\n    \"EmailRemetente\": \"exemplo@remetente.com.br\",\n    \"EmailAssunto\": \"Boleto para pagamento\",\n    \"EmailConteudoHtml\": true,\n    \"EmailMensagem\": \"Segue o link do boleto:<br> ${linkBoleto}<br>Considere não imprimir este email.<br><b>Código HTML dentro da Tag</b>\",\n    \"EmailDestinatario\": [\n        \"guilherme.ganassin@tecnospeed.com.br\",\"mohfarrej.tuda@tecnospeed.com.br\"\n    ],\n    \"EmailAnexarBoleto\": true,\n    \"Anexos\": [\n        {\n            \"Arquivo\": \"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\",\n            \"Nome\": \"nome.jpg\"\n        }\n    ]\n}"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/email/lote",
+				"description": "Requisição de exemplo da solicitação de email"
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta do Protocolo do envio de Email",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"url": "http://homologacao.plugboleto.com.br/api/v1/email/lote/Ax3JJDcJb",
+				"description": "Requisição de exemplo mostrando a consulta do protocolo gerado na requisição de solicitação de envio de email."
+			},
+			"response": []
+		},
+		{
+			"name": "Geração de Remessa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    \"OTeRMwJcJ\"\n]"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/remessas/lote",
+				"description": "Rota recebe um array de idIntegracao e devolve o conteúdo da remessa codificado em base64"
+			},
+			"response": []
+		},
+		{
+			"name": "Upload Retorno",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arquivo",
+							"value": "MDAxMDAwMDAgICAgICAgICAyNzc3NDcyMDgwMDAxMDEwMDIzNjcwMzEwMDE0ICAgICAgIDAzMjg0MDAwMDAwMDAzODgwMDkgRU1QUkVTQUFBQSBURUNOT0xPR0lBIERFIElORk9SQkFOQ08gRE8gQlJBU0lMICAgICAgICAgICAgICAgICAgICAgICAgIDIwMTA2MjAxNjAxMDQyMTAwMDczMjAzMDAwMDAwMDM2MjE0MDMyUFJPQ0VTU0FNRU4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQowMDEwMDAxMVQwMTAwMDIwIDIwNzc3NDcyMDgwMDAxMDEwMDIzNjcwMzEwMDE0ICAgICAgIDAzMjg0MDAwMDAwMDAzODgwMDkgRU1QUkVTQUFBQSBURUNOT0xPR0lBIERFIElORk9SICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAwMDAwMDAwMDAxMDYyMDE2MDAwMDAwMDAgIDAwMDAwMDAwMCAgICAgICAgICAgICAgICAgICAgICANCjAwMTAwMDEzMDAwMDFUIDA2MDMyODQwMDAwMDAwMDM4ODAwOSAyMzY3MDMxMDAwODA2MTU3MCAgIDI4MDYxNTcwICAgICAgICAzMDA0MjAxNjAwMDAwMDAwMDAzMTU2MDIzNzAyNDczMDYxNTcwICAgICAgICAgICAgICAgICAgICAwOTAwMDAwMDAwMDAwMDEwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwICAgMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwICAgICAgICAxNzAxOTIzNjcwMzEgICAgIA0KMDAxMDAwMTMwMDAwMlUgMDYwMDAwMDAwMDAwMDA5ODMwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMzI1NDMwMDAwMDAwMDAwMzI1NDMwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMTA2MjAxNjAyMDYyMDE2ICAgICAgICAgICAgMDAwMDAwMDAwMDAwMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMDAwICAgICAgICAgICAgICAgICAgICAgICAgICAgDQowMDEwMDAxMzAwMDAzVCAxNzAzMjg0MDAwMDAwMDAzODgwMDkgMjM2NzAzMTAwMDgwNjg0MjkgICA3ICAgICAgICAgICAgICAgMDAwMDAwMDAwMDAwMDAwMDAwMTM2Mzg3NTYwMzA3MDAgICAgICAgICAgICAgICAgICAgICAgICAgMDkwMDAwMDAwMDAwMDAxMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMCAgIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAyNDUwMyAgICAgICAgMTcwMTkyMzY3MDMxICAgICANCjAwMTAwMDEzMDAwMDRVIDE3MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDEzNjM4MDAwMDAwMDAwMDEzMzkzMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDEwNjIwMTYwMjA2MjAxNiAgICAgICAgICAgIDAwMDAwMDAwMDAwMDAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgIA0KMDAxMDAwMTUgICAgICAgICAwMDAwMDYwMDAwNDQwMDAwMDAwMDAwMTU2NDMxNjAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgDQowMDE5OTk5OSAgICAgICAgIDAwMDAwMTAwMDAwODAwMDAwMCAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwICAgICAgICAgICAgICAgICAgICANCg==",
+							"type": "text"
+						},
+						{
+							"key": "nome",
+							"value": "Exemplo.txt",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/retornos",
+				"description": "Rota recebe o conteúdo do arquivo de retorno em base64 e devolve o número do protocolo, que precisa ser salvo para ser utilizado na rota da \"Consulta do Protocolo do Upload Retorno\""
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta do Protocolo do Upload Retorno",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"url": "http://homologacao.plugboleto.com.br/api/v1/retornos/BklcE6sxwZ",
+				"description": "Rota recebe o número do protocolo obtido na rota de Upload Retorno, e devolve os idIntegracao que foram atualizados em nossa base de dados"
+			},
+			"response": []
+		},
+		{
+			"name": "Gerar Remessa de Baixa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    \"BJZ0S7_8Ub\",\n    \"SJg7KGd8IW\"\n]"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/boletos/baixa/lote",
+				"description": "Rota recebe um array de idIntegracao e retorna um número de protocolo para ser consultado posteriormente."
+			},
+			"response": []
+		},
+		{
+			"name": "Consultar Remessa de Baixa",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"url": "http://homologacao.plugboleto.com.br/api/v1/boletos/baixa/lote/B12f89qlN",
+				"description": "Rota que recebe o protocolo gerado na rota de \"Geraçõ de Remessa de Baixa\", e que devolve o conteúdo da remessa em base64"
+			},
+			"response": []
+		},
+		{
+			"name": "Gerar Remessa de Alteração (via JSON)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tipo\": \"0\",\n    \"boletos\": [\n        {\n            \"idintegracao\": \"SkdlnY9xN\",\n            \"TituloDataVencimento\": \"21/12/2019\"\n        },\n        {\n            \"idintegracao\": \"rJry3YqlV\",\n            \"TituloDataVencimento\": \"21/12/2019\"\n        }\n    ]\n}"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/boletos/altera/lote",
+				"description": "Rota que recebe um json com o(s) idIntegracao dos boletos que terão a data de vencimento alterada.\nComo é uma operação assíncrona, ela devolve um protocolo para ser consultado posteriormente."
+			},
+			"response": []
+		},
+		{
+			"name": "Gerar Remessa de Alteração (via tx2)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"tipo\" : \"0\",\r\n\t\"arquivo\" : \"SU5DTFVJUkFMVEVSQUNBTw0KSWRJbnRlZ3JhY2FvPXJKcnkzWXFsVg0KVGl0dWxvRGF0YVZlbmNpbWVudG89MjEvMTIvMjAxOQ0KU0FMVkFSQUxURVJBQ0FP\"\r\n}"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/boletos/altera/lote",
+				"description": "Rota que recebe um tx2 com o(s) idIntegracao dos boletos que terão a data de vencimento alterada.\nComo é uma operação assíncrona, ela devolve um protocolo para ser consultado posteriormente."
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Protocolo Remessa de Alteração",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"url": "http://homologacao.plugboleto.com.br/api/v1/boletos/altera/lote/S1Xzv55eV",
+				"description": "Rota que recebe o protocolo de envio da remessa de alteração e devolve o conteúdo da remessa"
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrando um Cedente",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"CedenteRazaoSocial\": \"Empresa Ltda\",\r\n    \"CedenteNomeFantasia\": \"Empresa\",\r\n    \"CedenteCPFCNPJ\": \"77381188000190\",\r\n    \"CedenteEnderecoLogradouro\": \"Av. Analista Jucá de Souza\",\r\n    \"CedenteEnderecoNumero\": \"123\",\r\n    \"CedenteEnderecoComplemento\": \"sala 987\",\r\n    \"CedenteEnderecoBairro\": \"Centro\",\r\n    \"CedenteEnderecoCEP\": \"87012345\",\r\n    \"CedenteEnderecoCidadeIBGE\": \"4115200\",\r\n    \"CedenteTelefone\": \"(44) 3033-1234\",\r\n    \"CedenteEmail\": \"cobranca@boleto.com.br\"\r\n}"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/cedentes"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultando os Cedentes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					}
+				],
+				"url": "http://homologacao.plugboleto.com.br/api/v1/cedentes"
+			},
+			"response": []
+		},
+		{
+			"name": "Alterando um Cedente (JSON)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"CedenteRazaoSocial\": \"Nova razão social (editado)\",\r\n  \"CedenteNumero\": 123,\r\n  \"CedenteCep\": \"85012251\",\r\n  \"CedenteTelefone\": 4499991234\r\n}"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/cedentes/41",
+				"description": "Para alterar o convênio, passe o body da requisição o campo que você deseja alterar e o novo valor deste campo."
+			},
+			"response": []
+		},
+		{
+			"name": "Alterando um Cedente (TX2)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "arquivo",
+							"value": "Q2VkZW50ZVJhemFvU29jaWFsPU5vdmEgUmF6w6NvIFNvY2lhbCAoQWx0ZXJhZGEpDQpDZWRlbnRlTnVtZXJvPTEyMw0KQ2VkZW50ZUNlcD04NTAxMjI1MQ0KQ2VkZW50ZVRlbGVmb25lPTQ0OTk5OTEyMzQNCg==",
+							"type": "text"
+						}
+					]
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/cedentes/41",
+				"description": "Para alterar o convênio, passe o body da requisição o campo que você deseja alterar e o novo valor deste campo."
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrando uma conta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "77381188000190"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ContaCodigoBanco\": \"001\",\n    \"ContaNumero\": \"111222333\",\n    \"ContaNumeroDV\": \"3\",\n    \"ContaAgencia\": \"1234\",\n    \"ContaAgenciaDV\": \"5\",\n    \"ContaTipo\": \"CORRENTE\",\n    \"ContaCodigoBeneficiario\": \"40473\"\n}"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/cedentes/contas"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultando as contas",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "77381188000190"
+					}
+				],
+				"url": "http://homologacao.plugboleto.com.br/api/v1/cedentes/contas"
+			},
+			"response": []
+		},
+		{
+			"name": "Alterando as contas",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "77381188000190"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ContaAgencia\": \"4567\",\r\n    \"ContaAgenciaDV\": \"6\"\r\n}"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/cedentes/contas/6935",
+				"description": "Para alterar a conta, passe o body da requisição o campo que você deseja alterar e o novo valor deste campo."
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrando um convênio",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ConvenioNumero\": \"11122233344455\",\n    \"ConvenioDescricao\": \"Convenio da tecnospeed\",\n    \"ConvenioCarteira\": \"109\",\n    \"ConvenioEspecie\": \"R$\",\n    \"ConvenioPadraoCNAB\": \"240\",\n    \"conta\": 1824\n}"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/cedentes/contas/convenios"
+			},
+			"response": []
+		},
+		{
+			"name": "Consultando os Convênios",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/cedentes/contas/convenios"
+			},
+			"response": []
+		},
+		{
+			"name": "Alterando um convênio",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "cnpj-sh",
+						"value": "01001001000113"
+					},
+					{
+						"key": "token-sh",
+						"value": "f22b97c0c9a3d41ac0a3875aba69e5aa"
+					},
+					{
+						"key": "cnpj-cedente",
+						"value": "01001001000113"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ConvenioNumero\": \"44455566677\",\n    \"ConvenioDescricao\": \"Convenio da tecnospeed\",\n    \"ConvenioCarteira\": \"109\",\n    \"ConvenioEspecie\": \"R$\",\n    \"ConvenioPadraoCNAB\": \"240\",\n    \"conta\": 1\n}"
+				},
+				"url": "http://homologacao.plugboleto.com.br/api/v1/cedentes/contas/convenios/1637",
+				"description": "Para alterar o convênio, passe o body da requisição o campo que você deseja alterar e o novo valor deste campo."
+			},
+			"response": []
+		}
+	]
+}
