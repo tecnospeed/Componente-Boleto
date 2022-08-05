@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2016/11/22 08:37:49.000.886,=C:\Users\guilherme.ganassin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/01/02 13:17:24.000.191,=C:\Users\guilherme.ganassin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/01/02 13:17:35.000.966,C:\Users\guilherme.ganassin\Desktop\Demos\Delphi\Boleto\Guilherme - Demo Boleto\Unit1.dfm=C:\Users\guilherme.ganassin\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2017/01/02 13:17:35.000.966,C:\Users\guilherme.ganassin\Desktop\Demos\Delphi\Boleto\Guilherme - Demo Boleto\Unit1.pas=C:\Users\guilherme.ganassin\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2017/01/02 13:17:47.000.641,C:\Users\guilherme.ganassin\Desktop\Demos\Delphi\Boleto\Guilherme - Demo Boleto\Project1.dproj=C:\Users\guilherme.ganassin\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

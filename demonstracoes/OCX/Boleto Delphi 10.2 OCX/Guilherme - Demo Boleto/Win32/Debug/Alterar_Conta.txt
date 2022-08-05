@@ -1,0 +1,9 @@
+ALTERARCONTA
+ContaCodigoBanco=341
+ContaAgencia=4236
+ContaAgenciaDV=
+ContaNumero=54321
+ContaNumeroDV=0
+ContaTipo=CORRENTE
+ContaCodigoBeneficiario=54321
+SALVARCONTA

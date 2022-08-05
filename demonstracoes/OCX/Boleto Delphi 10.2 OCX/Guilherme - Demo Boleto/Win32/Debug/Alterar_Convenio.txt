@@ -1,0 +1,10 @@
+ALTERARCONVENIO
+ConvenioNumero=32134
+ConvenioDescricao=Carteira de exemplo
+ConvenioCarteira=109
+ConvenioEspecie=Boleto
+ConvenioPadraoCNAB=240
+ConvenioAtualizaVan=0
+ConvenioNumeroRemessa=542
+ConvenioReiniciarDiariamente=false
+SALVARCONVENIO

@@ -1,0 +1,11 @@
+INCLUIRCONTACONVENIO
+
+ConvenioNumero=321
+ConvenioDescricao=Carteira de exemplo
+ConvenioCarteira=109
+ConvenioEspecie=R$
+ConvenioPadraoCNAB=240
+ConvenioUtilizaVan=0
+Conta=856
+
+SALVARCONTACONVENIO
