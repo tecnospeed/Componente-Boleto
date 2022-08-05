@@ -1,4 +1,0 @@
-ALTERARCEDENTE
-Situacao=INATIVO
-CedenteMotivoInativacao=TesteInativacao
-SALVARCEDENTE
